@@ -1,0 +1,406 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="崔某人的碎碎念,通才基础上的专才"><meta name="keywords" content="mysql,golang,算法"><title>算法初步 | 清澄秋爽</title><link rel="stylesheet" type="text/css" href="//fonts.loli.net/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.3"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.3"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="stylesheet" type="text/css" href="/css/donate.css"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">算法初步</h1><a id="logo" href="/.">清澄秋爽</a><p class="description">苹果树下的思索者 书写是对思维的缓存</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">算法初步</h1><div class="post-meta"><a href="/2015/02/01/算法初步/#comments" class="comment-count"></a><p><span class="date">Feb 01, 2015</span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><p><br></p>
+<h2 id="0-算法功底决定Offer质量"><a href="#0-算法功底决定Offer质量" class="headerlink" title="0.算法功底决定Offer质量"></a><font color="red">0.算法功底决定Offer质量</font></h2><p><img src="/2015/02/01/算法初步/0.png" width="80%" height="50%"></p>
+<ul>
+<li><p>算法能力能够准确判别一个程序员的技术功底是否扎实</p>
+</li>
+<li><p>算法能力是发掘程序员学习能力与成长潜力的关键手段</p>
+</li>
+<li><p>算法能力能够协助判断程序员分析并解决突发问题的能力</p>
+</li>
+<li><p>算法能力是设计一个高性能系统的必备基础</p>
+</li>
+</ul>
+<p><img src="/2015/02/01/算法初步/2.png" width="80%" height="50%"></p>
+<p><br></p>
+<hr>
+<p><br></p>
+<h2 id="1-掌握实用的数据结构"><a href="#1-掌握实用的数据结构" class="headerlink" title="1.掌握实用的数据结构"></a><font color="orange">1.掌握实用的数据结构</font></h2><p>数据结构是算法的基石,算法是否足够优秀,往往取决于使用的数据结构是否恰到好处</p>
+<h3 id="1-1-常用数据结构和技巧-Common-Data-Structure"><a href="#1-1-常用数据结构和技巧-Common-Data-Structure" class="headerlink" title="1.1 常用数据结构和技巧/Common Data Structure"></a><font color="orange">1.1 常用数据结构和技巧/Common Data Structure</font></h3><p><img src="/2015/02/01/算法初步/3.png" width="80%" height="50%"></p>
+<p><br></p>
+<hr>
+<h4 id="数组-字符串-Array-amp-String"><a href="#数组-字符串-Array-amp-String" class="headerlink" title="数组,字符串/Array&amp;String"></a><font color="darkgreen">数组,字符串/Array&amp;String</font></h4><p><br></p>
+<p>翻转字符串: 用两个指针,最开始分别指向首尾,相互交换..而后向中央靠拢,直到相遇为止</p>
+<p><img src="/2015/02/01/算法初步/1-2.png" width="80%" height="50%"></p>
+<p><a href="http://www.dashen.tech/2015/03/26/leetcode-242-%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D/">leetcode-242 有效的字母异位词</a></p>
+<p><br></p>
+<h4 id="链表-Linked-List"><a href="#链表-Linked-List" class="headerlink" title="链表/Linked List"></a><font color="darkgreen">链表/Linked List</font></h4><p><br></p>
+<ul>
+<li>优点:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">灵活地分配内存空间</span><br><span class="line"></span><br><span class="line">能在O(1)时间内删除或者添加元素</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>缺点:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查询元素需要O(n)时间,即需要从头开始遍历</span><br></pre></td></tr></table></figure>
+<p>相比于数组,链表可以不需要开辟一段连续的内存空间,但同时不能通过下标进行查询.如果需要经常查询和遍历的场景,不是太合适优先考虑链表</p>
+<p><img src="/2015/02/01/算法初步/1-3.png" width="80%" height="50%"></p>
+<p>而如果数据的元素个数不确定,而且频繁需要<code>写操作</code>,链表较合适.</p>
+<p>而元素个数确定,删除/插入操作并不多,则数组更为适合</p>
+<p><strong>解题技巧</strong>:</p>
+<ol>
+<li>利用快慢指针(有时甚至需要用到三个指针),</li>
+</ol>
+<ul>
+<li>如链表的翻转,</li>
+<li>寻找第K个元素,</li>
+<li>寻找链表中中间位置的元素,</li>
+<li>判断链表是否有环等</li>
+</ul>
+<ol start="2">
+<li>构建一个虚假的链表头,一般用需要返回一个新的链表的题目中</li>
+</ol>
+<ul>
+<li>如 两个已排好序的链表,进行整合排序</li>
+<li>将链表的奇偶数按原定顺序分离,生成前半部分为奇数,后半部分为偶数的链表</li>
+</ul>
+<p>如果不用一个虚假的链表头,那么在创建新链表的第一个元素时,都需要判断链表的头指针是否为空,即需要多写一条if else语句. 比较简洁的写法是创建一个新的链表头,直接往其后面添加元素即可.最后返回这个空的链表头的下一个节点</p>
+<p><br></p>
+<p><strong>如何训练该技巧</strong>:</p>
+<p><br></p>
+<p>在纸上或者白板上画出节点之间的相互关系.</p>
+<p>画出修改的方法.</p>
+<p>凭空想象非常困难</p>
+<p><a href="http://www.dashen.tech/2015/03/18/leetcode-21-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8/">leetcode-21 合并两个有序链表</a></p>
+<p><a href="http://www.dashen.tech/2015/03/20/leetcode-25-K%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8/">leetcode-25 K个一组翻转链表</a></p>
+<p><br></p>
+<hr>
+<p>数组和链表为<code>物理数据结构</code>,下面的是<code>逻辑数据结构</code>,其实现都是基于数组或链表</p>
+<p><br></p>
+<h4 id="栈-Stack"><a href="#栈-Stack" class="headerlink" title="栈/Stack"></a><font color="darkgreen">栈/Stack</font></h4><p><br></p>
+<p><strong>leetcode中等偏上题目经常用到的数据结构</strong></p>
+<p>后进先出(LIFO)</p>
+<p>所有操作,都是在栈顶部完成的,</p>
+<p><strong>如何实现:</strong></p>
+<p>可以用一个单链表来实现<code>栈</code>这种<strong>逻辑数据结构</strong></p>
+<p><strong>何时用到栈:</strong></p>
+<p>只关心最近一次的操作,且在操作完成后,需向前查找更前一次的操作</p>
+<p><a href="http://www.dashen.tech/2015/03/01/leetcode-22-%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/">leetcode-22 括号生成</a></p>
+<p>(利用一个栈,不断地往里面压左括号,一旦遇到一个右括号,就把栈顶的左括号弹出来,表示这是一个合法的组合..直到最后,判断栈里还有无左括号剩余)</p>
+<p><a href="http://www.dashen.tech/2015/03/01/leetcode-739-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/">leetcode-739 每日温度</a></p>
+<p>(最直观的做法,就是针对每个温度值,向后进行一次搜索,找到比当前温度更高的值,O(n的平方)…这种办法做了许多重复的对比)</p>
+<p>(利用一个堆栈stack,从头扫描T,如果当天的温度比堆栈顶端那一天的温度还要高,那就知道结果了..O(n) )</p>
+<p><br></p>
+<h4 id="队列-Queue"><a href="#队列-Queue" class="headerlink" title="队列/Queue"></a><font color="darkgreen">队列/Queue</font></h4><p><br></p>
+<p>先进先出(FIFO)</p>
+<p>只允许在队尾查看和添加数据,在队头查看和删除数据.</p>
+<p><strong>如何实现队列:</strong></p>
+<p>用一个<code>双链表</code>,其头指针(front)允许在队头查看和删除数据,尾指针(rear)允许在队尾查看和删除数据</p>
+<p><strong>何时用到队列:</strong></p>
+<p>需要按照一定得顺序处理数据,而数据在不断的变化…</p>
+<p>广度优先搜索,是运用队列最多的地方</p>
+<p><br></p>
+<h4 id="双端队列-Deque"><a href="#双端队列-Deque" class="headerlink" title="双端队列/Deque"></a><font color="darkgreen">双端队列/Deque</font></h4><p><br></p>
+<p>队列的头尾两端,能在O(1)的时间内进行数据的查看,添加和删除</p>
+<p><strong>如何实现双端队列:</strong></p>
+<p>用一个<code>双链表</code></p>
+<p><strong>何时用到双端队列:</strong></p>
+<p>实现一个长度动态变化的窗口或者连续区间,而<code>动态窗口</code>这种数据结构,在许多题目里都用应用</p>
+<p><a href="http://www.dashen.tech/2015/03/01/leetcode-239-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC/">leetcode-239 滑动窗口最大值</a></p>
+<p>拿到一道题目时,先想想最直观的做法,然后考虑对其进行优化</p>
+<p>暴力解法: O(n*k)</p>
+<p>优化解法:</p>
+<p>可以用一个双端队列来表述这个窗口,双端队列保存当前窗口中最大的那个数的下标,双标队列新的头,总是当前窗口中最大的那个数..同时,有了这个下标,可以很快的知道新的窗口是否已经不再包含原来那个最大的数,如果不再包含,就把原来那个旧的最大的数从双端队列的头部删除..不管窗口的长度k多长,因为数组里的每个数,都分别被压入和弹出双端队列一次,所以可以优化到O(n)的时间复杂度</p>
+<p>会频繁进行两个操作:</p>
+<ol>
+<li><p>将新的数据加到窗口的尾部,</p>
+</li>
+<li><p>将旧的数据从窗口头部删除</p>
+</li>
+</ol>
+<p>双端队列可以使如上量操作在O(1)内完成</p>
+<p><br></p>
+<h4 id="树-Tree"><a href="#树-Tree" class="headerlink" title="树/Tree"></a><font color="darkgreen">树/Tree</font></h4><p><br></p>
+<p><strong>树的共性:</strong></p>
+<ul>
+<li><p>结构直观</p>
+</li>
+<li><p>通过树问题 来考察<code>递归算法</code>掌握的熟练程度, 即一棵树要满足某种性质,往往要求每个节点都满足. 例如在定义一颗二叉搜索树时,每个节点也都必须是一棵二叉搜索树…故而树的问题和对递归的考察紧密相连</p>
+</li>
+</ul>
+<p><br></p>
+<p><strong>常考的树的形状有:</strong></p>
+<ul>
+<li><p>普通二叉树</p>
+</li>
+<li><p>平衡二叉树</p>
+</li>
+</ul>
+<p><img src="/2015/02/01/算法初步/tree1.png" width="80%" height="50%"></p>
+<ul>
+<li>完全二叉树</li>
+</ul>
+<p><img src="/2015/02/01/算法初步/tree2.png" width="80%" height="50%"></p>
+<ul>
+<li>二叉搜索树</li>
+</ul>
+<p><img src="/2015/02/01/算法初步/tree3.png" width="80%" height="50%"></p>
+<ul>
+<li>四叉树</li>
+</ul>
+<p><img src="/2015/02/01/算法初步/tree4.png" width="80%" height="50%"></p>
+<ul>
+<li>多叉树</li>
+</ul>
+<p><img src="/2015/02/01/算法初步/tree5.png" width="80%" height="50%"></p>
+<p><br></p>
+<p><strong>特殊的树:(不需花费太多精力)</strong></p>
+<ul>
+<li>红黑树</li>
+</ul>
+<p><img src="/2015/02/01/算法初步/tree6.png" width="80%" height="50%"></p>
+<ul>
+<li>自平衡二叉搜索树</li>
+</ul>
+<hr>
+<p><br></p>
+<p><em>对于树的考察,无非就是<code>树的遍历</code>和<code>序列化</code></em></p>
+<p><br></p>
+<p><strong>遍历</strong></p>
+<ul>
+<li>前序遍历(Preorder Traversal)</li>
+</ul>
+<blockquote>
+<p>先访问根节点,然后左子树,再右子树;</p>
+</blockquote>
+<blockquote>
+<font color="red">  主要用于在树里<code>进行搜索</code>,以及<code>创建一棵新的树</code></font>
+</blockquote>
+<p><br></p>
+<ul>
+<li><p>中序遍历(Inorder Traversal)</p>
+<blockquote>
+<font color="red"> 主要用于 <code>二叉搜索树</code>,因为二叉搜索树的特点就是左孩子小于根节点,根节点小于右节点</font>
+</blockquote>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li>后序遍历(Postorder Traversal)</li>
+</ul>
+<p><a href="http://www.dashen.tech/2015/03/01/leetcode-250-%E7%BB%9F%E8%AE%A1%E5%90%8C%E5%80%BC%E5%AD%90%E6%A0%91/">leetcode-250 统计同值子树</a></p>
+<blockquote>
+<font color="red"> 对某个节点进行分析时,需要用到左子树和右子树的信息,即所需要的信息,是从树的底部不断向上进行..好比修剪一棵树的叶子,方法是从外面将叶子不断修剪掉</font>
+</blockquote>
+<hr>
+<p><br></p>
+<p>掌握好这三种遍历的递归写法和非递归写法,及分析它们的时间复杂度和空间复杂度…</p>
+<p>掌握好树,说明对<code>递归</code>有很好的认识,可以帮助学习图论; <code>二叉搜索树</code>尤其是热门考点(中序遍历尤其爱考,因为节点被遍历到的顺序,是按照数值大小的顺序排列好的–仅仅针对BST,普通二叉树并不满足)..</p>
+<p>如:</p>
+<p><a href="http://www.dashen.tech/2015/03/01/leetcode-230-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%AC%ACK%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0/">leetcode-230 二叉搜索树中第K小的元素</a></p>
+<p>中序遍历一遍,访问到第K个元素时,返回结果即可;</p>
+<p>还可以问求解第K大的元素,对这个二叉搜索树进行反向的中序遍历</p>
+<p><br></p>
+<hr>
+<p><br></p>
+<h2 id="2-相对-高级的数据结构-Advanced-Data-Structure"><a href="#2-相对-高级的数据结构-Advanced-Data-Structure" class="headerlink" title="2 (相对)高级的数据结构 Advanced Data Structure"></a><font color="red">2 (相对)高级的数据结构 Advanced Data Structure</font></h2><p>解决一些中等难度以上的题目</p>
+<p><img src="/2015/02/01/算法初步/senior.png" width="80%" height="50%"></p>
+<p><br></p>
+<p><b>优秀的算法往往取决于你采用的数据结构</b></p>
+<p>其实现比常用数据结构要复杂很多,在处理一些复杂问题的过程中,多拥有一把利器.掌握好其性质和所适用的场合,在分析问题时回归本质,很多问题即可迎刃而解</p>
+<p><br></p>
+<p><img src="/2015/02/01/算法初步/advanced.png" width="80%" height="50%"></p>
+<p><br></p>
+<hr>
+<h4 id="优先队列-Priority-Queue"><a href="#优先队列-Priority-Queue" class="headerlink" title="优先队列/Priority Queue"></a><font color="darkgreen">优先队列/Priority Queue</font></h4><p><br></p>
+<p><strong>与普通队列的区别:</strong></p>
+<ul>
+<li><p>保证每次取出的元素是队列中优先级最高的</p>
+</li>
+<li><p>优先级别可自定义</p>
+</li>
+</ul>
+<p><br></p>
+<p><strong>最常用的场景:</strong></p>
+<p>从一堆杂乱无章的数据中,按照一定的顺序(或优先级)筛选(部分或全部)数据</p>
+<p>如找出一个数组前K大的数,最直接的办法是排序,然后依次输出前K大的数..依据快速排序,时间复杂度为O(n<em>logn)..而如果借用<code>优先队列</code>,就可以将时间复杂度优化至O(K+n</em>logK),当数据量n很大,而K相对较小时,可以大为降低时间复杂度..</p>
+<font color="red">其本质在于,要找出前K大的数,并不需要对所有的数进行排序</font>
+
+
+<p><code>优先队列</code>的本质,是一个二叉堆结构,堆在英文里叫做<font color="orange">Binary Heap</font>,</p>
+<p>是利用一个数组结构来实现的完全二叉树; 换句话说,<code>优先队列</code>的本质是一个数组,数组里的每个元素,既有可能是其他元素的父节点,也有可能是其他元素的子节点,而且每个父节点只能有两个子节点.</p>
+<p><img src="/2015/02/01/算法初步/heap.png" width="90%" height="50%"></p>
+<p><br></p>
+<p><strong>最基本的操作就是两个:</strong></p>
+<ul>
+<li><p>向上筛选 (sift up / bubble up)</p>
+<ul>
+<li>由于二叉堆是一棵完全二叉树,且堆的大小为K,从下面往上爬,就需要O(logK)的时间,</li>
+</ul>
+</li>
+<li><p>向下筛选 (sift down / bubble down)</p>
+<ul>
+<li><ul>
+<li>由于二叉堆是一棵完全二叉树,且堆的大小为K,从上面往下,也是需要O(logK)的时间</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<p><strong>另一个重要的时间复杂度: 优先队列的初始化</strong></p>
+<p>初始化一个大小为n的堆,时间复杂度为O(n). 不需要推导</p>
+<p><a href="http://www.dashen.tech/2015/03/01/leetcode-347-%E5%89%8DK%E4%B8%AA%E9%AB%98%E9%A2%91%E5%85%83%E7%B4%A0/">leetcode-347 前K个高频元素</a></p>
+<p>看到”前k个”这样的字眼,就应该很自然地想到用优先队列.</p>
+<p>优先级别如何选定呢?可以由出现的次数来决定..</p>
+<p>统计词频的最佳数据结构,是哈希表</p>
+<p><br></p>
+<hr>
+<h4 id="图-Graph"><a href="#图-Graph" class="headerlink" title="图/Graph"></a><font color="darkgreen">图/Graph</font></h4><p><br></p>
+<p>图是所有数据结构中,知识点最丰富的一个:</p>
+<ul>
+<li><p>阶,度(又分出度和入度)</p>
+</li>
+<li><p>树,森林,环</p>
+</li>
+<li><p>有向图,无向图,完全有向图,完全无向图</p>
+</li>
+<li><p>连通图,连通分量</p>
+</li>
+<li><p>图的存储和表达方式: 邻接矩阵,邻接链表</p>
+</li>
+</ul>
+<p><br></p>
+<p>围绕图的算法,也是各式各样:</p>
+<ul>
+<li><p>图的遍历: 深度优先,广度优先</p>
+</li>
+<li><p>环的检测: 有向图,无向图</p>
+</li>
+<li><p>拓扑排序</p>
+</li>
+<li><p>最短路径算法: Dijkstra,Bellman-Ford,Floyd Warshall</p>
+</li>
+<li><p>连通性相关算法: Kosaraju,Tarjan,求解孤岛的数量,判断是否为树,图的着色,旅行商问题(Traveling Salesman Problem),TSP)等</p>
+</li>
+</ul>
+<p>不需要对每一个都一一掌握,需要有的放矢</p>
+<p><br></p>
+<p><strong>必须熟练掌握的:</strong></p>
+<ul>
+<li><p>图的存储和表达方式: 邻接矩阵,邻接链表</p>
+</li>
+<li><p>图的遍历: 深度优先,广度优先</p>
+</li>
+<li><p>二部图的检测(,又称二分图,Bipartite),树的检测,环的检测(包括有向图和无向图)</p>
+</li>
+<li><p>拓扑排序</p>
+</li>
+<li><p>联合-查找算法(Union-Find)</p>
+</li>
+<li><p>最短路径: Dijkstra,Bellman-Ford(能区分不同,知道在不同场景该用哪个即可)</p>
+</li>
+</ul>
+<p>“二部图的检测(Bipartite),树的检测,环的检测(包括有向图和无向图)”,”拓扑排序”,都是基于图的遍历,尤其是深度优先遍历.遍历可以在邻接矩阵或邻接链表上进行</p>
+<p><a href="http://www.dashen.tech/2015/03/01/leetcode-785-%E5%88%A4%E6%96%AD%E4%BA%8C%E5%88%86%E5%9B%BE/">leetcode-785 判断二分图</a></p>
+<p><br></p>
+<hr>
+<h4 id="前缀树-字典树-Trie"><a href="#前缀树-字典树-Trie" class="headerlink" title="前缀树(字典树)/Trie"></a><font color="darkgreen">前缀树(字典树)/Trie</font></h4><p><br></p>
+<p>被广泛地应用于字典查找中</p>
+<p><strong>什么是字典查找?</strong></p>
+<p>例如: 给定一系列构成字典的字符串,要求在字典当中找出所有以”ABC”开头的字符串</p>
+<ul>
+<li><p>方法一:暴力搜索法</p>
+<ul>
+<li>假设要匹配的开头长度为m,则该方法时间复杂度为O(m*n)</li>
+</ul>
+</li>
+<li><p>方法二: 前缀树</p>
+<ul>
+<li>时间复杂度O(x),x标识字典里单词最长的那个单词的字符个数. 在大多数情况下,字典里的单词个数n,是远远大于x的</li>
+</ul>
+</li>
+</ul>
+<p><strong>前缀树的经典应用:</strong></p>
+<ul>
+<li>搜索框输入搜索文字,会罗列以搜索词开头的相关搜索</li>
+</ul>
+<p><img src="/2015/02/01/算法初步/trie.png" width="90%" height="50%"></p>
+<ul>
+<li>汉语拼音输入法的联想输出(输入内容为”cuis”)</li>
+</ul>
+<p><img src="/2015/02/01/算法初步/trie2.png" width="90%" height="50%"></p>
+<p><br></p>
+<p><strong>重要性质:</strong></p>
+<p>每个节点至少包含两个基本属性:</p>
+<ul>
+<li><p>children: 数组或集合,罗列出每个分支当中包含的所有字符</p>
+</li>
+<li><p>isEnd: 布尔值,表示该节点是否为某字符串的结尾</p>
+</li>
+</ul>
+<p>前缀树的根节点是空的.即只利用到了这个节点的children属性,</p>
+<p>除了根节点,其他所有节点都可能是单词的结尾,叶子节点一定都是单词的结尾</p>
+<p><br></p>
+<p><strong>最基本操作:</strong></p>
+<ol>
+<li>创建</li>
+</ol>
+<p>遍历一遍输入的字符串,对每个字符串的字符进行遍历.</p>
+<p>从前缀树的根节点开始,将每个字符加入到节点的children字符集当中</p>
+<p>如果字符集已经包含了这个字符,跳过</p>
+<p>如果当前字符是字符串的最后一个,则把当前节点的isEnd标记为真</p>
+<p><br></p>
+<p>** 前缀树真正强大之处在于,每个节点还能用来保存额外的信息,</p>
+<p>如用来记录拥有相同前缀的所有字符串,这样当用户输出某个前缀时,就能在O(1)的时间内给出全部推荐字符串 **</p>
+<ol start="2">
+<li>搜索</li>
+</ol>
+<p>(创建完成后,搜索实际非常简单了)</p>
+<p>从前缀树的根节点出发,逐个匹配输入的前缀字符</p>
+<p>如果遇到了,继续往下一层搜索,</p>
+<p>如果没遇到,立即返回</p>
+<p><a href="http://www.dashen.tech/2015/03/01/leetcode-212-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2II/">leetcode-212 单词搜索II</a></p>
+<p>使用深度优先算法(想象成走迷宫)</p>
+<p><br></p>
+<hr>
+<h4 id="线段树-Segment-Tree"><a href="#线段树-Segment-Tree" class="headerlink" title="线段树/Segment Tree"></a><font color="darkgreen">线段树/Segment Tree</font></h4><p><br></p>
+<p><strong>由来:</strong><br><img src="/2015/02/01/算法初步/segment.png" width="80%" height="50%"></p>
+<p><strong>什么是线段树:</strong><br><img src="/2015/02/01/算法初步/segment2.png" width="80%" height="50%"></p>
+<p>线段树的实现,在书写起来有些繁琐,需要不断练习,才能加深印象..</p>
+<p><a href="http://www.dashen.tech/2015/03/01/leetcode-315-%E8%AE%A1%E7%AE%97%E5%8F%B3%E4%BE%A7%E5%B0%8F%E4%BA%8E%E5%BD%93%E5%89%8D%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%AA%E6%95%B0/">leetcode-315 计算右侧小于当前元素的个数</a></p>
+<p><img src="/2015/02/01/算法初步/segment3.png" width="80%" height="50%"></p>
+<p><br></p>
+<hr>
+<h4 id="树状数组-Fenwick树-二叉索引树-Fenwick-Tree-Binary-Indexed-Tree"><a href="#树状数组-Fenwick树-二叉索引树-Fenwick-Tree-Binary-Indexed-Tree" class="headerlink" title="树状数组(Fenwick树, 二叉索引树)/Fenwick Tree,Binary Indexed Tree"></a><font color="darkgreen">树状数组(Fenwick树, 二叉索引树)/Fenwick Tree,Binary Indexed Tree</font></h4><p><br></p>
+<p><code>树状数组</code>又称<code>芬威克树</code>,<code>二叉索引树</code>，概念上是树状，实际上是使用数组实现的，表现为一种隐式数据结构</p>
+<p><br></p>
+<p><strong>由来:</strong></p>
+<p><img src="/2015/02/01/算法初步/bit.png" width="80%" height="50%"></p>
+<p>因为只需要求解前K个元素的总和,不需要是任何一个区间,而树状数组的实现比线段树更容易</p>
+<p>参考:</p>
+<p><a href="https://subetter.com/algorithm/binary-indexed-tree.html" target="_blank" rel="noopener">树状数组</a></p>
+<p><br></p>
+<p><strong>重要的基本特征:</strong></p>
+<p><img src="/2015/02/01/算法初步/bit2.png" width="80%" height="50%"></p>
+<p><a href="http://www.dashen.tech/2015/03/01/leetcode-308-%E4%BA%8C%E7%BB%B4%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2-%E5%8F%AF%E5%8F%98/">leetcode-308 二维区域和检索-可变</a></p>
+<p><br></p>
+<hr>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结:"></a><font color="darkgreen">总结:</font></h4><p><br></p>
+<ul>
+<li><p>优先队列: 经常考察,但其实现比较繁琐.许多编程语言都有其实现,届时直接”拿来主义”使用即可…(但还是建议自己实现一个优先队列)</p>
+</li>
+<li><p>图:大数据问题常常都得使用图论</p>
+</li>
+<li><p>前缀树: 一般出现在面试的难题中,往往需要自己实现一棵前缀树</p>
+</li>
+<li><p>线段树和树状数组: 应用场合比较明确</p>
+</li>
+</ul>
+<p><img src="/2015/02/01/算法初步/summary2.png" width="80%" height="50%"></p>
+<hr>
+<!--爽哥为赞赏功能新加--></div><!--script(type='text/javascript', src=url_for(theme.js) + '/jquery.js' + '?v=' + theme.version, async)--><script type="text/javascript" src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script><div class="post-donate"><div id="donate_board" class="donate_bar center"><a id="btn_donate" href="javascript:;" title="打赏" class="btn_donate"></a><div class="donate_txt"> &uarr;<br>BTC Address:3NNxkM6ez7szsUAgTnK2VaF949LoGmXuBs<br></div></div><div id="donate_guide" class="donate_bar center hidden pay"><img src="http://cuishuang.gitee.io/img/weChatMoney.png" title="微信打赏" alt="微信打赏"><img src="http://cuishuang.gitee.io/img/alipayMoney.png" title="支付宝打赏" alt="支付宝打赏"><img src="http://cuishuang.gitee.io/img/btc.png" title="比特币打赏" alt="比特币打赏"></div><script type="text/javascript">document.getElementById('btn_donate').onclick = function(){
+    $('#donate_board').addClass('hidden');
+    $('#donate_guide').removeClass('hidden');
+}</script></div><!-- google adsense--><!--if theme.show_ad_post == true--><!--    script(async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")--><!--    ins.adsbygoogle(style="display:block" data-ad-client="ca-pub-1181798273731653" data-ad-format="auto")--><!--    script (adsbygoogle = window.adsbygoogle || []).push({});-->
+<div class="post-copyright"><blockquote><p>原文作者: fliter</p><p>原文链接: </p><a href="http://www.dashen.tech/2015/02/01/算法初步/">http://www.dashen.tech/2015/02/01/算法初步/</a><p>版权声明: 转载请注明出处</p></blockquote></div><div class="tags"><a href="/tags/算法/">算法</a><a href="/tags/数据结构/">数据结构</a></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/2015/02/01/算法初步II/" class="pre">算法初步II</a><a href="/2015/01/01/约瑟夫环问题/" class="next">约瑟夫环问题</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-算法功底决定Offer质量"><span class="toc-text">0.算法功底决定Offer质量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-掌握实用的数据结构"><span class="toc-text">1.掌握实用的数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-常用数据结构和技巧-Common-Data-Structure"><span class="toc-text">1.1 常用数据结构和技巧/Common Data Structure</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数组-字符串-Array-amp-String"><span class="toc-text">数组,字符串/Array&amp;String</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#链表-Linked-List"><span class="toc-text">链表/Linked List</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#栈-Stack"><span class="toc-text">栈/Stack</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#队列-Queue"><span class="toc-text">队列/Queue</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#双端队列-Deque"><span class="toc-text">双端队列/Deque</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#树-Tree"><span class="toc-text">树/Tree</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-相对-高级的数据结构-Advanced-Data-Structure"><span class="toc-text">2 (相对)高级的数据结构 Advanced Data Structure</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#优先队列-Priority-Queue"><span class="toc-text">优先队列/Priority Queue</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#图-Graph"><span class="toc-text">图/Graph</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#前缀树-字典树-Trie"><span class="toc-text">前缀树(字典树)/Trie</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#线段树-Segment-Tree"><span class="toc-text">线段树/Segment Tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#树状数组-Fenwick树-二叉索引树-Fenwick-Tree-Binary-Indexed-Tree"><span class="toc-text">树状数组(Fenwick树, 二叉索引树)/Fenwick Tree,Binary Indexed Tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-text">总结:</span></a></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/01/10/Plan9汇编入门/">Plan9汇编入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/04/Rust的所有权与生命周期/">Rust的所有权与生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/02/使用FFmpeg将视频转换成音频/">使用FFmpeg将视频转换成音频</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/06/30/Adler32算法/">Adler32算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/06/30/哈希函数族谱/">哈希函数族谱</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/06/23/源码辅助阅读工具/">源码辅助阅读工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/06/22/Go-unsafe包/">Go unsafe包</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/06/21/Go-database-sql代码解读/">Go database/sql代码解读</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/06/21/并发编程中的ABA问题/">并发编程中的ABA问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/06/21/Go-race-dectect/">Go race dectect</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-weixin"> 扫码关注-旅途散记</i></div><img width="100%" height="233" title="微信扫一扫" src="https://cuishuang.gitee.io/img/lvtusanji.jpg"></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DevOps/">DevOps</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/">Life</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tree/">Tree</a><span class="category-list-count">27</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sync/">sync</a><span class="category-list-count">9</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/操作系统/" style="font-size: 15px;">操作系统</a> <a href="/tags/微服务/" style="font-size: 15px;">微服务</a> <a href="/tags/Tools/" style="font-size: 15px;">Tools</a> <a href="/tags/TCP-IP/" style="font-size: 15px;">TCP/IP</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Pearl/" style="font-size: 15px;">Pearl</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/Todo/" style="font-size: 15px;">Todo</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/Compiler/" style="font-size: 15px;">Compiler</a> <a href="/tags/密码学/" style="font-size: 15px;">密码学</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 15px;">杂谈</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Interview/" style="font-size: 15px;">Interview</a> <a href="/tags/金庸/" style="font-size: 15px;">金庸</a> <a href="/tags/译海一粟/" style="font-size: 15px;">译海一粟</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/bug/" style="font-size: 15px;">bug</a> <a href="/tags/Rust/" style="font-size: 15px;">Rust</a> <a href="/tags/书摘-影评/" style="font-size: 15px;">书摘/影评</a> <a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/数学/" style="font-size: 15px;">数学</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/读城记/" style="font-size: 15px;">读城记</a> <a href="/tags/足球-体育/" style="font-size: 15px;">足球&体育</a> <a href="/tags/星陨/" style="font-size: 15px;">星陨</a> <a href="/tags/奇文共赏/" style="font-size: 15px;">奇文共赏</a> <a href="/tags/区域经济/" style="font-size: 15px;">区域经济</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">四月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1093/02/">二月 1093</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="https://leetcode.com/" title="LeetCode" target="_blank">LeetCode</a><ul></ul><a href="https://golang.org/" title="Go官网" target="_blank">Go官网</a><ul></ul><a href="https://notes.diguage.com/mysql/" title="高性能Mysql" target="_blank">高性能Mysql</a><ul></ul><a href="https://tonybai.com/" title="TonyBai" target="_blank">TonyBai</a><ul></ul><a href="http://lietoumai.com/" title="顾问麦的小站" target="_blank">顾问麦的小站</a><ul></ul><a href="https://www.coolshell.cn/" title="酷壳" target="_blank">酷壳</a><ul></ul><a href="https://colobu.com/" title="鸟窝" target="_blank">鸟窝</a><ul></ul><a href="http://xiaorui.cc/" title="峰云" target="_blank">峰云</a><ul></ul><a href="https://eddycjy.com/posts/" title="煎鱼" target="_blank">煎鱼</a><ul></ul><a href="https://hutusi.com/" title="胡涂说" target="_blank">胡涂说</a><ul></ul><a href="https://qcrao.com/" title="码农桃花源" target="_blank">码农桃花源</a><ul></ul><a href="https://github.com/KeKe-Li/For-learning-Go-Tutorial" title="远方的笔记" target="_blank">远方的笔记</a><ul></ul><a href="https://xargin.com/" title="No Headback" target="_blank">No Headback</a><ul></ul><a href="http://thoslin.github.io/" title="Eat Pray Code" target="_blank">Eat Pray Code</a><ul></ul><a href="https://www.ashenone66.cn/" title="AshenOne's Blog" target="_blank">AshenOne's Blog</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |  <a href="/atom.xml">订阅本站</a> |  <a href="/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> 备案号:<a href="http://www.beian.miit.gov.cn/"> 鲁ICP备18010105号</a></span></p><p><span> Copyright &copy;<a href="/." rel="nofollow">fliter.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e10d6858b78ff3fc7853fc72e7240eab";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/search.json.js?v=2.0.3"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+});</script><script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML" async></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.3" async></script><link rel="stylesheet" type="text/css" href="/share/css/share.css"><script type="text/javascript" src="/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/share/js/qrcode.js" charset="utf-8"></script></body></html>
