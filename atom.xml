@@ -41,6 +41,29 @@
   </entry>
   
   <entry>
+    <title>开源人物志</title>
+    <link href="http://www.dashen.tech/2021/08/01/%E5%BC%80%E6%BA%90%E4%BA%BA%E7%89%A9%E5%BF%97/"/>
+    <id>http://www.dashen.tech/2021/08/01/开源人物志/</id>
+    <published>2021-08-01T02:59:26.000Z</published>
+    <updated>2021-08-01T03:02:40.705Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Richard-Matthew-Stallman"><a href="#Richard-Matthew-Stallman" class="headerlink" title="Richard Matthew Stallman"></a>Richard Matthew Stallman</h2><p><br></p><font color="#FF00FF"><p>贡献领域: </p></font> Emacs, <a href>GCC</a>, <a href="https://dashen.tech/2019/10/30/%E7%A5%9E%E5%99%A8gdb/" target="_blank" rel="noopener">GDB</a><p></p><p><br></p><p>中文一般译作”理查德·斯托曼”,Geek圈内一般简称”RMS”</p><p>1953年生于美国,自由软件运动的精神领袖、GNU计划以及自由软件基金会（Free Software Foundation）的创立者、著名黑客</p><p><img src="/2021/08/01/开源人物志/rms1.jpeg" width="80%" height="100%"></p><p>所写作的 <em>GNU通用公共许可证（GPL）</em> 是世上最广为采用的自由软件许可证</p><p><img src="/2021/08/01/开源人物志/rms.png" width="80%" height="100%"></p><p>别出心裁,创造了<a href="https://baike.baidu.com/item/%E8%91%97%E4%BD%90%E6%9D%83/3339812?fromtitle=Copyleft" target="_blank" rel="noopener"><em>著佐权(Copyleft)</em></a> 这一概念, 即可以拷贝,可以修改,可以出售, 只是有一条:源代码所有的改进和修改必须向每个用户公开,所有用户都可以获得改动后的源码. Copyleft保证了自由软件传播的延续性</p><p><img src="/2021/08/01/开源人物志/rms2.png" width="80%" height="100%"></p><p>有和RMS用同款键盘   ( =•ω•= )</p><p><img src="/2021/08/01/开源人物志/rms3.png" width="80%" height="100%"></p><p><br></p><p><a href="http://www.ruanyifeng.com/blog/2012/01/richard_stallman_was_right_all_along.html" target="_blank" rel="noopener">理查德·斯托曼一直是对的</a></p><p><br></p><hr><p><br></p><h2 id="Fabrice-Bellard"><a href="#Fabrice-Bellard" class="headerlink" title="Fabrice Bellard"></a>Fabrice Bellard</h2><p><br></p><font color="#FF00FF"><p>贡献领域: </p></font>贝拉公式(最快圆周率算法),TCCBOOT,TCC（微型C编译器）<br>,FFMPEG<p></p><p><br></p><p>中文一般译作”法布里斯·贝拉”</p><p>1972年生于法国</p><p><a href="https://www.zhihu.com/question/28388113" target="_blank" rel="noopener">Fabrice Bellard 是个什么水平的程序员？</a></p><hr><p><br></p><h2 id="Chris-Lattner"><a href="#Chris-Lattner" class="headerlink" title="Chris Lattner"></a>Chris Lattner</h2><p><br></p><font color="#FF00FF"><p>贡献领域: </p></font>LLVM项目主要作者之一,Clang编译器作者,Swift之父<p></p><p><br></p><p>中文一般译作”克里斯·拉特纳”</p><p>1978年生于美国</p><p><a href="http://www.nondot.org/sabre/" target="_blank" rel="noopener">Chris Lattner’s Homepage</a></p><p><a href="https://github.com/lattner" target="_blank" rel="noopener">github.com/lattner</a></p><hr><p><br></p><p><a href="https://www.facesofopensource.com/" target="_blank" rel="noopener">开源人物</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Richard-Matthew-Stallman&quot;&gt;&lt;a href=&quot;#Richard-Matthew-Stallman&quot; class=&quot;headerlink&quot; title=&quot;Richard Matthew Stallman&quot;&gt;&lt;/a&gt;Richard Matthe
+      
+    
+    </summary>
+    
+    
+      <category term="书摘/影评" scheme="http://www.dashen.tech/tags/%E4%B9%A6%E6%91%98-%E5%BD%B1%E8%AF%84/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Rust vs Go:常用语法对比(13)</title>
     <link href="http://www.dashen.tech/2021/07/28/Rust-vs-Go-%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E5%AF%B9%E6%AF%94-13/"/>
     <id>http://www.dashen.tech/2021/07/28/Rust-vs-Go-常用语法对比-13/</id>
@@ -457,27 +480,6 @@
     
     
       <category term="Rust" scheme="http://www.dashen.tech/tags/Rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>How to Measure Execution Time of a Program</title>
-    <link href="http://www.dashen.tech/2021/07/19/How-to-Measure-Execution-Time-of-a-Program/"/>
-    <id>http://www.dashen.tech/2021/07/19/How-to-Measure-Execution-Time-of-a-Program/</id>
-    <published>2021-07-19T13:14:35.000Z</published>
-    <updated>2021-07-19T13:14:47.378Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://serhack.me/articles/measure-execution-time-program/" target="_blank" rel="noopener">https://serhack.me/articles/measure-execution-time-program/</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://serhack.me/articles/measure-execution-time-program/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://serhack.me/articles/measure-
-      
-    
-    </summary>
-    
     
   </entry>
   
