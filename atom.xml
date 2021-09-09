@@ -41,6 +41,42 @@
   </entry>
   
   <entry>
+    <title>MySQL事务隔离级别的实现原理</title>
+    <link href="http://www.dashen.tech/2021/08/23/MySQL%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"/>
+    <id>http://www.dashen.tech/2021/08/23/MySQL事务隔离级别的实现原理/</id>
+    <published>2021-08-23T14:58:07.000Z</published>
+    <updated>2021-08-23T14:58:07.243Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>sysctl.conf 系统参数详解</title>
+    <link href="http://www.dashen.tech/2021/08/23/sysctl-conf-%E7%B3%BB%E7%BB%9F%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://www.dashen.tech/2021/08/23/sysctl-conf-系统参数详解/</id>
+    <published>2021-08-23T14:46:41.000Z</published>
+    <updated>2021-08-23T14:52:44.532Z</updated>
+    
+    <content type="html"><![CDATA[<p>vim /etc/sysctl.conf</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># /etc/sysctl.conf - Configuration file for setting system variables</span><br><span class="line"># See /etc/sysctl.d/ for additional system variables.</span><br><span class="line"># See sysctl.conf (5) for information.</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">#kernel.domainname = example.com</span><br><span class="line"></span><br><span class="line"># Uncomment the following to stop low-level messages on console</span><br><span class="line">#kernel.printk = 3 4 1 3</span><br><span class="line"></span><br><span class="line">##############################################################3</span><br><span class="line"># Functions previously found in netbase</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line"># Uncomment the next two lines to enable Spoof protection (reverse-path filter)</span><br><span class="line"># Turn on Source Address Verification in all interfaces to</span><br><span class="line"># prevent some spoofing attacks</span><br><span class="line">#net.ipv4.conf.default.rp_filter=1</span><br><span class="line">#net.ipv4.conf.all.rp_filter=1</span><br><span class="line"></span><br><span class="line"># Uncomment the next line to enable TCP/IP SYN cookies</span><br><span class="line"># See http://lwn.net/Articles/277146/</span><br><span class="line"># Note: This may impact IPv6 TCP sessions too</span><br><span class="line">#net.ipv4.tcp_syncookies=1</span><br><span class="line"></span><br><span class="line"># Uncomment the next line to enable packet forwarding for IPv4</span><br><span class="line"># 爽哥于2019.10.31修改,为了能搭建k8s</span><br><span class="line">net.ipv4.ip_forward=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"># Uncomment the next line to enable packet forwarding for IPv6</span><br><span class="line">#  Enabling this option disables Stateless Address Autoconfiguration</span><br><span class="line">#  based on Router Advertisements for this host</span><br><span class="line">#net.ipv6.conf.all.forwarding=1</span><br><span class="line"></span><br><span class="line">###################################################################</span><br><span class="line"># Additional settings - these settings can improve the network</span><br><span class="line"># security of the host and prevent against some network attacks</span><br><span class="line"># including spoofing attacks and man in the middle attacks through</span><br><span class="line"># redirection. Some network environments, however, require that these</span><br><span class="line"># settings are disabled so review and enable them as needed.</span><br><span class="line">#</span><br><span class="line"># Do not accept ICMP redirects (prevent MITM attacks)</span><br><span class="line">#net.ipv4.conf.all.accept_redirects = 0</span><br><span class="line">#net.ipv6.conf.all.accept_redirects = 0</span><br><span class="line"># _or_</span><br><span class="line"># Accept ICMP redirects only for gateways listed in our default</span><br><span class="line"># gateway list (enabled by default)</span><br><span class="line"># net.ipv4.conf.all.secure_redirects = 1</span><br><span class="line">#</span><br><span class="line"># Do not send ICMP redirects (we are not a router)</span><br><span class="line">#net.ipv4.conf.all.send_redirects = 0</span><br><span class="line">#</span><br><span class="line"># Do not accept IP source route packets (we are not a router)</span><br><span class="line">#net.ipv4.conf.all.accept_source_route = 0</span><br><span class="line">#net.ipv6.conf.all.accept_source_route = 0</span><br><span class="line">#</span><br><span class="line"># Log Martian Packets</span><br><span class="line">#net.ipv4.conf.all.log_martians = 1</span><br><span class="line">#</span><br><span class="line">kernel.sysrq = <span class="number">1</span></span><br><span class="line">net.ipv6.conf.all.disable_ipv6 = <span class="number">1</span></span><br><span class="line">net.ipv6.conf.<span class="keyword">default</span>.disable_ipv6 = <span class="number">1</span></span><br><span class="line">kernel.printk = <span class="number">5</span></span><br></pre></td></tr></table></figure><p><a href="https://blog.csdn.net/weixin_40901788/article/details/83586965" target="_blank" rel="noopener">https://blog.csdn.net/weixin_40901788/article/details/83586965</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;vim /etc/sysctl.conf&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;li
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>WebHook及其在github中的使用</title>
     <link href="http://www.dashen.tech/2021/08/16/WebHook%E5%8F%8A%E5%85%B6%E5%9C%A8github%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://www.dashen.tech/2021/08/16/WebHook及其在github中的使用/</id>
@@ -426,54 +462,6 @@
       
         &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/guyu2019/article/details/105353562&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Rust学习笔记之测试、文档和基准&lt;/a&gt;&lt;/p&gt;
 
-      
-    
-    </summary>
-    
-    
-      <category term="Rust" scheme="http://www.dashen.tech/tags/Rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Rust风格的Hello World</title>
-    <link href="http://www.dashen.tech/2021/07/20/Rust%E9%A3%8E%E6%A0%BC%E7%9A%84Hello-World/"/>
-    <id>http://www.dashen.tech/2021/07/20/Rust风格的Hello-World/</id>
-    <published>2021-07-20T11:56:41.000Z</published>
-    <updated>2021-07-20T12:49:31.264Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>Rust 借鉴了很多语言，比如Cyclone（一种安全的C语言方言）的基于区域的内存管理模型；C++ 的RAII 原理；Haskell 的类型系统、错误处理类型、typeclasses等等。Rust 有非常小的 runtime，不需要垃圾回收，默认情况下是在栈上进行分类内存，而不是堆上。Rust 的编译器 rustc，一开始使用 Ocaml （一种函数式语言）编写，后来在2011年 Rust 实现了自举。</p></blockquote><p><a href="https://coolshell.cn/articles/20845.html" target="_blank" rel="noopener">RUST语言的编程范式</a></p><p>配套视频：<a href="https://www.bilibili.com/video/BV1cA411877u" target="_blank" rel="noopener">以 Rust 为例，带你搞懂编程语言本质</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;Rust 借鉴了很多语言，比如Cyclone（一种安全的C语言方言）的基于区域的内存管理模型；C++ 的RAII 原理；Haskell 的类型系统、错误处理类型、typeclasses等等。Rust 有非常小的 runtime，不需要垃圾回收，默认
-      
-    
-    </summary>
-    
-    
-      <category term="Rust" scheme="http://www.dashen.tech/tags/Rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Rust中的Trait和Go中的Interface</title>
-    <link href="http://www.dashen.tech/2021/07/20/Rust%E4%B8%AD%E7%9A%84Trait%E5%92%8CGo%E4%B8%AD%E7%9A%84Interface/"/>
-    <id>http://www.dashen.tech/2021/07/20/Rust中的Trait和Go中的Interface/</id>
-    <published>2021-07-20T11:49:07.000Z</published>
-    <updated>2021-07-20T11:49:55.712Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://studygolang.com/articles/26944" target="_blank" rel="noopener">通过例子学习 Go 和 Rust —- Interface 和 Trait</a></p><p><a href="https://blog.csdn.net/guyu2019/article/details/113065968?spm=1001.2014.3001.5501" target="_blank" rel="noopener">Rust 学习笔记之类型、泛型和 Trait</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://studygolang.com/articles/26944&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;通过例子学习 Go 和 Rust —- Interface 和 Trait&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=
       
     
     </summary>
