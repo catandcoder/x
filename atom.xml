@@ -425,31 +425,6 @@
   </entry>
   
   <entry>
-    <title>Go中的“魔数”</title>
-    <link href="http://www.dashen.tech/2021/08/16/Go%E4%B8%AD%E7%9A%84%E2%80%9C%E9%AD%94%E6%95%B0%E2%80%9D/"/>
-    <id>http://www.dashen.tech/2021/08/16/Go中的“魔数”/</id>
-    <published>2021-08-16T12:01:15.000Z</published>
-    <updated>2021-09-21T02:57:43.453Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href>src/math/bits.go</a>:</p><p>const SmallestNormal = 2.2250738585072014e-308 // 2**-1022</p><p><a href="https://docs.oracle.com/javadb/10.10.1.2/ref/rrefnumericlimits.html" target="_blank" rel="noopener">Numeric limitations</a></p><p><br></p><hr><p><a href>src/math/cbrt.go</a></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (</span><br><span class="line">B1             = <span class="number">715094163</span>                   <span class="comment">// (682-0.03306235651)*2**20</span></span><br><span class="line">B2             = <span class="number">696219795</span>                   <span class="comment">// (664-0.03306235651)*2**20</span></span><br><span class="line">C              = <span class="number">5.42857142857142815906e-01</span>  <span class="comment">// 19/35     = 0x3FE15F15F15F15F1</span></span><br><span class="line">D              = <span class="number">-7.05306122448979611050e-01</span> <span class="comment">// -864/1225 = 0xBFE691DE2532C834</span></span><br><span class="line">E              = <span class="number">1.41428571428571436819e+00</span>  <span class="comment">// 99/70     = 0x3FF6A0EA0EA0EA0F</span></span><br><span class="line">F              = <span class="number">1.60714285714285720630e+00</span>  <span class="comment">// 45/28     = 0x3FF9B6DB6DB6DB6E</span></span><br><span class="line">G              = <span class="number">3.57142857142857150787e-01</span>  <span class="comment">// 5/14      = 0x3FD6DB6DB6DB6DB7</span></span><br><span class="line">SmallestNormal = <span class="number">2.22507385850720138309e-308</span> <span class="comment">// 2**-1022  = 0x0010000000000000</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure><p><br></p><hr>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href&gt;src/math/bits.go&lt;/a&gt;:&lt;/p&gt;
-&lt;p&gt;const SmallestNormal = 2.2250738585072014e-308 // 2**-1022&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://docs.oracle.com/j
-      
-    
-    </summary>
-    
-    
-      <category term="Go" scheme="http://www.dashen.tech/tags/Go/"/>
-    
-  </entry>
-  
-  <entry>
     <title>字符串匹配的Rabin–Karp算法</title>
     <link href="http://www.dashen.tech/2021/08/11/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%9A%84Rabin%E2%80%93Karp%E7%AE%97%E6%B3%95/"/>
     <id>http://www.dashen.tech/2021/08/11/字符串匹配的Rabin–Karp算法/</id>
@@ -493,6 +468,30 @@
     
     
       <category term="Go" scheme="http://www.dashen.tech/tags/Go/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>16777619与FNV哈希算法</title>
+    <link href="http://www.dashen.tech/2021/08/09/16777619%E4%B8%8EFNV%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95/"/>
+    <id>http://www.dashen.tech/2021/08/09/16777619与FNV哈希算法/</id>
+    <published>2021-08-09T14:30:47.000Z</published>
+    <updated>2021-09-21T12:17:43.215Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h3><p><br></p><p>FNV哈希算法全名为<code>Fowler-Noll-Vo算法</code>，是以三位发明人 <code>Glenn Fowler</code>，<a href="https://www.agilealliance.org/author/8079582" target="_blank" rel="noopener">Landon Curt Noll</a>（这位在<a href="https://baike.baidu.com/item/%E6%A2%85%E6%A3%AE%E7%B4%A0%E6%95%B0/816141" target="_blank" rel="noopener">发现大素数</a>领域成绩卓著），<code>Phong Vo</code>的首字母命名。 最早在1991年提出 (实际比Rabin-Karp算法要晚) </p><p>FNV能快速hash大量数据并保持较小的冲突率，它的高度分散使它适用于hash一些非常相近的字符串，比如URL，hostname，文件名，text，IP地址等。 (来自 <a href="https://blog.csdn.net/hustfoxy/article/details/23687239" target="_blank" rel="noopener">FNV哈希算法</a>)</p><blockquote><p>这个算法的厉害之处在于其可以保存(上一次的)状态。比如对于字符串ab，它的哈希值是a<em>E+b=HashAB，如果计算bc的哈希值，可以利用第一次计算的结果(HashAB-a</em>E)*E+c=HashBC。该例是两个字符效果不明显，但如果当前串是100个字符，后移一位去哈希算法性能，就会比其他哈希方式(如md5)要快很多。(<a href="https://zhuanlan.zhihu.com/p/37390018" target="_blank" rel="noopener">常见的哈希算法和用途</a>)</p></blockquote><p>对于很多算法，和暴力解法相比，优化的重要途径之一，是把每次运算(如比较)产生的结果在下一次尽可能用上，发挥一点价值。。而不是纯粹每次从头开始再去算(和KMP算法如此，Rabin-Karp算法亦然)</p><p><br></p><p>FNV在<a href="https://cloud.tencent.com/developer/section/1142452" target="_blank" rel="noopener">Go源码</a>的<a href="https://gitee.com/cuishuang/go1.16/blob/master/src/hash/fnv/fnv.go" target="_blank" rel="noopener">src/hash/fnv/fnv.go</a>中，</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (</span><br><span class="line">offset32        = <span class="number">2166136261</span></span><br><span class="line">offset64        = <span class="number">14695981039346656037</span></span><br><span class="line">offset128Lower  = <span class="number">0x62b821756295c58d</span></span><br><span class="line">offset128Higher = <span class="number">0x6c62272e07bb0142</span></span><br><span class="line">prime32         = <span class="number">16777619</span></span><br><span class="line">prime64         = <span class="number">1099511628211</span></span><br><span class="line">prime128Lower   = <span class="number">0x13b</span></span><br><span class="line">prime128Shift   = <span class="number">24</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>16777619 为32 bit FNV的Prime值。</p><p><br></p><p>在rust中也<a href="https://github.com/rust-lang/rust/search?q=fnv" target="_blank" rel="noopener">内置该算法</a>, 在Linux，OceanBase等项目中有较多使用,</p><p>在<a href="https://gitee.com/cuishuang/go1.16/blob/master/src/reflect/type.go#L1471" target="_blank" rel="noopener">Go reflect包</a>中也有使用</p><p><br></p><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p><br></p><p>可将 字符串 哈希为32bit的数字；将字符串 哈希为任意bit的数字，将字符串 哈希为特定范围的数字</p><p>更多参考 <a href="https://www.cnblogs.com/charlieroro/p/8486941.html" target="_blank" rel="noopener">FNV算法实战</a></p><p><br></p><hr><p><br></p><p>更多阅读：</p><p><a href="https://www.cnblogs.com/baiyan/archive/2011/04/23/2025701.html" target="_blank" rel="noopener">FNV哈希算法【学习】</a></p><p><a href="https://github.com/golang/go/blob/master/src/internal/bytealg/bytealg.go" target="_blank" rel="noopener">go/src/internal/bytealg/bytealg.go</a></p><p><a href="https://studygolang.com/articles/1191" target="_blank" rel="noopener">字符串查找算法（二）</a></p><p><a href="https://studygolang.com/articles/3553" target="_blank" rel="noopener">Go语言源码中的Rabin-Karp算法</a></p><p><a href="https://github.com/search?p=4&amp;q=16777619&amp;type=Issues" target="_blank" rel="noopener">github-16777619</a></p><p><a href="https://zhuanlan.zhihu.com/p/53710382" target="_blank" rel="noopener">分布式技术探索——如何判断哈希的好坏</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;概况&quot;&gt;&lt;a href=&quot;#概况&quot; class=&quot;headerlink&quot; title=&quot;概况&quot;&gt;&lt;/a&gt;概况&lt;/h3&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;FNV哈希算法全名为&lt;code&gt;Fowler-Noll-Vo算法&lt;/code&gt;，是以三位发明人 &lt;code&gt;Glen
+      
+    
+    </summary>
+    
+    
+      <category term="算法" scheme="http://www.dashen.tech/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
