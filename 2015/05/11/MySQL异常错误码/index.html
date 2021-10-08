@@ -1,9 +1,9 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="崔某人的碎碎念,通才基础上的专才"><meta name="keywords" content="mysql,golang,算法"><title>MySQL异常错误码 | 清澄秋爽</title><link rel="stylesheet" type="text/css" href="//fonts.loli.net/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.3"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.3"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="stylesheet" type="text/css" href="/css/donate.css"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">MySQL异常错误码</h1><a id="logo" href="/.">清澄秋爽</a><p class="description">苹果树下的思索者 书写是对思维的缓存</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">MySQL异常错误码</h1><div class="post-meta"><a href="/2015/05/11/MySQL异常错误码/#comments" class="comment-count"></a><p><span class="date">May 11, 2015</span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><p>Server抛给Client错误的 消息信息/错误值/SQLSTATE值 均列在源码<code>share/messages_to_clients.txt</code>文件中。“%d”和“%s”分别代表编号和字符串，显示时，它们将被消息值取代。</p>
 <p>由于MySQL源码更新较频繁,以下内容可能缺失或有变更,虽然概率较小.</p>
 <p>最新参考: <a href="https://github.com/mysql/mysql-server/blob/8.0/share/messages_to_clients.txt" target="_blank" rel="noopener">mysql-server/blob/8.0/share/messages_to_clients.txt</a></p>
-<p><br></p>
+<br>
 <hr>
-<p><br></p>
+<br>
 <p>· 错误：1000 SQLSTATE: HY000 (ER_HASHCHK)</p>
 <p>消息：hashchk</p>
 <p>· 错误：1001 SQLSTATE: HY000 (ER_NISAMCHK)</p>
@@ -37,7 +37,7 @@
 <p>· 错误：1015 SQLSTATE: HY000 (ER_CANT_LOCK)</p>
 <p>消息：无法锁定文件(errno: %d)</p>
 <p>· 错误：1016 SQLSTATE: HY000 (ER_CANT_OPEN_FILE)</p>
-<p>消息：无法打开文件：’%s’ (errno: %d)</p>
+<p>消息：无法打开文件：‘%s’ (errno: %d)</p>
 <p>· 错误：1017 SQLSTATE: HY000 (ER_FILE_NOT_FOUND)</p>
 <p>消息：无法找到文件： ‘%s’ (errno: %d)</p>
 <p>· 错误：1018 SQLSTATE: HY000 (ER_CANT_READ_DIR)</p>
@@ -59,7 +59,7 @@
 <p>· 错误：1026 SQLSTATE: HY000 (ER_ERROR_ON_WRITE)</p>
 <p>消息：写入文件’%s’时出错 (errno: %d)</p>
 <p>· 错误：1027 SQLSTATE: HY000 (ER_FILE_USED)</p>
-<p>消息：’%s’已锁定，拒绝更改。</p>
+<p>消息：'%s’已锁定，拒绝更改。</p>
 <p>· 错误：1028 SQLSTATE: HY000 (ER_FILSORT_ABORT)</p>
 <p>消息：分类失败</p>
 <p>· 错误：1029 SQLSTATE: HY000 (ER_FORM_NOT_FOUND)</p>
@@ -71,7 +71,7 @@
 <p>· 错误：1032 SQLSTATE: HY000 (ER_KEY_NOT_FOUND)</p>
 <p>消息：无法在’%s’中找到记录。</p>
 <p>· 错误：1033 SQLSTATE: HY000 (ER_NOT_FORM_FILE)</p>
-<p>消息：文件中的不正确信息：’%s’</p>
+<p>消息：文件中的不正确信息：‘%s’</p>
 <p>· 错误：1034 SQLSTATE: HY000 (ER_NOT_KEYFILE)</p>
 <p>消息：对于表’%s’， 键文件不正确，请尝试修复。</p>
 <p>· 错误：1035 SQLSTATE: HY000 (ER_OLD_KEYFILE)</p>
@@ -93,9 +93,9 @@
 <p>· 错误：1043 SQLSTATE: 08S01 (ER_HANDSHAKE_ERROR)</p>
 <p>消息：不良握手</p>
 <p>· 错误：1044 SQLSTATE: 42000 (ER_DBACCESS_DENIED_ERROR)</p>
-<p>消息：拒绝用户‘%s‘@’%s’访问数据库’%s’。</p>
+<p>消息：拒绝用户’%s’@‘%s’访问数据库’%s’。</p>
 <p>· 错误：1045 SQLSTATE: 28000 (ER_ACCESS_DENIED_ERROR)</p>
-<p>消息：拒绝用户‘%s‘@’%s’的访问（使用密码：%s）</p>
+<p>消息：拒绝用户’%s’@'%s’的访问（使用密码：%s）</p>
 <p>· 错误：1046 SQLSTATE: 3D000 (ER_NO_DB_ERROR)</p>
 <p>消息：未选择数据库。</p>
 <p>· 错误：1047 SQLSTATE: 08S01 (ER_UNKNOWN_COM_ERROR)</p>
@@ -113,9 +113,9 @@
 <p>· 错误：1053 SQLSTATE: 08S01 (ER_SERVER_SHUTDOWN)</p>
 <p>消息：在操作过程中服务器关闭。</p>
 <p>· 错误：1054 SQLSTATE: 42S22 (ER_BAD_FIELD_ERROR)</p>
-<p>消息：’%s’中的未知列’%s’。</p>
+<p>消息：‘%s’中的未知列’%s’。</p>
 <p>· 错误：1055 SQLSTATE: 42000 (ER_WRONG_FIELD_WITH_GROUP)</p>
-<p>消息：’%s’不在GROUP BY中。</p>
+<p>消息：'%s’不在GROUP BY中。</p>
 <p>· 错误：1056 SQLSTATE: 42000 (ER_WRONG_GROUP_FIELD)</p>
 <p>消息：无法在’%s’上创建组。</p>
 <p>· 错误：1057 SQLSTATE: 42000 (ER_WRONG_SUM_SELECT)</p>
@@ -137,7 +137,7 @@
 <p>· 错误：1065 SQLSTATE: 42000 (ER_EMPTY_QUERY)</p>
 <p>消息：查询为空。</p>
 <p>· 错误：1066 SQLSTATE: 42000 (ER_NONUNIQ_TABLE)</p>
-<p>消息：非唯一的表/别名：’%s’</p>
+<p>消息：非唯一的表/别名：‘%s’</p>
 <p>· 错误：1067 SQLSTATE: 42000 (ER_INVALID_DEFAULT)</p>
 <p>消息：关于’%s’的无效默认值。</p>
 <p>· 错误：1068 SQLSTATE: 42000 (ER_MULTIPLE_PRI_KEY)</p>
@@ -157,7 +157,7 @@
 <p>· 错误：1075 SQLSTATE: 42000 (ER_WRONG_AUTO_KEY)</p>
 <p>消息：不正确的表定义，只能有1个auto列，而且必须将其定义为 键。</p>
 <p>· 错误：1076 SQLSTATE: HY000 (ER_READY)</p>
-<p>消息：%s，连接就绪。版本：’%s’，套接字：’%s’，端口：%d</p>
+<p>消息：%s，连接就绪。版本：‘%s’，套接字：‘%s’，端口：%d</p>
 <p>· 错误：1077 SQLSTATE: HY000 (ER_NORMAL_SHUTDOWN)</p>
 <p>消息：%s，正常关闭。</p>
 <p>· 错误：1078 SQLSTATE: HY000 (ER_GOT_SIGNAL)</p>
@@ -165,7 +165,7 @@
 <p>· 错误：1079 SQLSTATE: HY000 (ER_SHUTDOWN_COMPLETE)</p>
 <p>消息：%s，关闭完成</p>
 <p>· 错误：1080 SQLSTATE: 08S01 (ER_FORCING_CLOSE)</p>
-<p>消息：%s，强制关闭线程%ld，用户：’%s’</p>
+<p>消息：%s，强制关闭线程%ld，用户：‘%s’</p>
 <p>· 错误：1081 SQLSTATE: 08S01 (ER_IPSOCK_ERROR)</p>
 <p>消息：无法创建IP套接字</p>
 <p>· 错误：1082 SQLSTATE: 42S12 (ER_NO_SUCH_INDEX)</p>
@@ -243,7 +243,7 @@
 <p>· 错误：1118 SQLSTATE: 42000 (ER_TOO_BIG_ROWSIZE)</p>
 <p>消息：行的大小过大。对于所使用的表类型，不包括BLOB，最大行大小为%ld。必须将某些列更改为TEXT或BLOB。</p>
 <p>· 错误：1119 SQLSTATE: HY000 (ER_STACK_OVERRUN)</p>
-<p>消息：线程堆栈溢出，已使用，%ld堆栈的%ld。如果需要，请使用’mysqld -O thread_stack=#’指定较大的堆栈。</p>
+<p>消息：线程堆栈溢出，已使用，%ld堆栈的%ld。如果需要，请使用’mysqld -O thread_stack=#'指定较大的堆栈。</p>
 <p>· 错误：1120 SQLSTATE: 42000 (ER_WRONG_OUTER_JOIN)</p>
 <p>消息：在OUTER JOIN中发现交叉关联，请检查ON条件。</p>
 <p>· 错误：1121 SQLSTATE: 42000 (ER_NULL_COLUMN_IN_INDEX)</p>
@@ -289,9 +289,9 @@
 <p>· 错误：1141 SQLSTATE: 42000 (ER_NONEXISTING_GRANT)</p>
 <p>消息：没有为主机’%s’上的用户’%s’定义这类授权。</p>
 <p>· 错误：1142 SQLSTATE: 42000 (ER_TABLEACCESS_DENIED_ERROR)</p>
-<p>消息：拒绝用户‘%s‘@’%s’在表’%s’上使用%s命令。</p>
+<p>消息：拒绝用户’%s’@‘%s’在表’%s’上使用%s命令。</p>
 <p>· 错误：1143 SQLSTATE: 42000 (ER_COLUMNACCESS_DENIED_ERROR)</p>
-<p>消息：拒绝用户‘%s‘@’%s’在表’%s’的’%s’上使用%s命令。</p>
+<p>消息：拒绝用户’%s’@‘%s’在表’%s’的’%s’上使用%s命令。</p>
 <p>· 错误：1144 SQLSTATE: 42000 (ER_ILLEGAL_GRANT_FOR_TABLE)</p>
 <p>消息：非法GRANT/REVOKE命令，请参阅手册以了解可使用那种权限。</p>
 <p>· 错误：1145 SQLSTATE: 42000 (ER_GRANT_WRONG_HOST_OR_USER)</p>
@@ -427,7 +427,7 @@
 <p>· 错误：1210 SQLSTATE: HY000 (ER_WRONG_ARGUMENTS)</p>
 <p>消息：为%s提供的参量不正确。</p>
 <p>· 错误：1211 SQLSTATE: 42000 (ER_NO_PERMISSION_TO_CREATE_USER)</p>
-<p>消息：不允许‘%s‘@’%s’创建新用户。</p>
+<p>消息：不允许’%s’@'%s’创建新用户。</p>
 <p>· 错误：1212 SQLSTATE: HY000 (ER_UNION_TABLES_IN_DIFFERENT_DIR)</p>
 <p>消息：不正确的表定义，所有的MERGE表必须位于相同的数据库中。</p>
 <p>· 错误：1213 SQLSTATE: 40001 (ER_LOCK_DEADLOCK)</p>
@@ -511,7 +511,7 @@
 <p>· 错误：1252 SQLSTATE: 42000 (ER_SPATIAL_CANT_HAVE_NULL)</p>
 <p>消息：SPATIAL索引的所有部分必须是NOT NULL。</p>
 <p>· 错误：1253 SQLSTATE: 42000 (ER_COLLATION_CHARSET_MISMATCH)</p>
-<p>消息：对于CHARACTER SET ‘%s’，COLLATION ‘%s’无效。</p>
+<p>消息：对于CHARACTER SET ‘%s’，COLLATION '%s’无效。</p>
 <p>· 错误：1254 SQLSTATE: HY000 (ER_SLAVE_WAS_RUNNING)</p>
 <p>消息：从服务器正在运行。</p>
 <p>· 错误：1255 SQLSTATE: HY000 (ER_SLAVE_WAS_NOT_RUNNING)</p>
@@ -555,7 +555,7 @@
 <p>· 错误：1274 SQLSTATE: HY000 (ER_SLAVE_IGNORED_SSL_PARAMS)</p>
 <p>消息：由于该MySQL从服务器是在不支持SSL的情况下编译的，CHANGE MASTER中的SSL参数被忽略，随后，如果启动了具备SSL功能的MySQL，可使用这些参数。</p>
 <p>· 错误：1275 SQLSTATE: HY000 (ER_SERVER_IS_IN_SECURE_AUTH_MODE)</p>
-<p>消息：服务器正运行在“–secure-auth”模式下，但‘%s‘@’%s’有1个采用旧格式的密码，请将密码更改为新格式。</p>
+<p>消息：服务器正运行在“–secure-auth”模式下，但’%s’@'%s’有1个采用旧格式的密码，请将密码更改为新格式。</p>
 <p>· 错误：1276 SQLSTATE: HY000 (ER_WARN_FIELD_RESOLVED)</p>
 <p>消息：SELECT #%d的字段或引用’%s%s%s%s%s’是在SELECT #%d中确定的。</p>
 <p>· 错误：1277 SQLSTATE: HY000 (ER_BAD_SLAVE_UNTIL_COND)</p>
@@ -579,11 +579,11 @@
 <p>· 错误：1286 SQLSTATE: 42000 (ER_UNKNOWN_STORAGE_ENGINE)</p>
 <p>消息：未知的表引擎’%s’。</p>
 <p>· 错误：1287 SQLSTATE: HY000 (ER_WARN_DEPRECATED_SYNTAX)</p>
-<p>消息：’%s’已过时，请使用’%s’取而代之。</p>
+<p>消息：‘%s’已过时，请使用’%s’取而代之。</p>
 <p>· 错误：1288 SQLSTATE: HY000 (ER_NON_UPDATABLE_TABLE)</p>
 <p>消息：%s的目标表%s不可更新。</p>
 <p>· 错误：1289 SQLSTATE: HY000 (ER_FEATURE_DISABLED)</p>
-<p>消息：’%s’特性已被禁止，要想使其工作，需要用’%s’创建MySQL。</p>
+<p>消息：‘%s’特性已被禁止，要想使其工作，需要用’%s’创建MySQL。</p>
 <p>· 错误：1290 SQLSTATE: HY000 (ER_OPTION_PREVENTS_STATEMENT)</p>
 <p>消息：MySQL正使用%s选项运行，因此不能执行该语句。</p>
 <p>· 错误：1291 SQLSTATE: HY000 (ER_DUPLICATED_VALUE_IN_TYPE)</p>
@@ -609,7 +609,7 @@
 <p>· 错误：1301 SQLSTATE: HY000 (ER_WARN_ALLOWED_PACKET_OVERFLOWED)</p>
 <p>消息：%s()的结果大于max_allowed_packet (%ld)，已截短</p>
 <p>· 错误：1302 SQLSTATE: HY000 (ER_CONFLICTING_DECLARATIONS)</p>
-<p>消息：冲突声明：’%s%s’和’%s%s’</p>
+<p>消息：冲突声明：‘%s%s’和’%s%s’</p>
 <p>· 错误：1303 SQLSTATE: 2F003 (ER_SP_NO_RECURSIVE_CREATE)</p>
 <p>消息：不能从另一个存储子程序中创建%s。</p>
 <p>· 错误：1304 SQLSTATE: 42000 (ER_SP_ALREADY_EXISTS)</p>
@@ -691,7 +691,7 @@
 <p>· 错误：1342 SQLSTATE: HY000 (ER_FPARSER_EOF_IN_COMMENT)</p>
 <p>消息：解析’%s’时，文件意外结束。</p>
 <p>· 错误：1343 SQLSTATE: HY000 (ER_FPARSER_ERROR_IN_PARAMETER)</p>
-<p>消息：解析参数’%s’时出错（行：’%s’）。</p>
+<p>消息：解析参数’%s’时出错（行：‘%s’）。</p>
 <p>· 错误：1344 SQLSTATE: HY000 (ER_FPARSER_EOF_IN_UNKNOWN_PARAMETER)</p>
 <p>消息：跳过未知参数’%s’时，文件意外结束。</p>
 <p>· 错误：1345 SQLSTATE: HY000 (ER_VIEW_NO_EXPLAIN)</p>
@@ -699,7 +699,7 @@
 <p>· 错误：1346 SQLSTATE: HY000 (ER_FRM_UNKNOWN_TYPE)</p>
 <p>消息：文件’%s’在其题头中有未知的类型’%s’。</p>
 <p>· 错误：1347 SQLSTATE: HY000 (ER_WRONG_OBJECT)</p>
-<p>消息：’%s.%s’不是%s。</p>
+<p>消息：'%s.%s’不是%s。</p>
 <p>· 错误：1348 SQLSTATE: HY000 (ER_NONUPDATEABLE_COLUMN)</p>
 <p>消息：列’%s’不可更新。</p>
 <p>· 错误：1349 SQLSTATE: HY000 (ER_VIEW_SELECT_DERIVED)</p>
@@ -737,15 +737,15 @@
 <p>· 错误：1365 SQLSTATE: 22012 (ER_DIVISION_BY_ZERO)</p>
 <p>消息：被0除。</p>
 <p>· 错误：1366 SQLSTATE: HY000 (ER_TRUNCATED_WRONG_VALUE_FOR_FIELD)</p>
-<p>消息：不正确的%s值，’%s’，对于行%ld 上的列’%s’。</p>
+<p>消息：不正确的%s值，‘%s’，对于行%ld 上的列’%s’。</p>
 <p>· 错误：1367 SQLSTATE: 22007 (ER_ILLEGAL_VALUE_FOR_TYPE)</p>
-<p>消息：解析过程中发现非法%s ‘%s’值。</p>
+<p>消息：解析过程中发现非法%s '%s’值。</p>
 <p>· 错误：1368 SQLSTATE: HY000 (ER_VIEW_NONUPD_CHECK)</p>
 <p>消息：不可更新视图’%s.%s’上的CHECK OPTION。</p>
 <p>· 错误：1369 SQLSTATE: HY000 (ER_VIEW_CHECK_FAILED)</p>
-<p>消息：CHECK OPTION失败，’%s.%s’</p>
+<p>消息：CHECK OPTION失败，‘%s.%s’</p>
 <p>· 错误：1370 SQLSTATE: 42000 (ER_PROCACCESS_DENIED_ERROR)</p>
-<p>消息：对于子程序’%s’，拒绝用户‘%s‘@’%s’使用%s命令。</p>
+<p>消息：对于子程序’%s’，拒绝用户’%s’@'%s’使用%s命令。</p>
 <p>· 错误：1371 SQLSTATE: HY000 (ER_RELAY_LOG_FAIL)</p>
 <p>消息：清除旧中继日志失败，%s</p>
 <p>· 错误：1372 SQLSTATE: HY000 (ER_PASSWD_LENGTH)</p>
@@ -769,7 +769,7 @@
 <p>· 错误：1381 SQLSTATE: HY000 (ER_NO_BINARY_LOGGING)</p>
 <p>消息：未使用二进制日志功能。</p>
 <p>· 错误：1382 SQLSTATE: HY000 (ER_RESERVED_SYNTAX)</p>
-<p>消息：’%s’语法保留给MySQL服务器内部使用。</p>
+<p>消息：'%s’语法保留给MySQL服务器内部使用。</p>
 <p>· 错误：1383 SQLSTATE: HY000 (ER_WSAS_FAILED)</p>
 <p>消息：WSAStartup失败。</p>
 <p>· 错误：1384 SQLSTATE: HY000 (ER_DIFF_GROUPS_PROC)</p>
@@ -821,13 +821,13 @@
 <p>· 错误：1407 SQLSTATE: 42000 (ER_SP_BAD_SQLSTATE)</p>
 <p>消息：不良SQLSTATE: ‘%s’</p>
 <p>· 错误：1408 SQLSTATE: HY000 (ER_STARTUP)</p>
-<p>消息：%s，连接就绪；版本，’%s’；套接字，’%s’；端口，%d %s</p>
+<p>消息：%s，连接就绪；版本，‘%s’；套接字，‘%s’；端口，%d %s</p>
 <p>· 错误：1409 SQLSTATE: HY000 (ER_LOAD_FROM_FIXED_SIZE_ROWS_TO_VAR)</p>
 <p>消息：不能从具有固定大小行的文件中将值加载到变量。</p>
 <p>· 错误：1410 SQLSTATE: 42000 (ER_CANT_CREATE_USER_WITH_GRANT)</p>
 <p>消息：不允许用GRANT创建用户。</p>
 <p>· 错误：1411 SQLSTATE: HY000 (ER_WRONG_VALUE_FOR_TYPE)</p>
-<p>消息：不正确的%s值，’%s’，对于函数%s</p>
+<p>消息：不正确的%s值，‘%s’，对于函数%s</p>
 <p>· 错误：1412 SQLSTATE: HY000 (ER_TABLE_DEF_CHANGED)</p>
 <p>消息：表定义已更改，请再次尝试事务。</p>
 <p>· 错误：1413 SQLSTATE: 42000 (ER_SP_DUP_HANDLER)</p>
@@ -865,21 +865,21 @@
 <p>· 错误：1429 SQLSTATE: HY000 (ER_CONNECT_TO_FOREIGN_DATA_SOURCE)</p>
 <p>消息：无法连接到外部数据源，数据库’%s’！</p>
 <p>· 错误：1430 SQLSTATE: HY000 (ER_QUERY_ON_FOREIGN_DATA_SOURCE)</p>
-<p>消息：处理作用在外部数据源上的查询时出现问题。数据源错误：’%s’</p>
+<p>消息：处理作用在外部数据源上的查询时出现问题。数据源错误：‘%s’</p>
 <p>· 错误：1431 SQLSTATE: HY000 (ER_FOREIGN_DATA_SOURCE_DOESNT_EXIST)</p>
-<p>消息：你试图引用的外部数据源不存在。数据源错误：’%s’</p>
+<p>消息：你试图引用的外部数据源不存在。数据源错误：‘%s’</p>
 <p>· 错误：1432 SQLSTATE: HY000 (ER_FOREIGN_DATA_STRING_INVALID_CANT_CREATE)</p>
 <p>消息：无法创建联合表。数据源连接字符串’%s’格式不正确。</p>
 <p>· 错误：1433 SQLSTATE: HY000 (ER_FOREIGN_DATA_STRING_INVALID)</p>
 <p>消息：数据源连接字符串’%s’格式不正确。</p>
 <p>· 错误：1434 SQLSTATE: HY000 (ER_CANT_CREATE_FEDERATED_TABLE)</p>
-<p>消息：无法创建联合表。外部数据源错误：’%s’</p>
+<p>消息：无法创建联合表。外部数据源错误：‘%s’</p>
 <p>· 错误：1435 SQLSTATE: HY000 (ER_TRG_IN_WRONG_SCHEMA)</p>
 <p>消息：触发程序位于错误的方案中。</p>
 <p>· 错误：1436 SQLSTATE: HY000 (ER_STACK_OVERRUN_NEED_MORE)</p>
-<p>消息：线程堆栈溢出，%ld字节堆栈用了%ld字节，并需要%ld字节。请使用’mysqld -O thread_stack=#’指定更大的堆栈。</p>
+<p>消息：线程堆栈溢出，%ld字节堆栈用了%ld字节，并需要%ld字节。请使用’mysqld -O thread_stack=#'指定更大的堆栈。</p>
 <p>· 错误：1437 SQLSTATE: 42000 (ER_TOO_LONG_BODY)</p>
-<p>消息：’%s’的子程序主体过长。</p>
+<p>消息：'%s’的子程序主体过长。</p>
 <p>· 错误：1438 SQLSTATE: HY000 (ER_WARN_CANT_DROP_DEFAULT_KEYCACHE)</p>
 <p>消息：无法撤销默认的keycache。</p>
 <p>· 错误：1439 SQLSTATE: 42000 (ER_TOO_BIG_DISPLAYWIDTH)</p>
@@ -994,7 +994,8 @@
 <p>消息：在表上定义了外键约束时，不能舍弃分区。</p>
 <p>· 错误：1494 SQLSTATE: HY000 (ER_PLUGIN_IS_NOT_LOADED)</p>
 <p>消息：未加载插件’%s’</p>
-<p>B.2. 客户端错误代码和消息<br>客户端错误信息来自下述源文件：</p>
+<p>B.2. 客户端错误代码和消息<br>
+客户端错误信息来自下述源文件：</p>
 <p>· 圆括号中的错误值和符号与include/errmsg.h MySQL源文件中的定义对应。</p>
 <p>· 消息值与libmysql/errmsg.c文件中列出的错误消息对应。%d和%s分别代表数值和字符串，显示时，它们将被消息值取代。</p>
 <p>由于更新很频繁，这些文件中可能包含这里未列出的额外错误消息。</p>
@@ -1113,7 +1114,7 @@
     $('#donate_board').addClass('hidden');
     $('#donate_guide').removeClass('hidden');
 }</script></div><!-- google adsense--><!--if theme.show_ad_post == true--><!--    script(async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")--><!--    ins.adsbygoogle(style="display:block" data-ad-client="ca-pub-1181798273731653" data-ad-format="auto")--><!--    script (adsbygoogle = window.adsbygoogle || []).push({});-->
-<div class="post-copyright"><blockquote><p>原文作者: fliter</p><p>原文链接: </p><a href="http://www.dashen.tech/2015/05/11/MySQL异常错误码/">http://www.dashen.tech/2015/05/11/MySQL异常错误码/</a><p>版权声明: 转载请注明出处</p></blockquote></div><div class="tags"><a href="/tags/数据库/">数据库</a></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/2015/06/07/使用Golang编写一个web接口-并进行并发调用/" class="pre">使用Golang编写一个web接口,并进行并发调用</a><a href="/2015/04/22/善用佳软/" class="next">善用佳软</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/10/08/代码搜索技巧/">代码搜索技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/25/SubQuery入门指南II/">SubQuery入门指南II</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/25/SubQuery入门指南/">SubQuery入门指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/19/搭建substrate开发环境/">搭建substrate开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/18/使用Selenium获取网站信息/">使用Selenium获取网站信息</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/15/Rust-vs-Go-常用语法对比-13/">Rust vs Go:常用语法对比(13)</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/13/Rust-vs-Go-常用语法对比-12/">Rust vs Go:常用语法对比(12)</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/12/Rust-vs-Go-常用语法对比-11/">Rust vs Go:常用语法对比(11)</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/11/Rust-vs-Go-常用语法对比-10/">Rust vs Go:常用语法对比(10)</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/10/Rust-vs-Go-常用语法对比-9/">Rust vs Go:常用语法对比(9)</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-weixin"> 扫码关注-旅途散记</i></div><img width="100%" height="233" title="微信扫一扫" src="https://cuishuang.gitee.io/img/lvtusanji.jpg"></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DevOps/">DevOps</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/">Life</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tree/">Tree</a><span class="category-list-count">27</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sync/">sync</a><span class="category-list-count">9</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/操作系统/" style="font-size: 15px;">操作系统</a> <a href="/tags/微服务/" style="font-size: 15px;">微服务</a> <a href="/tags/TCP-IP/" style="font-size: 15px;">TCP/IP</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Pearl/" style="font-size: 15px;">Pearl</a> <a href="/tags/译海一粟/" style="font-size: 15px;">译海一粟</a> <a href="/tags/Tools/" style="font-size: 15px;">Tools</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/Todo/" style="font-size: 15px;">Todo</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/Compiler/" style="font-size: 15px;">Compiler</a> <a href="/tags/密码学/" style="font-size: 15px;">密码学</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/Interview/" style="font-size: 15px;">Interview</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/杂谈/" style="font-size: 15px;">杂谈</a> <a href="/tags/金庸/" style="font-size: 15px;">金庸</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/bug/" style="font-size: 15px;">bug</a> <a href="/tags/Rust/" style="font-size: 15px;">Rust</a> <a href="/tags/书摘-影评/" style="font-size: 15px;">书摘/影评</a> <a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/数学/" style="font-size: 15px;">数学</a> <a href="/tags/足球-体育/" style="font-size: 15px;">足球&体育</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/读城记/" style="font-size: 15px;">读城记</a> <a href="/tags/星陨/" style="font-size: 15px;">星陨</a> <a href="/tags/奇文共赏/" style="font-size: 15px;">奇文共赏</a> <a href="/tags/区域经济/" style="font-size: 15px;">区域经济</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">四月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1093/02/">二月 1093</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="https://leetcode.com/" title="LeetCode" target="_blank">LeetCode</a><ul></ul><a href="https://golang.org/" title="Go官网" target="_blank">Go官网</a><ul></ul><a href="https://tonybai.com/" title="TonyBai" target="_blank">TonyBai</a><ul></ul><a href="http://lietoumai.com/" title="顾问麦的小站" target="_blank">顾问麦的小站</a><ul></ul><a href="https://www.coolshell.cn/" title="酷壳" target="_blank">酷壳</a><ul></ul><a href="https://notes.diguage.com/" title="瓜哥" target="_blank">瓜哥</a><ul></ul><a href="https://colobu.com/" title="鸟窝" target="_blank">鸟窝</a><ul></ul><a href="http://xiaorui.cc/" title="峰云" target="_blank">峰云</a><ul></ul><a href="https://eddycjy.com/posts/" title="煎鱼" target="_blank">煎鱼</a><ul></ul><a href="https://hutusi.com/" title="胡涂说" target="_blank">胡涂说</a><ul></ul><a href="https://qcrao.com/" title="码农桃花源" target="_blank">码农桃花源</a><ul></ul><a href="https://github.com/KeKe-Li/For-learning-Go-Tutorial" title="远方的笔记" target="_blank">远方的笔记</a><ul></ul><a href="https://xargin.com/" title="No Headback" target="_blank">No Headback</a><ul></ul><a href="http://thoslin.github.io/" title="Eat Pray Code" target="_blank">Eat Pray Code</a><ul></ul><a href="https://www.ashenone66.cn/" title="AshenOne's Blog" target="_blank">AshenOne's Blog</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |  <a href="/atom.xml">订阅本站</a> |  <a href="/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> 备案号:<a href="http://www.beian.miit.gov.cn/"> 鲁ICP备18010105号</a></span></p><p><span> Copyright &copy;<a href="/." rel="nofollow">fliter.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script>var _hmt = _hmt || [];
+<div class="post-copyright"><blockquote><p>原文作者: fliter</p><p>原文链接: </p><a href="http://www.dashen.tech/2015/05/11/MySQL异常错误码/">http://www.dashen.tech/2015/05/11/MySQL异常错误码/</a><p>版权声明: 转载请注明出处</p></blockquote></div><div class="tags"><a href="/tags/数据库/">数据库</a></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/2015/06/07/使用Golang编写一个web接口-并进行并发调用/" class="pre">使用Golang编写一个web接口,并进行并发调用</a><a href="/2015/04/22/善用佳软/" class="next">善用佳软</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/10/08/代码搜索技巧/">代码搜索技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/10/08/hexo安装实用插件/">hexo安装实用插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/25/SubQuery入门指南II/">SubQuery入门指南II</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/25/SubQuery入门指南/">SubQuery入门指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/19/搭建substrate开发环境/">搭建substrate开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/18/使用Selenium获取网站信息/">使用Selenium获取网站信息</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/15/Rust-vs-Go-常用语法对比-13/">Rust vs Go:常用语法对比(13)</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/13/Rust-vs-Go-常用语法对比-12/">Rust vs Go:常用语法对比(12)</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/12/Rust-vs-Go-常用语法对比-11/">Rust vs Go:常用语法对比(11)</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/11/Rust-vs-Go-常用语法对比-10/">Rust vs Go:常用语法对比(10)</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-weixin"> 扫码关注-旅途散记</i></div><img width="100%" height="233" title="微信扫一扫" src="https://cuishuang.gitee.io/img/lvtusanji.jpg"></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DevOps/">DevOps</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/">Life</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tree/">Tree</a><span class="category-list-count">27</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sync/">sync</a><span class="category-list-count">9</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/操作系统/" style="font-size: 15px;">操作系统</a> <a href="/tags/微服务/" style="font-size: 15px;">微服务</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/TCP-IP/" style="font-size: 15px;">TCP/IP</a> <a href="/tags/Tools/" style="font-size: 15px;">Tools</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/译海一粟/" style="font-size: 15px;">译海一粟</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Pearl/" style="font-size: 15px;">Pearl</a> <a href="/tags/Compiler/" style="font-size: 15px;">Compiler</a> <a href="/tags/Todo/" style="font-size: 15px;">Todo</a> <a href="/tags/密码学/" style="font-size: 15px;">密码学</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/Interview/" style="font-size: 15px;">Interview</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/杂谈/" style="font-size: 15px;">杂谈</a> <a href="/tags/金庸/" style="font-size: 15px;">金庸</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/bug/" style="font-size: 15px;">bug</a> <a href="/tags/Rust/" style="font-size: 15px;">Rust</a> <a href="/tags/书摘-影评/" style="font-size: 15px;">书摘/影评</a> <a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/数学/" style="font-size: 15px;">数学</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/足球-体育/" style="font-size: 15px;">足球&体育</a> <a href="/tags/读城记/" style="font-size: 15px;">读城记</a> <a href="/tags/星陨/" style="font-size: 15px;">星陨</a> <a href="/tags/奇文共赏/" style="font-size: 15px;">奇文共赏</a> <a href="/tags/区域经济/" style="font-size: 15px;">区域经济</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">四月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1093/02/">二月 1093</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="https://leetcode.com/" title="LeetCode" target="_blank">LeetCode</a><ul></ul><a href="https://golang.org/" title="Go官网" target="_blank">Go官网</a><ul></ul><a href="https://tonybai.com/" title="TonyBai" target="_blank">TonyBai</a><ul></ul><a href="http://lietoumai.com/" title="顾问麦的小站" target="_blank">顾问麦的小站</a><ul></ul><a href="https://www.coolshell.cn/" title="酷壳" target="_blank">酷壳</a><ul></ul><a href="https://notes.diguage.com/" title="瓜哥" target="_blank">瓜哥</a><ul></ul><a href="https://colobu.com/" title="鸟窝" target="_blank">鸟窝</a><ul></ul><a href="http://xiaorui.cc/" title="峰云" target="_blank">峰云</a><ul></ul><a href="https://eddycjy.com/posts/" title="煎鱼" target="_blank">煎鱼</a><ul></ul><a href="https://hutusi.com/" title="胡涂说" target="_blank">胡涂说</a><ul></ul><a href="https://qcrao.com/" title="码农桃花源" target="_blank">码农桃花源</a><ul></ul><a href="https://github.com/KeKe-Li/For-learning-Go-Tutorial" title="远方的笔记" target="_blank">远方的笔记</a><ul></ul><a href="https://xargin.com/" title="No Headback" target="_blank">No Headback</a><ul></ul><a href="http://thoslin.github.io/" title="Eat Pray Code" target="_blank">Eat Pray Code</a><ul></ul><a href="https://www.ashenone66.cn/" title="AshenOne's Blog" target="_blank">AshenOne's Blog</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |  <a href="/atom.xml">订阅本站</a> |  <a href="/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> 备案号:<a href="http://www.beian.miit.gov.cn/"> 鲁ICP备18010105号</a></span></p><p><span> Copyright &copy;<a href="/." rel="nofollow">fliter.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "//hm.baidu.com/hm.js?e10d6858b78ff3fc7853fc72e7240eab";
