@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.dashen.tech/"/>
-  <updated>2021-11-09T13:20:08.609Z</updated>
+  <updated>2021-11-17T05:47:48.761Z</updated>
   <id>http://www.dashen.tech/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Go内存优化</title>
+    <link href="http://www.dashen.tech/2021/11/17/Go%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96/"/>
+    <id>http://www.dashen.tech/2021/11/17/Go内存优化/</id>
+    <published>2021-11-17T05:47:32.000Z</published>
+    <updated>2021-11-17T05:47:48.761Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://wudaijun.com/2019/09/go-performance-optimization/" target="_blank" rel="noopener">https://wudaijun.com/2019/09/go-performance-optimization/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://wudaijun.com/2019/09/go-performance-optimization/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://wudaijun.com/2019/09/go-perfor
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>关于零号协程</title>
@@ -472,29 +493,6 @@
     
     
       <category term="Rust" scheme="http://www.dashen.tech/tags/Rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>字符串匹配之Boyer-Moore算法</title>
-    <link href="http://www.dashen.tech/2021/08/30/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E4%B9%8BBoyer-Moore%E7%AE%97%E6%B3%95/"/>
-    <id>http://www.dashen.tech/2021/08/30/字符串匹配之Boyer-Moore算法/</id>
-    <published>2021-08-30T12:08:58.000Z</published>
-    <updated>2021-10-11T07:35:01.880Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://www.cs.utexas.edu/~moore/best-ideas/string-searching/fstrpos-example.html" target="_blank" rel="noopener">Moore教授自己的例子</a></p><p><a href="https://mp.weixin.qq.com/s/tPElzIbsDURjpwn0r4pgOw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/tPElzIbsDURjpwn0r4pgOw</a></p><p><a href="https://mp.weixin.qq.com/s/wG2KyDdHMR1Ry0juEWBViQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/wG2KyDdHMR1Ry0juEWBViQ</a></p><p><a href="https://mp.weixin.qq.com/s/ePjPDIFuhyRp9qSOob9n5Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ePjPDIFuhyRp9qSOob9n5Q</a></p><p><a href="https://mp.weixin.qq.com/s/UG3_czitLcDeGMo3Movpng" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/UG3_czitLcDeGMo3Movpng</a></p><p><a href="https://mp.weixin.qq.com/s/S68mm8XicGerimD8zC6b-Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/S68mm8XicGerimD8zC6b-Q</a></p><p><a href="https://mp.weixin.qq.com/s/RSnFzrmitwCCgDuB73I2QA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/RSnFzrmitwCCgDuB73I2QA</a></p><p><a href="https://mp.weixin.qq.com/s/3tp7TlGyXfVSs7lpG7dKtw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3tp7TlGyXfVSs7lpG7dKtw</a></p><p><a href="https://mp.weixin.qq.com/s/3XF2iVmg51ubY8qFTVCssQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3XF2iVmg51ubY8qFTVCssQ</a></p><p><a href="https://mp.weixin.qq.com/s/3gYbmAAFh08BQmT-9quItQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3gYbmAAFh08BQmT-9quItQ</a></p><p><a href="https://dev.to/akhilpokle/the-algorithm-behind-ctrl-f-3hgh" target="_blank" rel="noopener">The algorithm behind Ctrl + F.</a></p><p><a href="https://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html" target="_blank" rel="noopener">阮一峰-字符串匹配的Boyer-Moore算法</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://www.cs.utexas.edu/~moore/best-ideas/string-searching/fstrpos-example.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Moore教授自己的例子&lt;/
-      
-    
-    </summary>
-    
-    
-      <category term="算法" scheme="http://www.dashen.tech/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
