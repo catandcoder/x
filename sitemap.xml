@@ -2,9 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.dashen.tech/2017/08/16/WebHook%E5%8F%8A%E5%85%B6%E5%9C%A8github%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2021-11-27T14:17:44.367Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2021/11/27/Gitlab-Pipeline/</loc>
+    
+    <lastmod>2021-11-27T14:08:41.390Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2020/07/07/Go-GC-%E4%BC%98%E5%8C%96/</loc>
+    
+    <lastmod>2021-11-27T08:07:58.952Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2016/03/27/interface%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0/</loc>
+    
+    <lastmod>2021-11-27T08:05:16.883Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2016/11/27/Go-Best-Practice/</loc>
+    
+    <lastmod>2021-11-27T07:55:35.149Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.dashen.tech/2016/03/02/golang%E4%B9%8Binterface%E5%85%A5%E9%97%A8/</loc>
     
-    <lastmod>2021-11-27T07:16:17.408Z</lastmod>
+    <lastmod>2021-11-27T07:21:53.535Z</lastmod>
     
   </url>
   
@@ -96,13 +131,6 @@
     <loc>http://www.dashen.tech/2017/12/31/Millennium-Prize-Problems/</loc>
     
     <lastmod>2021-11-21T01:39:36.913Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2020/07/07/Go-GC-%E4%BC%98%E5%8C%96/</loc>
-    
-    <lastmod>2021-11-21T01:30:06.217Z</lastmod>
     
   </url>
   
@@ -1307,13 +1335,6 @@
     <loc>http://www.dashen.tech/2017/07/23/Wireshark%E6%8A%93%E5%8C%85%E6%89%8B%E6%9C%BA/</loc>
     
     <lastmod>2021-09-13T07:31:28.830Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2017/08/16/WebHook%E5%8F%8A%E5%85%B6%E5%9C%A8github%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    
-    <lastmod>2021-09-13T07:31:02.924Z</lastmod>
     
   </url>
   
@@ -3687,13 +3708,6 @@
     <loc>http://www.dashen.tech/2017/12/06/golang%E4%B9%8Bmap%E5%85%A5%E9%97%A8/</loc>
     
     <lastmod>2020-09-21T07:13:49.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2017/11/22/WebHook%E7%AE%80%E4%BB%8B/</loc>
-    
-    <lastmod>2020-09-21T06:45:06.000Z</lastmod>
     
   </url>
   
