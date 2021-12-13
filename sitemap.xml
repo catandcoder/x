@@ -2,9 +2,156 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.dashen.tech/2021/10/11/%E7%BB%9F%E8%AE%A1%E6%9F%90%E6%9C%88%E6%9C%89%E5%87%A0%E7%AF%87%E5%8D%9A%E6%96%87/</loc>
+    
+    <lastmod>2021-12-13T15:51:16.904Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2017/12/03/%E4%BA%B2%E6%B5%8B%E4%BD%93%E9%AA%8C%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/</loc>
+    
+    <lastmod>2021-12-13T15:47:59.820Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2017/12/17/%E8%AF%BB%E3%80%8CGo%E8%AF%AD%E8%A8%80%E5%B9%B6%E5%8F%91%E4%B9%8B%E9%81%93%E3%80%8D/</loc>
+    
+    <lastmod>2021-12-13T15:47:44.273Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2017/12/26/git%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/</loc>
+    
+    <lastmod>2021-12-13T15:47:29.508Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2016/07/22/MySQL%E5%AE%9E%E6%88%9845%E8%AE%B2%E4%B8%AD%E7%9A%84%E9%83%A8%E5%88%86sql/</loc>
+    
+    <lastmod>2021-12-13T15:46:17.123Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2016/07/22/MySQL%E4%B8%89%E6%98%9F%E7%B4%A2%E5%BC%95/</loc>
+    
+    <lastmod>2021-12-13T15:46:02.810Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2017/09/08/Hex-Rays-IDA%E4%B8%8EHopper-Disassembler/</loc>
+    
+    <lastmod>2021-12-13T15:44:38.330Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2020/12/21/%E4%BB%BF%E5%B0%84%E7%B1%BB%E5%9E%8B-Affine-Type/</loc>
+    
+    <lastmod>2021-12-13T15:44:20.716Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2017/08/22/%E7%B4%A2%E5%BC%95%E4%B8%8B%E6%8E%A8/</loc>
+    
+    <lastmod>2021-12-13T15:44:06.755Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2020/12/20/%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/</loc>
+    
+    <lastmod>2021-12-13T15:43:46.777Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2017/11/24/%E3%80%8C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%8D%E4%B9%A6%E6%91%98/</loc>
+    
+    <lastmod>2021-12-13T15:41:52.472Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2017/11/29/Golang%E4%B8%AD%E7%9A%84%E5%AF%86%E7%A0%81%E5%AD%A6/</loc>
+    
+    <lastmod>2021-12-13T15:41:40.225Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2017/11/30/%E6%B7%B1%E5%85%A5%E6%8E%A2%E7%A9%B6map%E8%BF%AD%E4%BB%A3%E6%97%B6%E7%9A%84%E4%B9%B1%E5%BA%8F/</loc>
+    
+    <lastmod>2021-12-13T15:41:02.351Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2017/11/26/MVCC-%E5%A4%9A%E7%89%88%E6%9C%AC%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/</loc>
+    
+    <lastmod>2021-12-13T15:40:22.122Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2017/11/23/Wireshark%E6%8A%93%E5%8C%85%E6%89%8B%E6%9C%BA/</loc>
+    
+    <lastmod>2021-12-13T15:39:29.499Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2015/07/21/%E7%A5%9E%E5%A5%87%E7%9A%84git-cherry-pick%E5%91%BD%E4%BB%A4/</loc>
+    
+    <lastmod>2021-12-13T15:37:17.586Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2017/11/13/Go-omitempty%E5%85%B3%E9%94%AE%E5%AD%97/</loc>
+    
+    <lastmod>2021-12-13T15:35:45.151Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2016/11/30/%E6%9F%A5%E7%9C%8B%E8%A3%85%E6%9C%89linux%E7%B3%BB%E7%BB%9F%E6%9C%BA%E5%99%A8%E7%9A%84%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2021-12-13T15:22:19.741Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2017/11/09/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7Go%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</loc>
+    
+    <lastmod>2021-12-13T15:22:07.471Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2019/01/18/golang%E4%B9%8Bmap%E5%B9%B6%E5%8F%91%E8%AE%BF%E9%97%AE/</loc>
+    
+    <lastmod>2021-12-13T15:21:53.885Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2021/09/14/Rust-vs-Go-%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E5%AF%B9%E6%AF%94-13/</loc>
+    
+    <lastmod>2021-12-13T15:21:37.259Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.dashen.tech/2017/11/18/LRU%E7%AE%97%E6%B3%95%E6%B5%85%E6%9E%90/</loc>
     
-    <lastmod>2021-12-13T08:40:13.530Z</lastmod>
+    <lastmod>2021-12-13T09:35:09.020Z</lastmod>
     
   </url>
   
@@ -79,13 +226,6 @@
   </url>
   
   <url>
-    <loc>http://www.dashen.tech/2016/12/01/%E6%9F%A5%E7%9C%8B%E8%A3%85%E6%9C%89linux%E7%B3%BB%E7%BB%9F%E6%9C%BA%E5%99%A8%E7%9A%84%E9%85%8D%E7%BD%AE/</loc>
-    
-    <lastmod>2021-12-07T13:02:37.776Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.dashen.tech/2016/11/11/%E6%B5%85%E6%9E%90Chromium%E6%BA%90%E7%A0%81%E4%B9%8B%E8%8E%B7%E5%8F%96%E5%92%8C%E7%BC%96%E8%AF%91/</loc>
     
     <lastmod>2021-12-07T13:02:20.362Z</lastmod>
@@ -103,13 +243,6 @@
     <loc>http://www.dashen.tech/2010/03/27/Trie%E4%B8%89%E5%85%84%E5%BC%9F/</loc>
     
     <lastmod>2021-12-07T03:41:43.732Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2018/09/09/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7Go%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</loc>
-    
-    <lastmod>2021-12-05T02:08:30.905Z</lastmod>
     
   </url>
   
@@ -1150,13 +1283,6 @@
   </url>
   
   <url>
-    <loc>http://www.dashen.tech/2019/07/08/Hex-Rays-IDA%E4%B8%8EHopper-Disassembler/</loc>
-    
-    <lastmod>2021-09-28T08:31:07.529Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.dashen.tech/2019/07/19/How-to-Measure-Execution-Time-of-a-Program/</loc>
     
     <lastmod>2021-09-28T08:30:51.273Z</lastmod>
@@ -1167,20 +1293,6 @@
     <loc>http://www.dashen.tech/2019/08/16/Go%E4%B8%AD%E7%9A%84%E2%80%9C%E9%AD%94%E6%95%B0%E2%80%9D/</loc>
     
     <lastmod>2021-09-28T08:30:20.545Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2019/07/20/%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/</loc>
-    
-    <lastmod>2021-09-28T08:29:47.421Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2019/07/21/%E4%BB%BF%E5%B0%84%E7%B1%BB%E5%9E%8B-Affine-Type/</loc>
-    
-    <lastmod>2021-09-28T08:29:28.901Z</lastmod>
     
   </url>
   
@@ -1258,13 +1370,6 @@
     <loc>http://www.dashen.tech/2021/09/19/%E6%90%AD%E5%BB%BAsubstrate%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</loc>
     
     <lastmod>2021-09-21T08:45:29.058Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2021/09/15/Rust-vs-Go-%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E5%AF%B9%E6%AF%94-13/</loc>
-    
-    <lastmod>2021-09-21T02:56:59.903Z</lastmod>
     
   </url>
   
@@ -1423,13 +1528,6 @@
   </url>
   
   <url>
-    <loc>http://www.dashen.tech/2017/07/23/Wireshark%E6%8A%93%E5%8C%85%E6%89%8B%E6%9C%BA/</loc>
-    
-    <lastmod>2021-09-13T07:31:28.830Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.dashen.tech/2017/09/23/sysctl-conf-%E7%B3%BB%E7%BB%9F%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3/</loc>
     
     <lastmod>2021-09-13T07:30:39.383Z</lastmod>
@@ -1447,13 +1545,6 @@
     <loc>http://www.dashen.tech/2018/07/26/%E4%B8%BA%E4%BD%95MongoDB%E4%BD%BF%E7%94%A8B%E6%A0%91%E4%BD%9C%E7%B4%A2%E5%BC%95/</loc>
     
     <lastmod>2021-09-13T07:07:08.996Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2018/07/26/MVCC-%E5%A4%9A%E7%89%88%E6%9C%AC%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/</loc>
-    
-    <lastmod>2021-09-13T07:06:47.172Z</lastmod>
     
   </url>
   
@@ -1496,13 +1587,6 @@
     <loc>http://www.dashen.tech/2019/07/31/%E6%A0%B9%E6%8D%AE%E6%9D%A1%E4%BB%B6%E5%85%B3%E9%97%AD%E8%BD%AF%E4%BB%B6/</loc>
     
     <lastmod>2021-07-31T05:59:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2020/03/03/%E4%BA%B2%E6%B5%8B%E4%BD%93%E9%AA%8C%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/</loc>
-    
-    <lastmod>2021-07-26T08:37:11.000Z</lastmod>
     
   </url>
   
@@ -1864,13 +1948,6 @@
   </url>
   
   <url>
-    <loc>http://www.dashen.tech/2019/04/24/%E3%80%8C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%8D%E4%B9%A6%E6%91%98/</loc>
-    
-    <lastmod>2021-06-06T06:11:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.dashen.tech/2020/08/27/%E9%85%8D%E7%BD%AE%E4%B8%80%E5%8F%B0%E7%AC%A6%E5%90%88%E4%BD%BF%E7%94%A8%E4%B9%A0%E6%83%AF%E7%9A%84%E6%96%B0Mac%E4%B9%8Bbrew%E7%AF%87/</loc>
     
     <lastmod>2021-06-05T09:09:40.000Z</lastmod>
@@ -2154,13 +2231,6 @@
     <loc>http://www.dashen.tech/2019/12/28/%E5%A4%A7%E8%AF%9D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%B9%A6%E6%91%98/</loc>
     
     <lastmod>2021-03-27T06:19:06.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2020/03/26/git%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/</loc>
-    
-    <lastmod>2021-03-26T12:41:14.000Z</lastmod>
     
   </url>
   
@@ -3173,13 +3243,6 @@
   </url>
   
   <url>
-    <loc>http://www.dashen.tech/2020/03/17/%E8%AF%BB%E3%80%8CGo%E8%AF%AD%E8%A8%80%E5%B9%B6%E5%8F%91%E4%B9%8B%E9%81%93%E3%80%8D/</loc>
-    
-    <lastmod>2020-11-12T03:43:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.dashen.tech/2020/10/25/sort%E5%8C%85%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</loc>
     
     <lastmod>2020-11-12T03:30:41.000Z</lastmod>
@@ -3313,20 +3376,6 @@
   </url>
   
   <url>
-    <loc>http://www.dashen.tech/2019/10/22/MySQL%E4%B8%89%E6%98%9F%E7%B4%A2%E5%BC%95/</loc>
-    
-    <lastmod>2020-10-24T04:32:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2019/10/22/MySQL%E5%AE%9E%E6%88%9845%E8%AE%B2%E4%B8%AD%E7%9A%84%E9%83%A8%E5%88%86sql/</loc>
-    
-    <lastmod>2020-10-24T04:32:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.dashen.tech/2018/02/03/%E5%B0%8F%E8%AE%BAsql-count/</loc>
     
     <lastmod>2020-10-23T03:10:51.000Z</lastmod>
@@ -3446,13 +3495,6 @@
   </url>
   
   <url>
-    <loc>http://www.dashen.tech/2015/11/21/%E7%A5%9E%E5%A5%87%E7%9A%84git-cherry-pick%E5%91%BD%E4%BB%A4/</loc>
-    
-    <lastmod>2020-10-01T08:37:15.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.dashen.tech/2016/03/15/%E4%BD%BF%E7%94%A8git%E6%89%93%E8%A1%A5%E4%B8%81%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/</loc>
     
     <lastmod>2020-10-01T08:37:03.000Z</lastmod>
@@ -3544,13 +3586,6 @@
   </url>
   
   <url>
-    <loc>http://www.dashen.tech/2019/07/22/%E7%B4%A2%E5%BC%95%E4%B8%8B%E6%8E%A8/</loc>
-    
-    <lastmod>2020-09-22T03:13:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.dashen.tech/2020/07/03/%E6%9C%89%E5%85%B3%E8%87%AA%E6%97%8B%E9%94%81/</loc>
     
     <lastmod>2020-09-21T09:00:27.000Z</lastmod>
@@ -3614,13 +3649,6 @@
   </url>
   
   <url>
-    <loc>http://www.dashen.tech/2019/04/29/Golang%E4%B8%AD%E7%9A%84%E5%AF%86%E7%A0%81%E5%AD%A6/</loc>
-    
-    <lastmod>2020-09-21T08:47:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.dashen.tech/2019/04/27/Some-useful-tips-for-Goland/</loc>
     
     <lastmod>2020-09-21T08:46:37.000Z</lastmod>
@@ -3635,23 +3663,9 @@
   </url>
   
   <url>
-    <loc>http://www.dashen.tech/2019/03/30/%E6%B7%B1%E5%85%A5%E6%8E%A2%E7%A9%B6map%E8%BF%AD%E4%BB%A3%E6%97%B6%E7%9A%84%E4%B9%B1%E5%BA%8F/</loc>
-    
-    <lastmod>2020-09-21T08:43:22.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.dashen.tech/2019/03/17/golang%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%A1%A8%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</loc>
     
     <lastmod>2020-09-21T08:42:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2019/01/18/golang%E4%B9%8Bmap%E5%B9%B6%E5%8F%91%E8%AE%BF%E9%97%AE/</loc>
-    
-    <lastmod>2020-09-21T08:41:00.000Z</lastmod>
     
   </url>
   
