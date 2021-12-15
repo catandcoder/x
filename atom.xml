@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.dashen.tech/"/>
-  <updated>2021-12-14T02:01:30.031Z</updated>
+  <updated>2021-12-14T02:00:12.920Z</updated>
   <id>http://www.dashen.tech/</id>
   
   <author>
@@ -15,29 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>OBS推流</title>
-    <link href="http://www.dashen.tech/2021/12/14/OBS%E6%8E%A8%E6%B5%81/"/>
-    <id>http://www.dashen.tech/2021/12/14/OBS推流/</id>
-    <published>2021-12-14T02:00:58.000Z</published>
-    <updated>2021-12-14T02:01:30.031Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://jingyan.baidu.com/article/380abd0a2d25ba1d91192c79.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/380abd0a2d25ba1d91192c79.html</a></p><p><a href="https://www.bilibili.com/read/cv5380911/" target="_blank" rel="noopener">https://www.bilibili.com/read/cv5380911/</a></p><p><a href="https://baijiahao.baidu.com/s?id=1618429939613793680&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1618429939613793680&amp;wfr=spider&amp;for=pc</a></p><p><a href="https://www.jianshu.com/p/bf4066028882" target="_blank" rel="noopener">https://www.jianshu.com/p/bf4066028882</a></p><p><a href="https://www.baidu.com/s?ie=utf-8&amp;f=3&amp;rsv_bp=1&amp;srcqid=5911895360745813645&amp;tn=50000021_hao_pg&amp;wd=obs%E6%8E%A8%E6%B5%81%E7%9B%B4%E6%92%AD%E6%95%99%E7%A8%8B&amp;oq=%2526gt%253Bvict&amp;rsv_pq=f30959d00002b780&amp;rsv_t=a673FWS1pACknVGcUcwJLbk6XYdvM%2BHqdZNndOIJ2EcVueg8Gwyxf1GDxm9zLQWs%2FxxLTpRo&amp;rqlang=cn&amp;rsv_dl=ts_3&amp;rsv_enter=1&amp;rsv_sug3=6&amp;rsv_sug1=4&amp;rsv_sug7=100&amp;rsv_sug2=1&amp;rsv_btype=t&amp;prefixsug=obs&amp;rsp=3&amp;inputT=3552&amp;rsv_sug4=4365" target="_blank" rel="noopener">https://www.baidu.com/s?ie=utf-8&amp;f=3&amp;rsv_bp=1&amp;srcqid=5911895360745813645&amp;tn=50000021_hao_pg&amp;wd=obs推流直播教程&amp;oq=%26gt%3Bvict&amp;rsv_pq=f30959d00002b780&amp;rsv_t=a673FWS1pACknVGcUcwJLbk6XYdvM%2BHqdZNndOIJ2EcVueg8Gwyxf1GDxm9zLQWs%2FxxLTpRo&amp;rqlang=cn&amp;rsv_dl=ts_3&amp;rsv_enter=1&amp;rsv_sug3=6&amp;rsv_sug1=4&amp;rsv_sug7=100&amp;rsv_sug2=1&amp;rsv_btype=t&amp;prefixsug=obs&amp;rsp=3&amp;inputT=3552&amp;rsv_sug4=4365</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://jingyan.baidu.com/article/380abd0a2d25ba1d91192c79.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://jingyan.baidu.com/articl
-      
-    
-    </summary>
-    
-    
-      <category term="Tools" scheme="http://www.dashen.tech/tags/Tools/"/>
-    
-  </entry>
   
   <entry>
     <title>二进制分析工具</title>
@@ -59,6 +36,33 @@
     
     
       <category term="Tools" scheme="http://www.dashen.tech/tags/Tools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>协程调度顺序</title>
+    <link href="http://www.dashen.tech/2021/12/12/%E5%8D%8F%E7%A8%8B%E8%B0%83%E5%BA%A6%E9%A1%BA%E5%BA%8F/"/>
+    <id>http://www.dashen.tech/2021/12/12/协程调度顺序/</id>
+    <published>2021-12-12T15:37:29.000Z</published>
+    <updated>2021-12-15T16:12:56.264Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文是对<a href="https://www.bilibili.com/video/BV19b4y1i74w" target="_blank" rel="noopener">卷卷面试题</a>的学习与记录</p><br><p>go 关键字会被编译器转化为对<em>runtime.newproc</em>函数的调用。该函数的主要逻辑：先切换到系统栈，然后调用<em>newproc1</em>函数，分配并初始化一个新的g，再通过<em>runqput</em>把新的g添加到当前P的本地runq中。</p><img src="/2021/12/12/协程调度顺序/0.png" width="100%" height="100%"><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line"><span class="string">"runtime"</span></span><br><span class="line"><span class="string">"sync"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 任一时刻，只允许一个M执行Go代码； 就像单核CPU上的多线程那样</span></span><br><span class="line">runtime.GOMAXPROCS(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line"></span><br><span class="line">wg.Add(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(n <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line"><span class="built_in">println</span>(n)</span><br><span class="line">wg.Done()</span><br><span class="line">&#125;(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(n <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line"><span class="built_in">println</span>(n)</span><br><span class="line">wg.Done()</span><br><span class="line">&#125;(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(n <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line"><span class="built_in">println</span>(n)</span><br><span class="line">wg.Done()</span><br><span class="line">&#125;(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">wg.Wait()</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>输出:</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure><br><p>之所以如此，是因为 P不仅有一个本地runq，还有一个runnext字段，用来保存下次要运行的g。 newproc1中调用runqput时会用到这个runnext</p><img src="/2021/12/12/协程调度顺序/1.png" width="100%" height="100%"><img src="/2021/12/12/协程调度顺序/2.png" width="100%" height="100%"><img src="/2021/12/12/协程调度顺序/3.png" width="100%" height="100%"><img src="/2021/12/12/协程调度顺序/4.png" width="100%" height="100%"><img src="/2021/12/12/协程调度顺序/5.png" width="100%" height="100%"><p>调度goroutine执行时，通过runqget获取待执行的g。runqget也会对runnext特殊处理：<strong>优先调度runnext这里记录的g，再按顺序调度本地runq中记录的g</strong></p><p>所以是3-1-2</p><img src="/2021/12/12/协程调度顺序/6.png" width="100%" height="100%"><br><p>如果创建更多的goroutine，结果也如此吗？</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line"><span class="string">"runtime"</span></span><br><span class="line"><span class="string">"sync"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 任一时刻，只允许一个M执行Go代码； 就像单核CPU上的多线程那样</span></span><br><span class="line">runtime.GOMAXPROCS(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i := <span class="number">1</span>; i &lt;= <span class="number">280</span>; i++ &#123;</span><br><span class="line">wg.Add(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(n <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line"><span class="built_in">println</span>(n)</span><br><span class="line">wg.Done()</span><br><span class="line">&#125;(i)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">wg.Wait()</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>4个goroutine输出的是 4,1,2,3<br>5个goroutine输出的是 5,1,2,3,4</p><p>直到257个gorutine，都是这样的规律, 即  <em>N,1,2,…,(N-1)</em></p><br><p>当多于257个goutine时，</p><img src="/2021/12/12/协程调度顺序/7.png" width="100%" height="100%"><p>第258号goutine会把257号挤走，但本地runq已满，所以第257号goroutine，会和本地runq中前一半的g，一同进入到全局runq中，</p><img src="/2021/12/12/协程调度顺序/8.png" width="100%" height="100%"><p>先从本地runq中获取待执行的g，没有的话，再从全局runq获取。还没有的话，就去其他P那里steal一部分(一半)，</p><img src="/2021/12/12/协程调度顺序/9.png" width="100%" height="100%"><p>所以可能会以为，先执行258号，而后是129，130…,256。最后才是全局队列中的1，2，…128，257</p><p>实际并非如此…</p><p>实际执行会发现，第1号，2号goroutine，会穿插在258，129，…258之间被执行。</p><p>这个问题与runq的排队逻辑无关，属于调度逻辑的范畴</p><img src="/2021/12/12/协程调度顺序/10.png" width="100%" height="100%"><p>runtime.schedule，每隔61个schedtick，就会优先尝试从<strong>全局runq</strong>中获取goroutine，这是为了避免在每个P的本地runq都很繁忙时，全局runq中的goroutine迟迟得不到调度的情况。</p><br><ul><li><p>本地runq的排队逻辑(runnext)</p></li><li><p>全局runq，每隔61个schedtick会优先从全局runq中拿一个goroutine去执行</p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;本文是对&lt;a href=&quot;https://www.bilibili.com/video/BV19b4y1i74w&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;卷卷面试题&lt;/a&gt;的学习与记录&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;go 关键字会被编译器转化为对&lt;em&gt;r
+      
+    
+    </summary>
+    
+      <category term="runtime" scheme="http://www.dashen.tech/categories/runtime/"/>
+    
+    
+      <category term="Go" scheme="http://www.dashen.tech/tags/Go/"/>
     
   </entry>
   
