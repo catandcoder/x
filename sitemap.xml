@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.dashen.tech/2016/01/16/gitlab-runner%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</loc>
+    <loc>http://www.dashen.tech/2016/01/17/Shell%E7%9A%84pushed%E5%92%8Cpopd%E5%91%BD%E4%BB%A4/</loc>
     
-    <lastmod>2022-01-06T13:51:24.945Z</lastmod>
+    <lastmod>2022-01-07T07:38:01.264Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2016/01/06/gitlab-runner%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2022-01-07T07:30:51.725Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2016/01/07/Go%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E6%A3%80%E6%9F%A5%E5%B7%A5%E5%85%B7GolangCI-Lint/</loc>
+    
+    <lastmod>2022-01-07T07:30:41.990Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2016/01/08/Gitlab-Pipeline/</loc>
+    
+    <lastmod>2022-01-07T07:30:37.274Z</lastmod>
     
   </url>
   
@@ -614,13 +635,6 @@
     <loc>http://www.dashen.tech/2017/08/16/WebHook%E5%8F%8A%E5%85%B6%E5%9C%A8github%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2021-11-28T04:50:15.365Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2018/11/27/Gitlab-Pipeline/</loc>
-    
-    <lastmod>2021-11-27T15:15:04.113Z</lastmod>
     
   </url>
   
