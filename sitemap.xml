@@ -2,16 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.dashen.tech/2016/01/08/Gitlab-Pipeline/</loc>
+    <loc>http://www.dashen.tech/2016/01/28/Golang%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
     
-    <lastmod>2022-01-08T02:44:51.667Z</lastmod>
+    <lastmod>2022-01-08T08:35:00.052Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2016/01/19/Linux-tee%E5%91%BD%E4%BB%A4/</loc>
+    
+    <lastmod>2022-01-08T08:32:44.182Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.dashen.tech/2016/01/12/%E5%9C%A8Gitlab-Pipeline%E4%B8%AD%E9%9B%86%E6%88%90%E8%BF%9But%E8%A6%86%E7%9B%96%E7%8E%87%E5%92%8C%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/</loc>
     
-    <lastmod>2022-01-08T02:44:37.195Z</lastmod>
+    <lastmod>2022-01-08T08:31:07.732Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2016/01/08/Gitlab-Pipeline/</loc>
+    
+    <lastmod>2022-01-08T06:58:04.284Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2018/01/08/WebSocket%E5%B0%8F%E8%AF%95/</loc>
+    
+    <lastmod>2022-01-08T06:50:43.557Z</lastmod>
     
   </url>
   
