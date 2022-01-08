@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.dashen.tech/2016/01/08/Gitlab-Pipeline/</loc>
+    
+    <lastmod>2022-01-08T02:44:51.667Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2016/01/12/%E5%9C%A8Gitlab-Pipeline%E4%B8%AD%E9%9B%86%E6%88%90%E8%BF%9But%E8%A6%86%E7%9B%96%E7%8E%87%E5%92%8C%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/</loc>
+    
+    <lastmod>2022-01-08T02:44:37.195Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2016/01/17/Shell%E7%9A%84pushed%E5%92%8Cpopd%E5%91%BD%E4%BB%A4/</loc>
+    
+    <lastmod>2022-01-08T02:15:56.707Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2016/01/06/gitlab-runner%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2022-01-07T11:52:14.457Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.dashen.tech/2016/01/30/Makefile%E4%B9%A6%E5%86%99%E5%B0%8F%E7%BB%93/</loc>
     
     <lastmod>2022-01-07T08:10:19.441Z</lastmod>
@@ -9,30 +37,9 @@
   </url>
   
   <url>
-    <loc>http://www.dashen.tech/2016/01/17/Shell%E7%9A%84pushed%E5%92%8Cpopd%E5%91%BD%E4%BB%A4/</loc>
-    
-    <lastmod>2022-01-07T07:38:01.264Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2016/01/06/gitlab-runner%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</loc>
-    
-    <lastmod>2022-01-07T07:30:51.725Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.dashen.tech/2016/01/07/Go%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E6%A3%80%E6%9F%A5%E5%B7%A5%E5%85%B7GolangCI-Lint/</loc>
     
     <lastmod>2022-01-07T07:30:41.990Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2016/01/08/Gitlab-Pipeline/</loc>
-    
-    <lastmod>2022-01-07T07:30:37.274Z</lastmod>
     
   </url>
   
