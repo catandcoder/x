@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.dashen.tech/2026/01/23/Go%E5%AE%9E%E7%94%A8mock%E5%B7%A5%E5%85%B7/</loc>
+    
+    <lastmod>2022-01-11T07:15:45.544Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2016/01/22/%E5%A2%9E%E5%8A%A0%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E8%A6%86%E7%9B%96%E7%8E%87/</loc>
+    
+    <lastmod>2022-01-11T07:15:31.226Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2016/01/12/%E5%9C%A8Gitlab-Pipeline%E4%B8%AD%E9%9B%86%E6%88%90%E8%BF%9But%E8%A6%86%E7%9B%96%E7%8E%87%E5%92%8C%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/</loc>
+    
+    <lastmod>2022-01-11T07:14:21.055Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2022/01/08/Rust%E6%97%B6%E9%97%B4%E5%92%8C%E6%97%A5%E6%9C%9F/</loc>
+    
+    <lastmod>2022-01-08T16:14:45.603Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.dashen.tech/2016/01/28/Golang%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
     
     <lastmod>2022-01-08T08:35:00.052Z</lastmod>
@@ -12,13 +40,6 @@
     <loc>http://www.dashen.tech/2016/01/19/Linux-tee%E5%91%BD%E4%BB%A4/</loc>
     
     <lastmod>2022-01-08T08:32:44.182Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2016/01/12/%E5%9C%A8Gitlab-Pipeline%E4%B8%AD%E9%9B%86%E6%88%90%E8%BF%9But%E8%A6%86%E7%9B%96%E7%8E%87%E5%92%8C%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/</loc>
-    
-    <lastmod>2022-01-08T08:31:07.732Z</lastmod>
     
   </url>
   
