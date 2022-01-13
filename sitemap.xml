@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.dashen.tech/2011/09/12/Docker%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F/</loc>
+    
+    <lastmod>2022-01-13T07:57:57.867Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2011/09/11/MySQL-where%E6%9D%A1%E4%BB%B6%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99%E9%97%AE%E9%A2%98/</loc>
+    
+    <lastmod>2022-01-13T07:57:42.449Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2011/09/13/git-rm-%E5%91%BD%E4%BB%A4/</loc>
+    
+    <lastmod>2022-01-13T07:57:35.554Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.dashen.tech/2016/01/19/Linux-tee%E5%91%BD%E4%BB%A4/</loc>
     
     <lastmod>2022-01-11T15:04:43.861Z</lastmod>
@@ -33,13 +54,6 @@
     <loc>http://www.dashen.tech/2017/01/11/Implicit-memory-aliasing-in-for-loop/</loc>
     
     <lastmod>2022-01-11T15:04:06.511Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2017/01/11/MySQL-where%E6%9D%A1%E4%BB%B6%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99%E9%97%AE%E9%A2%98/</loc>
-    
-    <lastmod>2022-01-11T15:03:56.020Z</lastmod>
     
   </url>
   
