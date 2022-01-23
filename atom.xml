@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.dashen.tech/"/>
-  <updated>2022-01-15T12:21:23.925Z</updated>
+  <updated>2022-01-18T06:23:38.486Z</updated>
   <id>http://www.dashen.tech/</id>
   
   <author>
@@ -17,19 +17,19 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>跨平台构建 Docker 镜像</title>
-    <link href="http://www.dashen.tech/2022/01/15/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%9E%84%E5%BB%BA-Docker-%E9%95%9C%E5%83%8F/"/>
-    <id>http://www.dashen.tech/2022/01/15/跨平台构建-Docker-镜像/</id>
-    <published>2022-01-15T11:44:50.000Z</published>
-    <updated>2022-01-15T12:21:23.925Z</updated>
+    <title>从A仓库拉取Docker镜像，推送至B仓库</title>
+    <link href="http://www.dashen.tech/2022/01/18/%E4%BB%8EA%E4%BB%93%E5%BA%93%E6%8B%89%E5%8F%96Docker%E9%95%9C%E5%83%8F%EF%BC%8C%E6%8E%A8%E9%80%81%E8%87%B3B%E4%BB%93%E5%BA%93/"/>
+    <id>http://www.dashen.tech/2022/01/18/从A仓库拉取Docker镜像，推送至B仓库/</id>
+    <published>2022-01-18T06:20:24.000Z</published>
+    <updated>2022-01-18T06:23:38.486Z</updated>
     
-    <content type="html"><![CDATA[<p><a href="https://blog.csdn.net/alex_yangchuansheng/article/details/103146303" target="_blank" rel="noopener">https://blog.csdn.net/alex_yangchuansheng/article/details/103146303</a></p><p>但在ubuntu上<em>apt-get update</em>命令总失败</p><p>尝试看下docker能不能像go build一样可以交叉编译</p><p><a href="https://blog.csdn.net/alex_yangchuansheng/article/details/103146303" target="_blank" rel="noopener">跨平台构建 Docker 镜像新姿势，x86、arm 一把梭</a></p><p><a href="https://www.jianshu.com/p/4dab04e6d1e4" target="_blank" rel="noopener">https://www.jianshu.com/p/4dab04e6d1e4</a></p>]]></content>
+    <content type="html"><![CDATA[<p><a href="https://blog.csdn.net/u012861744/article/details/112472538" target="_blank" rel="noopener">https://blog.csdn.net/u012861744/article/details/112472538</a></p><p>docker tag fef382f12984 <a href="http://we-harbor-outer.netease.com/rtn/call_ci:v6" target="_blank" rel="noopener">we-harbor-outer.netease.com/rtn/call_ci:v6</a></p><p>docker push <a href="http://we-harbor-outer.netease.com/rtn/call_ci:v6" target="_blank" rel="noopener">we-harbor-outer.netease.com/rtn/call_ci:v6</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/alex_yangchuansheng/article/details/103146303&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/alex_y
+        &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/u012861744/article/details/112472538&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/u012861744/arti
       
     
     </summary>
