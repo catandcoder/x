@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.dashen.tech/2016/02/08/%E4%BB%8EA%E4%BB%93%E5%BA%93%E6%8B%89%E5%8F%96Docker%E9%95%9C%E5%83%8F%EF%BC%8C%E6%8E%A8%E9%80%81%E8%87%B3B%E4%BB%93%E5%BA%93/</loc>
+    
+    <lastmod>2022-01-24T03:16:51.390Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.dashen.tech/2012/11/12/Docker%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F/</loc>
     
     <lastmod>2022-01-23T15:23:57.971Z</lastmod>
@@ -68,13 +75,6 @@
     <loc>http://www.dashen.tech/2016/01/26/%E5%9F%BA%E4%BA%8Ealpine%E6%9E%84%E5%BB%BA%E4%BD%93%E7%A7%AF%E6%9B%B4%E5%B0%8F%E7%9A%84Docker%E9%95%9C%E5%83%8F/</loc>
     
     <lastmod>2022-01-19T06:05:29.917Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2022/01/18/%E4%BB%8EA%E4%BB%93%E5%BA%93%E6%8B%89%E5%8F%96Docker%E9%95%9C%E5%83%8F%EF%BC%8C%E6%8E%A8%E9%80%81%E8%87%B3B%E4%BB%93%E5%BA%93/</loc>
-    
-    <lastmod>2022-01-18T06:23:38.486Z</lastmod>
     
   </url>
   
