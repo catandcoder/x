@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.dashen.tech/2012/11/21/Redis%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/</loc>
+    
+    <lastmod>2022-02-09T02:33:43.074Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.dashen.tech/2020/05/07/%E5%A4%A9%E7%A5%9E%E8%8D%9F%E8%90%83/</loc>
     
     <lastmod>2022-02-01T17:17:20.305Z</lastmod>
@@ -124,13 +131,6 @@
     <loc>http://www.dashen.tech/2012/11/23/%E7%86%9F%E6%82%89Shell%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%A5%87%E8%91%A9%E5%91%BD%E4%BB%A4/</loc>
     
     <lastmod>2022-01-23T15:22:37.295Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2012/11/21/Redis%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/</loc>
-    
-    <lastmod>2022-01-23T15:10:04.732Z</lastmod>
     
   </url>
   
