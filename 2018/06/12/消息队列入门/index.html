@@ -1,0 +1,205 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="崔某人的碎碎念,通才基础上的专才"><meta name="keywords" content="mysql,golang,算法"><title>消息队列入门 | 清澄秋爽</title><link rel="stylesheet" type="text/css" href="//fonts.loli.net/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.3"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.3"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="stylesheet" type="text/css" href="/css/donate.css"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">消息队列入门</h1><a id="logo" href="/.">清澄秋爽</a><p class="description">苹果树下的思索者 书写是对思维的缓存</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">消息队列入门</h1><div class="post-meta"><a href="/2018/06/12/消息队列入门/#comments" class="comment-count"></a><p><span class="date">Jun 12, 2018</span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><p><br></p>
+<h2 id="几种常见消息队列-了解即可"><a href="#几种常见消息队列-了解即可" class="headerlink" title="几种常见消息队列(了解即可)"></a><font color="red">几种常见消息队列</font>(了解即可)</h2><p><br></p>
+<p><a href="https://cloud.tencent.com/developer/article/1449951" target="_blank" rel="noopener">多维度对比5款主流分布式MQ消息队列</a></p>
+<p><a href="https://juejin.im/post/5c346f9a51882524ec3a903c" target="_blank" rel="noopener">分布式之消息队列的特点、选型、及应用场景详解</a></p>
+<p><br></p>
+<font color="orange">开发语言:</font>
+
+<p>1）Kafka：Scala</p>
+<p>2）RabbitMQ：Erlang</p>
+<p>3）ZeroMQ：C语言</p>
+<p>4）RocketMQ：Java</p>
+<p>5）ActiveMQ：Java</p>
+<hr>
+<font color="orange">支持的协议</font>
+
+<p>1）Kafka：自己定义的一套…（基于TCP）</p>
+<p>2）RabbitMQ：AMQP</p>
+<p>3）ZeroMQ：TCP、UDP</p>
+<p>4）RocketMQ：自己定义的一套…</p>
+<p>5）ActiveMQ：OpenWire、STOMP、REST、XMPP、AMQP</p>
+<hr>
+<font color="orange">负载均衡</font>
+
+<p><br></p>
+<p><strong>Kafka<br>支持负载均衡。</strong></p>
+<p>1）一个broker通常就是一台服务器节点。</p>
+<p>对于同一个Topic的不同分区，Kafka会尽力将这些分区分布到不同的Broker服务器上，zookeeper保存了broker、主题和分区的元数据信息。</p>
+<p>分区首领会处理来自客户端的生产请求，Kafka分区首领会被分配到不同的broker服务器上，让不同的broker服务器共同分担任务。</p>
+<p>每一个broker都缓存了元数据信息，客户端可以从任意一个broker获取元数据信息并缓存起来，根据元数据信息知道要往哪里发送请求。</p>
+<p>2）Kafka的消费者组订阅同一个topic，会尽可能地使得每一个消费者分配到相同数量的分区，分摊负载。</p>
+<p>3）当消费者加入或者退出消费者组的时候，还会触发再均衡，为每一个消费者重新分配分区，分摊负载。</p>
+<p>Kafka的负载均衡大部分是自动完成的，分区的创建也是Kafka完成的，隐藏了很多细节，避免了繁琐的配置和人为疏忽造成的负载问题。</p>
+<p>4）发送端由topic和key来决定消息发往哪个分区，如果key为null，那么会使用轮询算法将消息均衡地发送到同一个topic的不同分区中。如果key不为null，那么会根据key的hashcode取模计算出要发往的分区。</p>
+<p><strong>RabbitMQ<br>对负载均衡的支持不好</strong></p>
+<p><strong>ZeroMQ<br>去中心化，不支持负载均衡。</strong></p>
+<p><strong>RocketMQ<br>支持负载均衡。</strong></p>
+<p><strong>ActiveMQ<br>支持负载均衡。可以基于zookeeper实现负载均衡。</strong></p>
+<hr>
+<font color="orange">可用性</font>
+
+<p><br></p>
+<p>1）Kafka：非常高（分布式）</p>
+<p>2）RabbitMQ：高（主从）</p>
+<p>3）ZeroMQ：高</p>
+<p>4）RocketMQ：非常高（分布式）</p>
+<p>5）ActiveMQ：高（主从）</p>
+<hr>
+<font color="orange">消息重复</font>
+
+<p><br></p>
+<p>1）Kafka：支持at least once、at most once</p>
+<p>2）RabbitMQ：支持at least once、at most once</p>
+<p>3）ZeroMQ：只有重传机制，但是没有持久化，消息丢了重传也没有用。既不是at least once、也不是at most once、更不是exactly only once</p>
+<p>4）RocketMQ：支持at least once</p>
+<p>5）ActiveMQ：支持at least once</p>
+<hr>
+<font color="orange">吞吐量TPS</font>
+
+<p><br></p>
+<p><code>TPS: Transactions Per Second的缩写，即 事务数/秒.</code></p>
+<p>1）Kafka：极大。Kafka按批次发送消息和消费消息。发送端将多个小消息合并，批量发向Broker，消费端每次取出一个批次的消息批量处理。</p>
+<p>2）RabbitMQ：比较大</p>
+<p>3）ZeroMQ：极大</p>
+<p>4）RocketMQ：大。RocketMQ接收端可以批量消费消息，可以配置每次消费的消息数，但是发送端不是批量发送。</p>
+<p>5）ActiveMQ：比较大</p>
+<hr>
+<font color="orange">吞顺序消息</font>
+
+<p><br></p>
+<p><strong>Kafka：支持。</strong></p>
+<p><br></p>
+<p>设置生产者的max.in.flight.requests.per.connection为1，可以保证消息是按照发送顺序写入服务器的，即使发生了重试。</p>
+<p>Kafka保证同一个分区里的消息是有序的，但是这种有序分两种情况：</p>
+<p>①key为null，消息逐个被写入不同主机的分区中，但是对于每个分区依然是有序的</p>
+<p>②key不为null , 消息被写入到同一个分区，这个分区的消息都是有序。</p>
+<p><br></p>
+<p><strong>RabbitMQ：不支持</strong></p>
+<p><strong>ZeroMQ：不支持</strong></p>
+<p><strong>RocketMQ：支持</strong></p>
+<p><strong>ActiveMQ：不支持</strong></p>
+<hr>
+<font color="orange">消息确认</font>
+
+<p><br></p>
+<p><strong>Kafka<br>支持。</strong></p>
+<p>1）发送方确认机制：</p>
+<p>ack=0，不管消息是否成功写入分区</p>
+<p>ack=1，消息成功写入首领分区后，返回成功</p>
+<p>ack=all，消息成功写入所有分区后，返回成功。</p>
+<p>2）接收方确认机制：</p>
+<p>自动或者手动提交分区偏移量，早期版本的Kafka偏移量是提交给Zookeeper的，这样使得zookeeper的压力比较大，更新版本的Kafka的偏移量是提交给Kafka服务器的，不再依赖于zookeeper群组，集群的性能更加稳定。</p>
+<p><br></p>
+<p><strong> RabbitMQ<br>支持。</strong></p>
+<p>1）发送方确认机制，消息被投递到所有匹配的队列后，返回成功。如果消息和队列是可持久化的，那么在写入磁盘后，返回成功。支持批量确认和异步确认。</p>
+<p>2）接收方确认机制，设置autoAck为false，需要显式确认，设置autoAck为true，自动确认。</p>
+<p>当autoAck为false的时候，RabbitMQ队列会分成两部分，一部分是等待投递给consumer的消息，一部分是已经投递但是没收到确认的消息。</p>
+<p>如果一直没有收到确认信号，并且consumer已经断开连接，RabbitMQ会安排这个消息重新进入队列，投递给原来的消费者或者下一个消费者。</p>
+<p>未确认的消息不会有过期时间，如果一直没有确认，并且没有断开连接，RabbitMQ会一直等待，RabbitMQ允许一条消息处理的时间可以很久很久。</p>
+<p><br></p>
+<p><strong>ZeroMQ<br>支持。</strong></p>
+<p><strong>RocketMQ<br>支持。</strong></p>
+<p><strong>ActiveMQ<br>支持。</strong></p>
+<p><br></p>
+<hr>
+<font color="orange">消息回溯</font>
+
+<p><br></p>
+<p>1）Kafka：支持指定分区offset位置的回溯</p>
+<p>2）RabbitMQ：不支持</p>
+<p>3）ZeroMQ：不支持</p>
+<p>4）RocketMQ：支持指定时间点的回溯</p>
+<p>5）ActiveMQ：不支持</p>
+<hr>
+<font color="orange">并发度</font>
+
+<p><br></p>
+<p><strong>Kafka<br>并发度高。</strong></p>
+<p>一个线程一个消费者，Kafka限制消费者的个数要小于等于分区数，如果要提高并行度，可以在消费者中再开启多线程，或者增加consumer实例数量。</p>
+<p>19.2 RabbitMQ<br>并发度极高。本身是用Erlang语言写的，并发性能高。</p>
+<p>可在消费者中开启多线程，最常用的做法是一个channel对应一个消费者，每一个线程把持一个channel，多个线程复用connection的tcp连接，减少性能开销。</p>
+<p>当RabbitMQ队列拥有多个消费者的时候，队列收到的消息将以轮询的分发方式发送给消费者。每条消息只会发送给订阅列表里的一个消费者，不会重复。</p>
+<p>这种方式非常适合扩展，而且是专门为并发程序设计的。</p>
+<p>如果某些消费者的任务比较繁重，那么可以设置basicQos限制信道上消费者能保持的最大未确认消息的数量，在达到上限时，RabbitMQ不再向这个消费者发送任何消息。</p>
+<p><br></p>
+<p><strong>ZeroMQ<br>并发度高。</strong></p>
+<p><br></p>
+<p><strong>RocketMQ<br>并发度高。</strong></p>
+<p>1）RocketMQ限制消费者的个数少于等于队列数，但是可以在消费者中再开启多线程，这一点和Kafka是一致的，提高并行度的方法相同。</p>
+<p>修改消费并行度方法：</p>
+<p>同一个 ConsumerGroup 下，通过增加 Consumer 实例数量来提高并行度，超过订阅队列数的 Consumer实例无效。</p>
+<p>提高单个 Consumer 的消费并行线程，通过修改参数consumeThreadMin、consumeThreadMax</p>
+<p>2）同一个网络连接connection，客户端多个线程可以同时发送请求，连接会被复用，减少性能开销。</p>
+<p><br></p>
+<p><strong>ActiveMQ<br>并发度高。</strong></p>
+<p>单个ActiveMQ的接收和消费消息的速度在1万笔/秒（持久化 一般为1-2万， 非持久化 2 万以上），在生产环境中部署10个ActiveMQ就能达到10万笔/秒以上的性能，部署越多的ActiveMQ broker 在MQ上latency也就越低，系统吞吐量也就越高。</p>
+<hr>
+<h2 id="Kafka相关"><a href="#Kafka相关" class="headerlink" title="Kafka相关"></a>Kafka相关</h2><p><br></p>
+<h3 id="Terminology"><a href="#Terminology" class="headerlink" title=" Terminology"></a><font size="4" color="green"> <strong>Terminology</strong></font></h3><p><br></p>
+<ul>
+<li><p>Broker  Kafka集群包含一个或多个服务器，这种服务器被称为 broker</p>
+</li>
+<li><p>Topic 每条发布到 Kafka 集群的消息都有一个类别，这个类别被称为 Topic。（物理上不同 Topic 的消息分开存储，逻辑上一个 Topic 的消息虽然保存于一个或多个 broker 上但用户只需指定消息的 Topic 即可生产或消费数据而不必关心数据存于何处）</p>
+</li>
+</ul>
+<ul>
+<li><p>Partition Parition是物理上的概念，每个 Topic 包含一个或多个 Partition.</p>
+</li>
+<li><p>Producer 负责发布消息到 Kafka broker</p>
+</li>
+<li><p>Consumer 消息消费者，向 Kafka broker 读取消息的客户端。</p>
+</li>
+<li><p>Consumer Group  每个 Consumer 属于一个特定的 Consumer Group（可为每个 Consumer 指定 group name，若不指定 group name 则属于默认的 group）。</p>
+</li>
+</ul>
+<hr>
+<h3 id="Topic-amp-Partition"><a href="#Topic-amp-Partition" class="headerlink" title=" Topic &amp; Partition"></a><font size="4" color="green"> Topic &amp; Partition</font></h3><p><br></p>
+<p>Topic 在逻辑上可以被认为是一个 queue，每条消费都必须指定它的 Topic，可以简单理解为必须指明把这条消息放进哪个 queue 里。为了使得 Kafka 的吞吐率可以线性提高，物理上把 Topic 分成一个或多个 Partition，每个 Partition 在物理上对应一个文件夹，该文件夹下存储这个 Partition 的所有消息和索引文件。若创建 topic1 和 topic2 两个 topic，且分别有 13 个和 19 个分区，则整个集群上会相应会生成共 32 个文件夹</p>
+<p><br></p>
+<p>因为每条消息都被 append 到该 Partition 中，属于顺序写磁盘，因此效率非常高（经验证，顺序写磁盘效率比随机写内存还要高，这是 Kafka 高吞吐率的一个很重要的保证）</p>
+<p><br></p>
+<p>对于传统的 message queue 而言，一般会删除已经被消费的消息，而 Kafka 集群会保留所有的消息，无论其被消费与否。当然，因为磁盘限制，不可能永久保留所有数据（实际上也没必要），因此 Kafka 提供两种策略删除旧数据。一是基于时间，二是基于 Partition 文件大小。例如可以通过配置 $KAFKA_HOME/config/server.properties，让 Kafka 删除一周前的数据，也可在 Partition 文件超过 1GB 时删除旧数据</p>
+<p><br></p>
+<p>Kafka 读取特定消息的时间复杂度为 O(1)，即与文件大小无关，所以这里删除过期文件与提高 Kafka 性能无关。选择怎样的删除策略只与磁盘以及具体的需求有关。另外，Kafka 会为每一个 Consumer Group 保留一些 metadata 信息——当前消费的消息的 position，也即 offset。这个 offset 由 Consumer 控制。正常情况下 Consumer 会在消费完一条消息后递增该 offset。当然，Consumer 也可将 offset 设成一个较小的值，重新消费一些消息。因为 offet 由 Consumer 控制，所以 Kafka broker 是无状态的，它不需要标记哪些消息被哪些消费过，也不需要通过 broker 去保证同一个 Consumer Group 只有一个 Consumer 能消费某一条消息，因此也就不需要锁机制，这也为 Kafka 的高吞吐率提供了有力保障。</p>
+<hr>
+<h3 id="Push-vs-Pull"><a href="#Push-vs-Pull" class="headerlink" title=" Push vs. Pull"></a><font size="4" color="green"> Push vs. Pull</font></h3><p><br></p>
+<p>作为一个消息系统，Kafka 遵循了传统的方式，选择由 Producer 向 broker push 消息并由 Consumer 从 broker pull 消息。一些 logging-centric system，比如 Facebook 的 Scribe 和 Cloudera 的 Flume ，采用 push 模式。事实上，push 模式和 pull 模式各有优劣。</p>
+<p>push 模式很难适应消费速率不同的消费者，因为消息发送速率是由 broker 决定的。push 模式的目标是尽可能以最快速度传递消息，但是这样很容易造成 Consumer 来不及处理消息，典型的表现就是拒绝服务以及网络拥塞。而 pull 模式则可以根据 Consumer 的消费能力以适当的速率消费消息。</p>
+<p>对于 Kafka 而言，pull 模式更合适。pull 模式可简化 broker 的设计，Consumer 可自主控制消费消息的速率，同时 Consumer 可以自己控制消费方式——即可批量消费也可逐条消费，同时还能选择不同的提交方式从而实现不同的传输语义。</p>
+<hr>
+<h3 id="Kafka-delivery-guarantee"><a href="#Kafka-delivery-guarantee" class="headerlink" title=" Kafka delivery guarantee"></a><font size="4" color="green"> Kafka delivery guarantee</font></h3><p><br></p>
+<p>有这么几种可能的 delivery guarantee：</p>
+<p>At most once 消息可能会丢，但绝不会重复传输</p>
+<p>At least one 消息绝不会丢，但可能会重复传输</p>
+<p>Exactly once 每条消息肯定会被传输一次且仅传输一次，很多时候这是用户所想要的。</p>
+<p>当 Producer 向 broker 发送消息时，一旦这条消息被 commit，因数 replication 的存在，它就不会丢。但是如果 Producer 发送数据给 broker 后，遇到网络问题而造成通信中断，那 Producer 就无法判断该条消息是否已经 commit。虽然 Kafka 无法确定网络故障期间发生了什么，但是 Producer 可以生成一种类似于主键的东西，发生故障时幂等性的重试多次，这样就做到了 Exactly once。截止到目前 (Kafka 0.8.2 版本，2015-03-04)，这一 Feature 还并未实现，有希望在 Kafka 未来的版本中实现。（所以目前默认情况下一条消息从 Producer 到 broker 是确保了 At least once，可通过设置 Producer 异步发送实现 At most once）。</p>
+<p>接下来讨论的是消息从 broker 到 Consumer 的 delivery guarantee 语义。（仅针对 Kafka consumer high level API）。Consumer 在从 broker 读取消息后，可以选择 commit，该操作会在 Zookeeper 中保存该 Consumer 在该 Partition 中读取的消息的 offset。该 Consumer 下一次再读该 Partition 时会从下一条开始读取。如未 commit，下一次读取的开始位置会跟上一次 commit 之后的开始位置相同。当然可以将 Consumer 设置为 autocommit，即 Consumer 一旦读到数据立即自动 commit。如果只讨论这一读取消息的过程，那 Kafka 是确保了 Exactly once。但实际使用中应用程序并非在 Consumer 读取完数据就结束了，而是要进行进一步处理，而数据处理与 commit 的顺序在很大程度上决定了消息从 broker 和 consumer 的 delivery guarantee semantic。</p>
+<p>读完消息先 commit 再处理消息。这种模式下，如果 Consumer 在 commit 后还没来得及处理消息就 crash 了，下次重新开始工作后就无法读到刚刚已提交而未处理的消息，这就对应于 At most once</p>
+<p>读完消息先处理再 commit。这种模式下，如果在处理完消息之后 commit 之前 Consumer crash 了，下次重新开始工作时还会处理刚刚未 commit 的消息，实际上该消息已经被处理过了。这就对应于 At least once。在很多使用场景下，消息都有一个主键，所以消息的处理往往具有幂等性，即多次处理这一条消息跟只处理一次是等效的，那就可以认为是 Exactly once。（笔者认为这种说法比较牵强，毕竟它不是 Kafka 本身提供的机制，主键本身也并不能完全保证操作的幂等性。而且实际上我们说 delivery guarantee 语义是讨论被处理多少次，而非处理结果怎样，因为处理方式多种多样，我们不应该把处理过程的特性——如是否幂等性，当成 Kafka 本身的 Feature）</p>
+<p>如果一定要做到 Exactly once，就需要协调 offset 和实际操作的输出。精典的做法是引入两阶段提交。如果能让 offset 和操作输入存在同一个地方，会更简洁和通用。这种方式可能更好，因为许多输出系统可能不支持两阶段提交。比如，Consumer 拿到数据后可能把数据放到 HDFS，如果把最新的 offset 和数据本身一起写到 HDFS，那就可以保证数据的输出和 offset 的更新要么都完成，要么都不完成，间接实现 Exactly once。（目前就 high level API 而言，offset 是存于 Zookeeper 中的，无法存于 HDFS，而 low level API 的 offset 是由自己去维护的，可以将之存于 HDFS 中）</p>
+<p>总之，Kafka 默认保证 At least once，并且允许通过设置 Producer 异步提交来实现 At most once。而 Exactly once 要求与外部存储系统协作，幸运的是 Kafka 提供的 offset 可以非常直接非常容易得使用这种方式。</p>
+<hr>
+<p>参考:</p>
+<p><a href="infoq.cn/article/kafka-analysis-part-1">Kafka 背景及架构介绍</a>–力荐</p>
+<p><a href="https://blog.csdn.net/bwt1989/article/details/93425790" target="_blank" rel="noopener">kafka消息分区机制</a></p>
+<p><a href="https://www.cnblogs.com/cjsblog/p/9664536.html" target="_blank" rel="noopener">Kafka分区与消费者的关系</a></p>
+<p><a href="https://www.ibm.com/developerworks/cn/opensource/os-cn-kafka/index.html" target="_blank" rel="noopener">Apache kafka 工作原理介绍</a></p>
+<p><a href="https://juejin.im/post/5ddf5659518825782d599641" target="_blank" rel="noopener">Kafka 入门一篇文章就够了</a></p>
+<!--爽哥为赞赏功能新加--></div><!--script(type='text/javascript', src=url_for(theme.js) + '/jquery.js' + '?v=' + theme.version, async)--><script type="text/javascript" src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script><div class="post-donate"><div id="donate_board" class="donate_bar center"><a id="btn_donate" href="javascript:;" title="打赏" class="btn_donate"></a><div class="donate_txt"> &uarr;<br>BTC Address:3NNxkM6ez7szsUAgTnK2VaF949LoGmXuBs<br></div></div><div id="donate_guide" class="donate_bar center hidden pay"><img src="http://cuishuang.gitee.io/img/weChatMoney.png" title="微信打赏" alt="微信打赏"><img src="http://cuishuang.gitee.io/img/alipayMoney.png" title="支付宝打赏" alt="支付宝打赏"><img src="http://cuishuang.gitee.io/img/btc.png" title="比特币打赏" alt="比特币打赏"></div><script type="text/javascript">document.getElementById('btn_donate').onclick = function(){
+    $('#donate_board').addClass('hidden');
+    $('#donate_guide').removeClass('hidden');
+}</script></div><!-- google adsense--><!--if theme.show_ad_post == true--><!--    script(async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")--><!--    ins.adsbygoogle(style="display:block" data-ad-client="ca-pub-1181798273731653" data-ad-format="auto")--><!--    script (adsbygoogle = window.adsbygoogle || []).push({});-->
+<div class="post-copyright"><blockquote><p>原文作者: fliter</p><p>原文链接: </p><a href="http://www.dashen.tech/2018/06/12/消息队列入门/">http://www.dashen.tech/2018/06/12/消息队列入门/</a><p>版权声明: 转载请注明出处</p></blockquote></div><div class="tags"><a href="/tags/微服务/">微服务</a><a href="/tags/Pearl/">Pearl</a></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/2018/06/19/Go实现一个判断版本号是否合规的函数/" class="pre">Go实现一个判断版本号是否合规的函数</a><a href="/2018/06/07/少年子弟江湖老-红粉佳人两鬓斑/" class="next">少年子弟江湖老 红粉佳人两鬓斑</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#几种常见消息队列-了解即可"><span class="toc-text">几种常见消息队列(了解即可)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kafka相关"><span class="toc-text">Kafka相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Terminology"><span class="toc-text"> Terminology</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Topic-amp-Partition"><span class="toc-text"> Topic &amp; Partition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Push-vs-Pull"><span class="toc-text"> Push vs. Pull</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kafka-delivery-guarantee"><span class="toc-text"> Kafka delivery guarantee</span></a></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/02/03/向前兼容与向后兼容/">向前兼容与向后兼容</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/01/部署Spring-Boot项目/">部署Spring Boot项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/01/新建Spring-Boot项目/">新建Spring Boot项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/29/探究新版本新多出的协程/">探究新版本新多出的协程</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/08/Rust时间和日期/">Rust时间和日期</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/14/OBS推流/">OBS推流</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/14/二进制分析工具/">二进制分析工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/12/协程调度顺序/">协程调度顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/24/Go内存管理之内存分配/">Go内存管理之内存分配</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/17/Go内存优化/">Go内存优化</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-weixin"> 扫码关注-旅途散记</i></div><img width="100%" height="233" title="微信扫一扫" src="https://cuishuang.gitee.io/img/lvtusanji.jpg"></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DevOps/">DevOps</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/">Life</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tree/">Tree</a><span class="category-list-count">27</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/runtime/">runtime</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sync/">sync</a><span class="category-list-count">12</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/操作系统/" style="font-size: 15px;">操作系统</a> <a href="/tags/微服务/" style="font-size: 15px;">微服务</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/Todo/" style="font-size: 15px;">Todo</a> <a href="/tags/TCP-IP/" style="font-size: 15px;">TCP/IP</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Pearl/" style="font-size: 15px;">Pearl</a> <a href="/tags/译海一粟/" style="font-size: 15px;">译海一粟</a> <a href="/tags/Tools/" style="font-size: 15px;">Tools</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/Compiler/" style="font-size: 15px;">Compiler</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/密码学/" style="font-size: 15px;">密码学</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/Interview/" style="font-size: 15px;">Interview</a> <a href="/tags/杂谈/" style="font-size: 15px;">杂谈</a> <a href="/tags/金庸/" style="font-size: 15px;">金庸</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/bug/" style="font-size: 15px;">bug</a> <a href="/tags/数学/" style="font-size: 15px;">数学</a> <a href="/tags/Rust/" style="font-size: 15px;">Rust</a> <a href="/tags/explore/" style="font-size: 15px;">explore</a> <a href="/tags/书摘-影评/" style="font-size: 15px;">书摘/影评</a> <a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/足球-体育/" style="font-size: 15px;">足球&体育</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/读城记/" style="font-size: 15px;">读城记</a> <a href="/tags/星陨/" style="font-size: 15px;">星陨</a> <a href="/tags/奇文共赏/" style="font-size: 15px;">奇文共赏</a> <a href="/tags/区域经济/" style="font-size: 15px;">区域经济</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">三月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">二月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">九月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">四月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1093/02/">二月 1093</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="https://leetcode.com/" title="LeetCode" target="_blank">LeetCode</a><ul></ul><a href="https://golang.org/" title="Go官网" target="_blank">Go官网</a><ul></ul><a href="https://tonybai.com/" title="TonyBai" target="_blank">TonyBai</a><ul></ul><a href="http://lietoumai.com/" title="顾问麦的小站" target="_blank">顾问麦的小站</a><ul></ul><a href="https://www.coolshell.cn/" title="酷壳" target="_blank">酷壳</a><ul></ul><a href="https://notes.diguage.com/" title="瓜哥" target="_blank">瓜哥</a><ul></ul><a href="https://taoshu.in/" title="涛叔" target="_blank">涛叔</a><ul></ul><a href="https://colobu.com/" title="鸟窝" target="_blank">鸟窝</a><ul></ul><a href="http://xiaorui.cc/" title="峰云" target="_blank">峰云</a><ul></ul><a href="https://eddycjy.com/posts/" title="煎鱼" target="_blank">煎鱼</a><ul></ul><a href="https://hutusi.com/" title="胡涂说" target="_blank">胡涂说</a><ul></ul><a href="https://qcrao.com/" title="码农桃花源" target="_blank">码农桃花源</a><ul></ul><a href="https://github.com/KeKe-Li/For-learning-Go-Tutorial" title="远方的笔记" target="_blank">远方的笔记</a><ul></ul><a href="https://xargin.com/" title="No Headback" target="_blank">No Headback</a><ul></ul><a href="http://thoslin.github.io/" title="Eat Pray Code" target="_blank">Eat Pray Code</a><ul></ul><a href="https://www.ashenone66.cn/" title="AshenOne's Blog" target="_blank">AshenOne's Blog</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |  <a href="/atom.xml">订阅本站</a> |  <a href="/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> 备案号:<a href="http://www.beian.miit.gov.cn/"> 鲁ICP备18010105号</a></span></p><p><span> Copyright &copy;<a href="/." rel="nofollow">fliter.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e10d6858b78ff3fc7853fc72e7240eab";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/search.json.js?v=2.0.3"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+});</script><script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML" async></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.3" async></script><link rel="stylesheet" type="text/css" href="/share/css/share.css"><script type="text/javascript" src="/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/share/js/qrcode.js" charset="utf-8"></script></body></html>

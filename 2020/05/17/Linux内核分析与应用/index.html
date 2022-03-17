@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="崔某人的碎碎念,通才基础上的专才"><meta name="keywords" content="mysql,golang,算法"><title>Linux内核分析与应用 | 清澄秋爽</title><link rel="stylesheet" type="text/css" href="//fonts.loli.net/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.3"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.3"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="stylesheet" type="text/css" href="/css/donate.css"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Linux内核分析与应用</h1><a id="logo" href="/.">清澄秋爽</a><p class="description">苹果树下的思索者 书写是对思维的缓存</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">Linux内核分析与应用</h1><div class="post-meta"><a href="/2020/05/17/Linux内核分析与应用/#comments" class="comment-count"></a><p><span class="date">May 17, 2020</span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><p><a href="https://next.xuetangx.com/course/XIYOU08091001441/1516763" target="_blank" rel="noopener">Linux 内核分析与应用</a></p>
+<p>蜻蜓点水,可作抛砖引玉</p>
+<p><br></p>
+<hr>
+<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p><br></p>
+<h3 id="用到的几个命令"><a href="#用到的几个命令" class="headerlink" title="用到的几个命令:"></a>用到的几个命令:</h3><p><a href>insmod</a></p>
+<p><a href="https://www.runoob.com/linux/linux-comm-dmesg.html" target="_blank" rel="noopener">dmesg</a><br><a href="https://www.runoob.com/linux/linux-comm-lsmod.html" target="_blank" rel="noopener">lsmod</a></p>
+<h3 id="章节测试"><a href="#章节测试" class="headerlink" title="章节测试:"></a>章节测试:</h3><p><a href="https://tiku.link/post/106849.html" target="_blank" rel="noopener">部分可参考</a></p>
+<p><br></p>
+<p><1>. Linux得以流行，是因为遵循了GPL协议，并不是因为遵循POSIX标准 (错)</1></p>
+<p><a href="https://wenku.baidu.com/view/b270588d1eb91a37f0115c16.html" target="_blank" rel="noopener">linux操作系统概述</a></p>
+<p><a href="http://www.doc88.com/p-1751663666583.html" target="_blank" rel="noopener">linux概述</a></p>
+<p><br></p>
+<p><2>. 从Linux操作系统的整体结构来看，分两大部分，用户空间的应用程序和内核空间的os内核，二者之间是一种c/s结构，os是服务者，应用程序是客户，是一种请求和响应的关系。 (对)</2></p>
+<p><a href="https://blog.csdn.net/qq_29350001/article/details/51240230" target="_blank" rel="noopener">Linux用户空间与内核空间</a></p>
+<p><a href="https://www.ruanyifeng.com/blog/2016/12/user_space_vs_kernel_space.html" target="_blank" rel="noopener">阮一峰-User space 与 Kernel space</a></p>
+<p><br></p>
+<p><3>.<font color="9966ff">Linux内核提供机制而不是策略，系统调用是一种策略</font> (错)</3></p>
+<p><img src="https://geekblog.gitee.io/img2020/2020/05/17/Linux内核分析与应用/mechanism&policy.png" width="100%" height="100%"></p>
+<p><img src="https://geekblog.gitee.io/img2020/2020/05/17/Linux内核分析与应用/mechanism&policy2.png" width="100%" height="100%"></p>
+<p>关于Unix/Linux的设计有一句通用的格言“提供机制而不是策略”。换句话说，系统调用抽象出了用于完成某种确定目的的函数。至干这些函数怎么用完全不需要内核去关心。区别对待机制(mechanism)和策略(policy)是Unix/Linux设计中的一大亮点。大部分的编程问题都可以被切割成两个部分:“需要提供什么功能”(机制)和“怎样实现这些功能”(策略)。 </p>
+<p><4>.内核源码中的双向链表和哈希表都相当于内核源码中的基本类型，对其操作只需要调用内核提供的相应API就可以。  (对)</4></p>
+<p>Linux内核中对双向链表的使用,简直和int型一样频繁</p>
+<p><br></p>
+<p><5>.Linux内核把双链表作为基本类型存放于types.h文件中，是为了隐藏双链表的指针特性。 (对)</5></p>
+<p>Linux双向链表的定义主要涉及到两个文件：</p>
+<ul>
+<li>include/linux/types.h</li>
+<li><a href="https://github.com/torvalds/linux/blob/master/include/linux/list.h" target="_blank" rel="noopener">include/linux/list.h</a></li>
+</ul>
+<p><a href="https://www.cnblogs.com/skywang12345/p/3562146.html" target="_blank" rel="noopener">Linux内核中双向链表的经典实现</a></p>
+<p><br></p>
+<p><6>. list.h中的list_entry（）宏通过一个结构体中字段的地址可以求出该结构体的地址，从而可以访问结构体的其他成员，是一种逆向思维。 (对)</6></p>
+<p><a href="https://blog.csdn.net/rao_risk/article/details/8100005" target="_blank" rel="noopener">Linux内核中的list_head结构体以及list_entry宏</a></p>
+<p><br></p>
+<p><7>.Linux内核是单内核结构，执行效率高，可维护性好 (错)</7></p>
+<p><strong>微内核效率不如单内核，但可维护性要好。minix，qnx，l4，还有谷歌刚推出的fuchsia，均为微内核。linux大多数为单内核</strong></p>
+<p><br></p>
+<p><8>.内核文档中<a href="https://www.kernel.org/doc/html/latest/" target="_blank" rel="noopener">https://www.kernel.org/doc/html/latest/</a> 只包含各个子系统的文档   (错)</8></p>
+<p><br></p>
+<p><9>.可加装的内核模块在内核运行时候可加载和卸载，是开发一个新的文件系统，驱动程序的基本机制。  (对)</9></p>
+<p><10>.内核模块的修饰符__init可加可不加，对模块的运行没有什么影响  (错)</10></p>
+<p><br></p>
+<p><a href="https://www.cnblogs.com/linengier/p/12380780.html" target="_blank" rel="noopener">linux kernel <strong>init和</strong>exit宏的作用</a></p>
+<p><a href="https://tutorial.linux.doc.embedfire.com/zh_CN/latest/linux_driver/module.html" target="_blank" rel="noopener">Linux开发实战指南文档</a>(这篇不错)</p>
+<p><br></p>
+<p><11>.编写Linux内核模块时，不需要单独写一个Makefile文件，直接编译就可以 (错)</11></p>
+<p><br></p>
+<p><12>.Linux内核模块运行在用户空间  (错)</12></p>
+<p><br></p>
+<p><13>. 微内核比单内核的效率高 (错)</13></p>
+<p><br></p>
+<p><14>. Linux内核模块的插入和运行必须用root权限 (对)</14></p>
+<p><br></p>
+<p><15>. Linux的内核模块不属于Linux的几个子系统  (对)</15></p>
+<p><br></p>
+<p><16>.Linux在超级计算机，可穿戴设备，嵌入式系统，移动终端，桌面等系统上都可以运行。 (对)</16></p>
+<p><br></p>
+<p><17>. Linux内核、GNU工具以及其他一些自由软件组成了人们常熟的Linux系统或者Linux发布版。 (对)</17></p>
+<p><br></p>
+<p><18>. lisit_entry(ptr,type,member)宏返回的是member的地址<br>  (错)</18></p>
+<p><a href="http://ilinuxkernel.com/?p=1062" target="_blank" rel="noopener">Linux内核双链表语句list_entry(ptr, type, member)理解</a></p>
+<p><br></p>
+<p><19>.list_for_each_saft()宏和list_for_each()宏功能一样，安全性有差异 (对)</19></p>
+<p><br></p>
+<p><20>. 与体系结构（如x86，ARM等）相关的代码存放在<a href="https://github.com/torvalds/linux/tree/master/arch" target="_blank" rel="noopener">arch目录</a>下 (对)</20></p>
+<p><br></p>
+<p><21>. 创建进程属于一种策略而不是机制  (错)</21></p>
+<p><br></p>
+<p><22>.  ( )不属于Linux的子系统  D</22></p>
+<ul>
+<li>A.进程管理</li>
+</ul>
+<ul>
+<li>B.内存管理</li>
+</ul>
+<ul>
+<li>C.文件系统</li>
+</ul>
+<ul>
+<li>D.模块</li>
+</ul>
+<p><br></p>
+<p><23>.Linux操作系统遵循（ ）标准  C</23></p>
+<ul>
+<li>A.GUN</li>
+</ul>
+<ul>
+<li>B.GPL</li>
+</ul>
+<ul>
+<li>C.POSIX</li>
+</ul>
+<ul>
+<li>D.MMU</li>
+</ul>
+<p><br></p>
+<p><24>.触摸屏属于（ ）管理   B</24></p>
+<ul>
+<li>A.应用程序</li>
+</ul>
+<ul>
+<li>B.操作系统</li>
+</ul>
+<ul>
+<li>C.硬件厂家</li>
+</ul>
+<ul>
+<li>D.系统调用</li>
+</ul>
+<p><br></p>
+<p><25>.如果要从磁盘读取一个文件，则主要与（ ）子系统打交道   C</25></p>
+<ul>
+<li>A.内存管理</li>
+</ul>
+<ul>
+<li>B.进程调度</li>
+</ul>
+<ul>
+<li>C.文件系统</li>
+</ul>
+<ul>
+<li>D.网络</li>
+</ul>
+<p><br></p>
+<p><26>. struct list_head 无法表达（ ）种数据结构    D</26></p>
+<ul>
+<li>A.队和栈</li>
+</ul>
+<ul>
+<li>B.图</li>
+</ul>
+<ul>
+<li>C.树</li>
+</ul>
+<ul>
+<li>D.集合</li>
+</ul>
+<p><a href="http://blog.chinaunix.net/uid-27122224-id-3277511.html" target="_blank" rel="noopener">深入理解linux内核list_head的实现</a></p>
+<p><br></p>
+<p><27>. 谷歌的Fuchsia操作系统属于( )结构    A</27></p>
+<ul>
+<li>A.微内核</li>
+</ul>
+<ul>
+<li>B.单内核</li>
+</ul>
+<ul>
+<li>C.C/S</li>
+</ul>
+<ul>
+<li>D.面向对象</li>
+</ul>
+<p><br></p>
+<!--爽哥为赞赏功能新加--></div><!--script(type='text/javascript', src=url_for(theme.js) + '/jquery.js' + '?v=' + theme.version, async)--><script type="text/javascript" src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script><div class="post-donate"><div id="donate_board" class="donate_bar center"><a id="btn_donate" href="javascript:;" title="打赏" class="btn_donate"></a><div class="donate_txt"> &uarr;<br>BTC Address:3NNxkM6ez7szsUAgTnK2VaF949LoGmXuBs<br></div></div><div id="donate_guide" class="donate_bar center hidden pay"><img src="http://cuishuang.gitee.io/img/weChatMoney.png" title="微信打赏" alt="微信打赏"><img src="http://cuishuang.gitee.io/img/alipayMoney.png" title="支付宝打赏" alt="支付宝打赏"><img src="http://cuishuang.gitee.io/img/btc.png" title="比特币打赏" alt="比特币打赏"></div><script type="text/javascript">document.getElementById('btn_donate').onclick = function(){
+    $('#donate_board').addClass('hidden');
+    $('#donate_guide').removeClass('hidden');
+}</script></div><!-- google adsense--><!--if theme.show_ad_post == true--><!--    script(async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")--><!--    ins.adsbygoogle(style="display:block" data-ad-client="ca-pub-1181798273731653" data-ad-format="auto")--><!--    script (adsbygoogle = window.adsbygoogle || []).push({});-->
+<div class="post-copyright"><blockquote><p>原文作者: fliter</p><p>原文链接: </p><a href="http://www.dashen.tech/2020/05/17/Linux内核分析与应用/">http://www.dashen.tech/2020/05/17/Linux内核分析与应用/</a><p>版权声明: 转载请注明出处</p></blockquote></div><div class="tags"><a href="/tags/Linux/">Linux</a></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/2020/05/17/Linux内核分析与应用2-内存寻址/" class="pre">Linux内核分析与应用2-内存寻址</a><a href="/2020/05/07/天神荟萃/" class="next">天神荟萃</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-概述"><span class="toc-text">1.概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用到的几个命令"><span class="toc-text">用到的几个命令:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#章节测试"><span class="toc-text">章节测试:</span></a></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/02/03/向前兼容与向后兼容/">向前兼容与向后兼容</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/01/部署Spring-Boot项目/">部署Spring Boot项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/01/新建Spring-Boot项目/">新建Spring Boot项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/29/探究新版本新多出的协程/">探究新版本新多出的协程</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/08/Rust时间和日期/">Rust时间和日期</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/14/OBS推流/">OBS推流</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/14/二进制分析工具/">二进制分析工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/12/协程调度顺序/">协程调度顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/24/Go内存管理之内存分配/">Go内存管理之内存分配</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/17/Go内存优化/">Go内存优化</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-weixin"> 扫码关注-旅途散记</i></div><img width="100%" height="233" title="微信扫一扫" src="https://cuishuang.gitee.io/img/lvtusanji.jpg"></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DevOps/">DevOps</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/">Life</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tree/">Tree</a><span class="category-list-count">27</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/runtime/">runtime</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sync/">sync</a><span class="category-list-count">12</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/操作系统/" style="font-size: 15px;">操作系统</a> <a href="/tags/微服务/" style="font-size: 15px;">微服务</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/Todo/" style="font-size: 15px;">Todo</a> <a href="/tags/TCP-IP/" style="font-size: 15px;">TCP/IP</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Pearl/" style="font-size: 15px;">Pearl</a> <a href="/tags/译海一粟/" style="font-size: 15px;">译海一粟</a> <a href="/tags/Tools/" style="font-size: 15px;">Tools</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/Compiler/" style="font-size: 15px;">Compiler</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/密码学/" style="font-size: 15px;">密码学</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/Interview/" style="font-size: 15px;">Interview</a> <a href="/tags/杂谈/" style="font-size: 15px;">杂谈</a> <a href="/tags/金庸/" style="font-size: 15px;">金庸</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/bug/" style="font-size: 15px;">bug</a> <a href="/tags/数学/" style="font-size: 15px;">数学</a> <a href="/tags/Rust/" style="font-size: 15px;">Rust</a> <a href="/tags/explore/" style="font-size: 15px;">explore</a> <a href="/tags/书摘-影评/" style="font-size: 15px;">书摘/影评</a> <a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/足球-体育/" style="font-size: 15px;">足球&体育</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/读城记/" style="font-size: 15px;">读城记</a> <a href="/tags/星陨/" style="font-size: 15px;">星陨</a> <a href="/tags/奇文共赏/" style="font-size: 15px;">奇文共赏</a> <a href="/tags/区域经济/" style="font-size: 15px;">区域经济</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">三月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">二月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">九月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">四月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1093/02/">二月 1093</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="https://leetcode.com/" title="LeetCode" target="_blank">LeetCode</a><ul></ul><a href="https://golang.org/" title="Go官网" target="_blank">Go官网</a><ul></ul><a href="https://tonybai.com/" title="TonyBai" target="_blank">TonyBai</a><ul></ul><a href="http://lietoumai.com/" title="顾问麦的小站" target="_blank">顾问麦的小站</a><ul></ul><a href="https://www.coolshell.cn/" title="酷壳" target="_blank">酷壳</a><ul></ul><a href="https://notes.diguage.com/" title="瓜哥" target="_blank">瓜哥</a><ul></ul><a href="https://taoshu.in/" title="涛叔" target="_blank">涛叔</a><ul></ul><a href="https://colobu.com/" title="鸟窝" target="_blank">鸟窝</a><ul></ul><a href="http://xiaorui.cc/" title="峰云" target="_blank">峰云</a><ul></ul><a href="https://eddycjy.com/posts/" title="煎鱼" target="_blank">煎鱼</a><ul></ul><a href="https://hutusi.com/" title="胡涂说" target="_blank">胡涂说</a><ul></ul><a href="https://qcrao.com/" title="码农桃花源" target="_blank">码农桃花源</a><ul></ul><a href="https://github.com/KeKe-Li/For-learning-Go-Tutorial" title="远方的笔记" target="_blank">远方的笔记</a><ul></ul><a href="https://xargin.com/" title="No Headback" target="_blank">No Headback</a><ul></ul><a href="http://thoslin.github.io/" title="Eat Pray Code" target="_blank">Eat Pray Code</a><ul></ul><a href="https://www.ashenone66.cn/" title="AshenOne's Blog" target="_blank">AshenOne's Blog</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |  <a href="/atom.xml">订阅本站</a> |  <a href="/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> 备案号:<a href="http://www.beian.miit.gov.cn/"> 鲁ICP备18010105号</a></span></p><p><span> Copyright &copy;<a href="/." rel="nofollow">fliter.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e10d6858b78ff3fc7853fc72e7240eab";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/search.json.js?v=2.0.3"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+});</script><script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML" async></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.3" async></script><link rel="stylesheet" type="text/css" href="/share/css/share.css"><script type="text/javascript" src="/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/share/js/qrcode.js" charset="utf-8"></script></body></html>

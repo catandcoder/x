@@ -1,0 +1,380 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="崔某人的碎碎念,通才基础上的专才"><meta name="keywords" content="mysql,golang,算法"><title>性能分析工具 | 清澄秋爽</title><link rel="stylesheet" type="text/css" href="//fonts.loli.net/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.3"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.3"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="stylesheet" type="text/css" href="/css/donate.css"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">性能分析工具</h1><a id="logo" href="/.">清澄秋爽</a><p class="description">苹果树下的思索者 书写是对思维的缓存</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">性能分析工具</h1><div class="post-meta"><a href="/2021/03/01/性能分析工具/#comments" class="comment-count"></a><p><span class="date">Mar 01, 2021</span><span><a href="/categories/runtime/" class="category">runtime</a></span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><h2 id="关于profiling-性能分析，或特征分析与实践追踪"><a href="#关于profiling-性能分析，或特征分析与实践追踪" class="headerlink" title="关于profiling(性能分析，或特征分析与实践追踪)"></a><font color="#000080">关于profiling(性能分析，或特征分析与实践追踪)</font></h2><p><br></p>
+<p><a href="https://dashen.tech/2016/04/22/go%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7-profiling/" target="_blank" rel="noopener">go性能分析工具–profiling</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">profiling</span><br><span class="line">英[ˈprəʊfaɪlɪŋ]</span><br><span class="line">美[ˈproʊfaɪlɪŋ]</span><br><span class="line">n.	(有关人或事物的)资料搜集;</span><br><span class="line">v.	扼要介绍; 概述; 写简介;</span><br><span class="line">[词典]	profile的现在分词;</span><br><span class="line"></span><br><span class="line">[例句]You need to provide only two special profiling functions.</span><br><span class="line">您只需要提供两个特殊的分析函数即可。</span><br></pre></td></tr></table></figure>
+<p>profiling这词比较难翻译,有译成<code>画像</code>,我将其译为<strong>资料收集、剖析研究</strong>, 用于对程序<em>指标或特征的分析</em>，很多软件中都内置或有第三方的profiling工具，如Linux(比较知名的如<a href="https://dashen.tech/2020/02/06/perf%E4%BD%BF%E7%94%A8%E6%B5%85%E6%9E%90/" target="_blank" rel="noopener">Perf</a>)，MySQL，JAVA，Go等。</p>
+<p><br></p>
+<font size="1" color="grey"><br>如 以MySQL为例：<br><br>1. 开启profiling参数<br><br><code>set profiling=1;</code><br><br><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/0.png" width="80%" height="50%"><br><br><br>2. 执行Query语句<br><br><code>select * from products where id &lt; 100</code><br><br><br>3. 获取系统中保存的所有Query的profile概要信息<br><br><code>show profiles;</code><br><br><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/1.png" width="80%" height="50%"><br><br><br>4. 针对单个Query获取详细的profile信息<br><br><code>SELECT * FROM information_schema.profiling WHERE query_id = 3 ORDER BY seq;</code><br><br><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/2.png" width="80%" height="50%"><br><br><a href="https://www.cnblogs.com/afeige/p/10896254.html" target="_blank" rel="noopener">MySQL之profiling性能分析（在5.6.14版本被丢弃）</a><br><br></font>
+
+<p><br></p>
+<p>在Go中，最常使用pprof(及其内置的火焰图)进行特征分析，使用trace进行事件追踪</p>
+<font size="1" color="grey"><br><br>pprof 更擅长去查看程序效率，比如查看谁占用内存时间长，谁的协程阻塞了等等<br><br>trace 则是程序在运行期间的信息追踪，通过可视化的方式来查看这期间程序到底做了什么，以及了解 GC 对程序的影响等等<br><br>这两套工具配合起来，更快发现问题，解决问题<br><br></font>
+
+
+<p>推荐 <a href="https://mp.weixin.qq.com/s/c8SnrA2auVtrWb-kmBopLg" target="_blank" rel="noopener">Golang 性能分析工具简要介绍</a></p>
+<p><br></p>
+<h2 id="pprof"><a href="#pprof" class="headerlink" title="pprof"></a><font color="#000080">pprof</font></h2><p><br></p>
+<p><a href="https://github.com/google/pprof" target="_blank" rel="noopener">pprof</a>是Google推出的分析工具，该工具在Go安装时已存在。并且Go 1.10之后的版本，pprof工具直接支持火焰图</p>
+<font size="1" color="grey"><br><br><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/3.png" width="80%" height="50%"><br><br><a href="https://colobu.com/2017/11/22/new-pprof-UI/" target="_blank" rel="noopener">Go 1.10 的pprof的工具将直接支持火焰图</a><br><br></font>
+
+
+<p><br></p>
+<p>其使用方式有两种，一种是通过<a href>net/http/pprof</a>，在http中收集样本，另一种是和、用<a href>runtime/pprof</a>，直接在代码需要分析的位置嵌入分析函数</p>
+<p>详细使用方式可参考 <a href="https://segmentfault.com/a/1190000016412013" target="_blank" rel="noopener">煎鱼-Golang 大杀器之性能剖析 PProf</a></p>
+<p><br></p>
+<p>获取程序在30s内占用CPU的情况：<code>curl http://IP:port/debug/pprof/profile?seconds=30 -o profile_cui.out</code></p>
+<p>获取所有协程堆栈信息：<code>curl http://IP:port/debug/pprof/groutine -o groutine_cui.out</code></p>
+<p>获取堆内存使用情况： <code>curl -o heap_cui.out http://IP:port/debug/pprof/heap</code></p>
+<p><br></p>
+<h3 id="堆内存分析"><a href="#堆内存分析" class="headerlink" title="堆内存分析"></a>堆内存分析</h3><p><br></p>
+<h4 id="命令行交互形式"><a href="#命令行交互形式" class="headerlink" title="命令行交互形式"></a>命令行交互形式</h4><p><br></p>
+<p><code>curl http://IP:port/debug/pprof/heap -o heap_cui.out</code></p>
+<p>而后</p>
+<p><code>go tool pprof heap_cui.out</code></p>
+<p>(或直接两条命令合二为一 <code>go tool pprof http://IP:port/debug/pprof/heap</code>)</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/4.png" width="100%" height="50%"></p>
+<p>默认类型为<em>inuse_space</em>,代表去分析正在使用的内存</p>
+<font size="1" color="#FF69B4"><br><br><br><br><br>heap.out可以显示4种不同类型： alloc_objects, alloc_space, inuse_objects, inuse_space<br><br>其中alloc_objects和inuse_objects分别代表已被分配的对象和正在使用的对象的数量，前者是累计值，不考虑对象释放的情况。<br><br><br><br><br>默认分析inuse_space类型，但要切换分析的类型也很简单, 如想分析alloc_objects情况，只需要输入alloc_objects并回车即可<br><br></font>
+
+
+<details><br><summary>交互命令有很多，可通过help查看:</summary><br><br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">(pprof) help</span><br><span class="line">  Commands:</span><br><span class="line">    callgrind        Outputs a graph in callgrind format</span><br><span class="line">    comments         Output all profile comments</span><br><span class="line">    disasm           Output assembly listings annotated with samples</span><br><span class="line">    dot              Outputs a graph in DOT format</span><br><span class="line">    eog              Visualize graph through eog</span><br><span class="line">    evince           Visualize graph through evince</span><br><span class="line">    gif              Outputs a graph image in GIF format</span><br><span class="line">    gv               Visualize graph through gv</span><br><span class="line">    kcachegrind      Visualize report in KCachegrind</span><br><span class="line">    list             Output annotated source <span class="keyword">for</span> functions matching regexp</span><br><span class="line">    pdf              Outputs a graph in PDF format</span><br><span class="line">    peek             Output callers/callees of functions matching regexp</span><br><span class="line">    png              Outputs a graph image in PNG format</span><br><span class="line">    proto            Outputs the profile in compressed protobuf format</span><br><span class="line">    ps               Outputs a graph in PS format</span><br><span class="line">    raw              Outputs a text representation of the raw profile</span><br><span class="line">    svg              Outputs a graph in SVG format</span><br><span class="line">    tags             Outputs all tags in the profile</span><br><span class="line">    text             Outputs top entries in text form</span><br><span class="line">    top              Outputs top entries in text form</span><br><span class="line">    topproto         Outputs top entries in compressed protobuf format</span><br><span class="line">    traces           Outputs all profile samples in text form</span><br><span class="line">    tree             Outputs a text rendering of call graph</span><br><span class="line">    web              Visualize graph through web browser</span><br><span class="line">    weblist          Display annotated source in a web browser</span><br><span class="line">    o/options        List options and their current values</span><br><span class="line">    q/quit/exit/^D   Exit pprof</span><br><span class="line"></span><br><span class="line">  Options:</span><br><span class="line">    call_tree        Create a context-sensitive call tree</span><br><span class="line">    compact_labels   Show minimal headers</span><br><span class="line">    divide_by        Ratio to divide all samples before visualization</span><br><span class="line">    drop_negative    Ignore negative differences</span><br><span class="line">    edgefraction     Hide edges below &lt;f&gt;*total</span><br><span class="line">    focus            Restricts to samples going through a node matching regexp</span><br><span class="line">    hide             Skips nodes matching regexp</span><br><span class="line">    ignore           Skips paths going through any nodes matching regexp</span><br><span class="line">    intel_syntax     Show assembly in Intel syntax</span><br><span class="line">    mean             Average sample value over first value (count)</span><br><span class="line">    nodecount        Max number of nodes to show</span><br><span class="line">    nodefraction     Hide nodes below &lt;f&gt;*total</span><br><span class="line">    noinlines        Ignore inlines.</span><br><span class="line">    normalize        Scales profile based on the base profile.</span><br><span class="line">    output           Output filename <span class="keyword">for</span> file-based outputs</span><br><span class="line">    prune_from       Drops any functions below the matched frame.</span><br><span class="line">    relative_percentages Show percentages relative to focused subgraph</span><br><span class="line">    sample_index     Sample value to report (<span class="number">0</span>-based index or name)</span><br><span class="line">    show             Only show nodes matching regexp</span><br><span class="line">    show_from        Drops functions above the highest matched frame.</span><br><span class="line">    source_path      Search path <span class="keyword">for</span> source files</span><br><span class="line">    tagfocus         Restricts to samples with tags in <span class="keyword">range</span> or matched by regexp</span><br><span class="line">    taghide          Skip tags matching this regexp</span><br><span class="line">    tagignore        Discard samples with tags in <span class="keyword">range</span> or matched by regexp</span><br><span class="line">    tagshow          Only consider tags matching this regexp</span><br><span class="line">    trim             Honor nodefraction/edgefraction/nodecount defaults</span><br><span class="line">    trim_path        Path to trim from source paths before search</span><br><span class="line">    unit             Measurement units to display</span><br><span class="line"></span><br><span class="line">  Option groups (only set one per group):</span><br><span class="line">    granularity      </span><br><span class="line">      functions        Aggregate at the function level.</span><br><span class="line">      filefunctions    Aggregate at the function level.</span><br><span class="line">      files            Aggregate at the file level.</span><br><span class="line">      lines            Aggregate at the source code line level.</span><br><span class="line">      addresses        Aggregate at the address level.</span><br><span class="line">    sort             </span><br><span class="line">      cum              Sort entries based on cumulative weight</span><br><span class="line">      flat             Sort entries based on own weight</span><br><span class="line">  :   Clear focus/ignore/hide/tagfocus/tagignore</span><br><span class="line"></span><br><span class="line">  <span class="keyword">type</span> <span class="string">"help &lt;cmd|option&gt;"</span> <span class="keyword">for</span> more information</span><br></pre></td></tr></table></figure><br><br></details>
+
+
+<p>比较常用的有以下命令：</p>
+<font color="#FFA54F">top：</font>
+
+<p>会以flat列从大到小的顺序排序。flat代表当前函数统计的值。<em>inuse_space</em>模式下，就是当前函数分配的堆区正在使用的内存大小；</p>
+<p>cum则是一个累积的概念，指当前函数及其调用的一系列函数flat的和。flat只包含当前函数的栈帧信息，不包括其调用函数的。cum字段正好可以弥补这一点。</p>
+<p>flat%和cum%分别表示flat和cum字段占总字段的百分比。</p>
+<font color="#FFA54F">可以使用 <code>top -cum</code>，根据cum进行排序； </font>
+
+<font color="#FFA54F">可使用<code>list 函数名称</code>列出函数信息; </font>
+
+<font color="#FFA54F">可使用<code>tree</code>打印出函数的调用链</font>
+
+
+
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/5.png" width="100%" height="50%"></p>
+<p><br></p>
+<h4 id="可视化形式"><a href="#可视化形式" class="headerlink" title="可视化形式"></a>可视化形式</h4><p><br></p>
+<p>在安装graphviz的前提下，可以的命令行中输出<code>web</code>，即可在浏览器中展示</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/6.png" width="100%" height="50%"></p>
+<p><br></p>
+<p>或直接通过</p>
+<p><code>go tool  pprof   --http :9091  heap_cui.out</code></p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/7.png" width="100%" height="50%"></p>
+<p>选择 <strong>Top</strong>，则如上命令行</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/8.png" width="100%" height="50%"></p>
+<p>可以点击Cum或Flat进行排序</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/9.png" width="100%" height="50%"></p>
+<p><br></p>
+<p>点击 <strong>Graph</strong>，则即默认的调用图</p>
+<p>其中：</p>
+<ul>
+<li><p>节点颜色：</p>
+<ul>
+<li>红色代表累计值cum为正，且很大</li>
+<li>绿色代表累计值cum为负，且很大</li>
+<li>灰色代表累计值cum可忽略不计</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>节点字体大小：</p>
+<ul>
+<li>较大的字体表示较大的当前值</li>
+<li>较小的字体表示较小的当前值</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>边框颜色：</p>
+<ul>
+<li>当前值较大并且为正数时为红色</li>
+<li>当前值较小并且为负数时为绿色</li>
+<li>当前值接近0时为灰色</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>箭头大小：</p>
+<ul>
+<li>箭头越粗代表当前的路径消耗了越多的资源</li>
+<li>箭头越细代表当前的路径消耗了越少的资源</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>箭头线型：</p>
+<ul>
+<li>虚线箭头表示两个节点之间的某些节点已被忽略，为间接调用</li>
+<li>实线箭头表示两个节点之间为直接调用</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<p>点击 <strong>Flame Graph</strong>，则为火焰图</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/10.png" width="100%" height="50%"></p>
+<p>可点击进行放大</p>
+<ul>
+<li>最上方的root框代表整个程序的开始，其他框都代表一个函数</li>
+<li>火焰图每一层的函数都是平级的，下层函数是其对应的上层函数的子函数</li>
+<li>函数调用栈越长，火焰就越高</li>
+<li>框越长，颜色越深，代表当前函数占用CPU时间越久</li>
+<li>可单击任何框，查看该函数更详细的信息</li>
+</ul>
+<p><br></p>
+<p>点击 <strong>Peek</strong>，则为函数调用关系</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/11.png" width="100%" height="50%"></p>
+<p><br></p>
+<p>点击 <strong>Source</strong>，则为对应的源码文件</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/12.png" width="90%" height="50%"></p>
+<p><br></p>
+<p>点击 <strong>Disassemble</strong>，则为总的内存数</p>
+<p><br></p>
+<p>可点击SAMPLE切换要分析的类型</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/13.png" width="100%" height="50%"></p>
+<p><br></p>
+<p><br></p>
+<h3 id="协程栈分析"><a href="#协程栈分析" class="headerlink" title="协程栈分析"></a>协程栈分析</h3><p><br></p>
+<p>除 堆内存分析，协程栈分析也使用较多。 分析协程栈有两方面作用：</p>
+<ol>
+<li><p>查看协程数量，看协程是否泄露</p>
+</li>
+<li><p>查看当前大量的协程在执行哪些函数，判断当前协程是否健康</p>
+</li>
+</ol>
+<p><br></p>
+<p>引入<a href>net/http/pprof</a>，然后启一个goroutine来监听端口</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	_ <span class="string">"net/http/pprof"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		log.Println(http.ListenAndServe(<span class="string">":6060"</span>, <span class="literal">nil</span>))</span><br><span class="line">	&#125;()</span><br><span class="line"></span><br><span class="line">	a := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		time.Sleep(time.Second)</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">			&lt;-a</span><br><span class="line">		&#125;()</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行以上代码，同时 <code>go tool pprof http://localhost:6060/debug/pprof/goroutine</code> </p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/14.png" width="100%" height="50%"></p>
+<p><br></p>
+<p>当前协程有33个，大部分都在runtime.gopark函数中(gopark是协程休眠函数)</p>
+<p>通过tree查看函数调用链，发现协程阻塞，是调用runtime.chanrecv函数以表明通道正在等待接收导致</p>
+<p><br></p>
+<p>同样可以使用web命令，在浏览器查看调用关系：</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/15.png" width="100%" height="50%"></p>
+<p><br></p>
+<p>也可以使用 <code>go tool  pprof   --http :9091 pprof.goroutine.001.pb.gz</code>,可视化查看各种信息</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/16.png" width="100%" height="50%"></p>
+<p><br></p>
+<h3 id="base基准分析"><a href="#base基准分析" class="headerlink" title="base基准分析"></a>base基准分析</h3><p><br></p>
+<p>除了查看协程栈帧数据，goroutine profile 还可用来排查协程泄露。</p>
+<p>通过对比协程的总数，可以大概评估出程序是否陷入泄露状态。</p>
+<p>pprof提供了强大的工具，用来对比前后特征文件的区别。</p>
+<p>下面使用<code>-base</code>标志，后面跟两个基准特征文件:</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/17.png" width="100%" height="50%"></p>
+<p>同样支持web指令</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/18.png" width="100%" height="50%"></p>
+<p><br></p>
+<h3 id="mutex堵塞分析"><a href="#mutex堵塞分析" class="headerlink" title="mutex堵塞分析"></a>mutex堵塞分析</h3><p><br></p>
+<p>和block类似，mutex主要用于查看锁争用导致的休眠时间。有助于排查锁争用导致的CPU利用率不足问题(不经常使用)</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	_ <span class="string">"net/http/pprof"</span></span><br><span class="line">	<span class="string">"runtime"</span></span><br><span class="line">	<span class="string">"sync"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		log.Println(http.ListenAndServe(<span class="string">":6060"</span>, <span class="literal">nil</span>))</span><br><span class="line">	&#125;()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> mu sync.Mutex</span><br><span class="line">	<span class="keyword">var</span> items = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">struct</span>&#123;&#125;)</span><br><span class="line">	runtime.SetMutexProfileFraction(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">1000000</span>*<span class="number">1000000</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(i <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">			mu.Lock()</span><br><span class="line">			<span class="keyword">defer</span> mu.Unlock()</span><br><span class="line">			items[i] = <span class="keyword">struct</span>&#123;&#125;&#123;&#125;</span><br><span class="line">		&#125;(i)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行以上代码，同时 <code>go tool pprof http://localhost:6060/debug/pprof/mutex</code> </p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/19.png" width="100%" height="50%"></p>
+<p>同样支持web指令</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/20.png" width="100%" height="50%"></p>
+<p><br></p>
+<h3 id="CPU分析"><a href="#CPU分析" class="headerlink" title="CPU分析"></a>CPU分析</h3><p><br></p>
+<p>获取程序在30s内占用CPU的情况：curl <a href="http://IP:port/debug/pprof/profile?seconds=30" target="_blank" rel="noopener">http://IP:port/debug/pprof/profile?seconds=30</a> -o profile_cui.out</p>
+<p>或 <code>go tool pprof http://localhost:6060/debug/pprof/profile?second=30</code></p>
+<p><br></p>
+<h3 id="火焰图分析"><a href="#火焰图分析" class="headerlink" title="火焰图分析"></a><strong>火焰图分析</strong></h3><p><br></p>
+<p>参见上面内容</p>
+<p> <br></p>
+<p> <br></p>
+<hr>
+<p><br></p>
+<h2 id="trace"><a href="#trace" class="headerlink" title="trace"></a><font color="#000080">trace</font></h2><p><br></p>
+<p>在pprof分析中，可以知道一段时间CPU占用、内存分配、协程堆栈信息。这些消息都是一段时间内数据的汇总，但并没有提供整个周期内发生的事件，如 指定的goroutine何时执行、执行了多长时间、什么时刻陷入了阻塞、什么时刻解除了阻塞、GC如何影响单个goroutine的执行、STW中断花费的时间是否太长等。</p>
+<p>Go 1.5之后推出了trace工具，提供了指定时间内程序发生的事件的完整信息，包括：</p>
+<ul>
+<li>协程的创建、开始和结束</li>
+<li>协程的阻塞<code>---</code>系统调用、通道、锁</li>
+<li>网络I/O相关事件</li>
+<li>系统调用事件</li>
+<li>垃圾回收相关事件</li>
+</ul>
+<p>(源码在<a href>runtime/trace.go</a>)</p>
+<p><br></p>
+<p>收集trace文件的方式和收集pprof特征文件差不多，都有两种方式</p>
+<p>详细使用方式可参考 <a href="https://segmentfault.com/a/1190000019736288" target="_blank" rel="noopener">煎鱼-Golang 大杀器之跟踪剖析 trace</a></p>
+<p>收集：</p>
+<p><code>curl http://IP:port/debug/pprof/trace?seconds=30 -o trace_cui.out</code></p>
+<p>分析：</p>
+<p><code>go tool  trace  trace_cui.out</code></p>
+<p>之后会自动打开浏览器：</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/21.png" width="100%" height="50%"></p>
+<p><br></p>
+<h3 id="View-trace"><a href="#View-trace" class="headerlink" title="View trace"></a>View trace</h3><p><br></p>
+<p>其中最复杂，信息最丰富的是第一个 <strong>View trace</strong> 选项，显示整个执行周期的完整事件</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/22.png" width="100%" height="50%"></p>
+<p><br></p>
+<ol>
+<li>时间线：可使用如下快捷键浏览时间轴</li>
+</ol>
+<ul>
+<li><p><code>w</code>快捷键可以放大图像</p>
+</li>
+<li><p><code>s</code>快捷键可以缩小图像</p>
+</li>
+<li><p><code>a</code>快捷键可以左移图像</p>
+</li>
+<li><p><code>d</code>快捷键可以右移图像</p>
+</li>
+</ul>
+<p><br></p>
+<ol start="2">
+<li>Goroutines：显示每个时间点正在运行的goroutine数量，及可运行(等待调度)的goroutine数量。存在大量可运行的goroutine，可能表明调度器繁忙。</li>
+</ol>
+<p><br></p>
+<ol start="3">
+<li>堆: 显示执行期间的内存分配情况，对于查找内存泄露及检查每次runtime GC释放的内存很有用处。</li>
+</ol>
+<p><br></p>
+<ol start="4">
+<li>操作系统线程： 显示正在使用的操作系统线程及被系统调用阻塞的线程数</li>
+</ol>
+<p><br></p>
+<ol start="5">
+<li>显示每个逻辑处理器</li>
+</ol>
+<p><br></p>
+<ol start="6">
+<li>显示协程和事件，表明协程何时开始，何时结束，以及结束的原因</li>
+</ol>
+<p><code>w</code>放大，选中某一位置：</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/23.png" width="100%" height="50%"></p>
+<ul>
+<li><p>Title: 协程的名字</p>
+</li>
+<li><p>Start: 协程开始的事件</p>
+</li>
+<li><p>Wall Duration: 协程持续时间</p>
+</li>
+<li><p>Start Stack Trace: 协程开始时的栈追踪</p>
+</li>
+<li><p>End Stack Trace:  协程结束时的栈追踪</p>
+</li>
+<li><p>Event(s): 协程产生的事件信息</p>
+</li>
+</ul>
+<p><br></p>
+<h3 id="Goroutine-analysis选项"><a href="#Goroutine-analysis选项" class="headerlink" title="Goroutine analysis选项"></a>Goroutine analysis选项</h3><p><br></p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/25.png" width="100%" height="50%"></p>
+<p>点击一处进入详情，可看到每个goroutine的id，以及执行时间，网络等待时间，因同步而锁定的时间，因系统调用锁定的时间，调度等待时间，GC清扫时间，GC暂停时间</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/26.png" width="100%" height="50%"></p>
+<p><br></p>
+<h3 id="之后的四处profile选项"><a href="#之后的四处profile选项" class="headerlink" title="之后的四处profile选项"></a>之后的四处profile选项</h3><p><br></p>
+<p>都是一个调用关系及时间图</p>
+<ul>
+<li><p>Network blocking profile选项: 用调用关系图展示网络阻塞的情况</p>
+</li>
+<li><p>Synchronization blocking profile 选项: 同步阻塞耗时情况，使用调用关系图来展示</p>
+</li>
+<li><p>Syscall blocking profile选项: 系统调用阻塞耗时情况，使用调用关系图来展示</p>
+</li>
+<li><p>Scheduler latency profile 选项: 调度器延迟耗时情况，使用调用关系图来展示</p>
+</li>
+</ul>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/27.png" width="100%" height="50%"></p>
+<p><br></p>
+<h3 id="User-defined-tasks、User-defined-regions"><a href="#User-defined-tasks、User-defined-regions" class="headerlink" title="User-defined tasks、User-defined regions"></a>User-defined tasks、User-defined regions</h3><p><br></p>
+<p>用户自定义 trace 的 tasks/用户自定义 trace 的 region</p>
+<p> Go 1.11 版本中引入的特性，trace 可以添加我们自定义的内容，用来快速跟踪想要看到的代码块的耗时点</p>
+<p><br></p>
+<h3 id="Minimum-mutator-utilization"><a href="#Minimum-mutator-utilization" class="headerlink" title="Minimum mutator utilization"></a>Minimum mutator utilization</h3><p><br></p>
+<p>用一个曲线图来展示 GC 对程序的影响情况，可以用来分析和判断是否要对 GC 做优化</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/28.png" width="100%" height="50%"></p>
+<p>大约1.2ms后,程序才获得到 cpu 使用(在这之前GC 做了 STW) 。</p>
+<p>如果曲线随着时间增加依然不高，说明 GC 负担比较重，占用更多系统资源，这个时候需对 GC 做优化</p>
+<p><br></p>
+<p>曲线图右侧的几个选项：</p>
+<ul>
+<li><p>System：整个系统的利用率</p>
+</li>
+<li><p>Per-goroutine：每一个协程的利用率</p>
+</li>
+<li><p>STW：Stop the word，表示所有协程同时暂停，在做 GC 的时，是会 STW</p>
+</li>
+<li><p>Background workers：GC 的协程，会消耗 25% 的利用率，在 GC 的时候，会以后台方式执行</p>
+</li>
+<li><p>Mark assist：GC 要减慢内存分配速度时，会分配 goroutine 来做标记</p>
+</li>
+<li><p>Sweep：回收在 GC 之间未使用的内存</p>
+</li>
+<li><p>Show percentiles：除了最基本数据外，还显示 mutator 利用率的百分比</p>
+</li>
+</ul>
+<p><br></p>
+<hr>
+<p><br></p>
+<h3 id="trace-使用场景"><a href="#trace-使用场景" class="headerlink" title="trace 使用场景"></a>trace 使用场景</h3><p><br></p>
+<h4 id="分析延迟问题"><a href="#分析延迟问题" class="headerlink" title="分析延迟问题"></a>分析延迟问题</h4><p><br></p>
+<p>如某个接口预期200ms执行完，但却用了2s。</p>
+<p>当程序中重要的协程长时间无法运行，可能带来延迟问题。协程长时间无法得到执行，可能因为系统调用被阻塞，通道/互斥锁上被阻塞，协程运行时代码(如GC)阻塞。这些都可以通过trace来查看。</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/24.png" width="100%" height="50%"></p>
+<p><br></p>
+<h4 id="诊断不良并行性"><a href="#诊断不良并行性" class="headerlink" title="诊断不良并行性"></a>诊断不良并行性</h4><p><br></p>
+<p>如预期使用全部CPU，使用trace后发现，只有一个CPU在跑~</p>
+<p><br></p>
+<hr>
+<p><br></p>
+<p>关于trace，还可参考 <a href="https://mp.weixin.qq.com/s/Wp15aOLeYhZYla275TzISw" target="_blank" rel="noopener">go trace 剖析 go1.14 异步抢占式调度</a></p>
+<p><br></p>
+<p>更多参考：</p>
+<p><a href="https://studygolang.com/articles/9693" target="_blank" rel="noopener">Go调优神器trace介绍</a></p>
+<p><a href="https://tonybai.com/2021/06/28/understand-go-execution-tracer-by-example/" target="_blank" rel="noopener">Tony Bai - 通过实例理解Go Execution Tracer</a></p>
+<p><a href="https://swsmile.info/post/golang-trace/" target="_blank" rel="noopener">性能调优 - trace</a></p>
+<p><br></p>
+<hr>
+<p><br></p>
+<p>其他第三方profiling工具：</p>
+<p><a href="https://colobu.com/2017/09/22/golang-bcc-bpf-function-tracing/" target="_blank" rel="noopener">鸟窝-[译]使用 bcc/BPF 分析 go 程序</a></p>
+<p><a href="https://colobu.com/2017/03/02/a-short-survey-of-golang-pprof/" target="_blank" rel="noopener">鸟窝-[译] Go 可视化性能分析工具</a></p>
+<p><a href="https://colobu.com/2016/12/21/how-to-dump-goroutine-stack-traces/" target="_blank" rel="noopener">鸟窝-调试利器：dump goroutine 的 stacktrace</a></p>
+<p>文中部分工具已经out…</p>
+<p><br></p>
+<p>Go官方博客:</p>
+<p><a href="https://go.dev/doc/diagnostics#tracing" target="_blank" rel="noopener">Diagnostics</a></p>
+<p>(这里认为Profiling和Tracing是同级。我这里把Profiling看成是Tracing的上一级）</p>
+<p><a href="https://go.dev/blog/pprof" target="_blank" rel="noopener">Profiling Go Programs</a></p>
+<p><a href="https://pkg.go.dev/runtime/pprof" target="_blank" rel="noopener">Go pprof官方文档</a></p>
+<p>部分译文：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/378001444" target="_blank" rel="noopener">译文 Go 高性能系列教程之二：性能评估和分析</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/381658335" target="_blank" rel="noopener">译文 Go 性能工具小抄</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/376448431" target="_blank" rel="noopener">原创分享 Go 高性能系列教程：读懂 pprof 生成的报告</a></p>
+<p><br></p>
+<p>更多可参考：</p>
+<p><a href="https://mp.weixin.qq.com/s/SvzMEdhxHfI9hYU62r1C7g" target="_blank" rel="noopener">奇伢-全面的整理：golang 调试分析的高阶技巧</a></p>
+<p><a href="https://mp.weixin.qq.com/s/KFT1hw02Zih1TMMlDWztCQ" target="_blank" rel="noopener">曹大-Go 应用优化指北</a></p>
+<p><a href="https://xargin.com/pprof-and-flamegraph/" target="_blank" rel="noopener">曹大-pprof 和火焰图</a></p>
+<p><a href="https://colobu.com/2019/05/22/profilinggo/" target="_blank" rel="noopener">鸟窝-[译]Go性能分析工具工具和手段</a></p>
+<p><a href="https://www.zenlife.tk/performance-analysis.md" target="_blank" rel="noopener">性能分析方法论</a></p>
+<p><a href="https://www.liwenzhou.com/posts/Go/performance_optimisation/" target="_blank" rel="noopener">李文周的博客</a></p>
+<p><a href="https://cizixs.com/2017/09/11/profiling-golang-program/" target="_blank" rel="noopener">使用 pprof 和火焰图调试 golang 应用</a></p>
+<p><a href="https://gocn.vip/topics/10054" target="_blank" rel="noopener"> Golang -CPU 性能、内存分析调试方法汇总</a></p>
+<p><a href="https://blog.csdn.net/fwhezfwhez/article/details/85684311" target="_blank" rel="noopener">golang pprof 的使用调试 cpu，heap，gc,逃逸</a></p>
+<p><br></p>
+<hr>
+<p><br></p>
+<p>go tool 可选的那些参数</p>
+<p><img src="https://geekblog.gitee.io/img2021/2021/03/01/性能分析工具/tool.png" width="100%" height="50%"></p>
+<!--爽哥为赞赏功能新加--></div><!--script(type='text/javascript', src=url_for(theme.js) + '/jquery.js' + '?v=' + theme.version, async)--><script type="text/javascript" src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script><div class="post-donate"><div id="donate_board" class="donate_bar center"><a id="btn_donate" href="javascript:;" title="打赏" class="btn_donate"></a><div class="donate_txt"> &uarr;<br>BTC Address:3NNxkM6ez7szsUAgTnK2VaF949LoGmXuBs<br></div></div><div id="donate_guide" class="donate_bar center hidden pay"><img src="http://cuishuang.gitee.io/img/weChatMoney.png" title="微信打赏" alt="微信打赏"><img src="http://cuishuang.gitee.io/img/alipayMoney.png" title="支付宝打赏" alt="支付宝打赏"><img src="http://cuishuang.gitee.io/img/btc.png" title="比特币打赏" alt="比特币打赏"></div><script type="text/javascript">document.getElementById('btn_donate').onclick = function(){
+    $('#donate_board').addClass('hidden');
+    $('#donate_guide').removeClass('hidden');
+}</script></div><!-- google adsense--><!--if theme.show_ad_post == true--><!--    script(async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")--><!--    ins.adsbygoogle(style="display:block" data-ad-client="ca-pub-1181798273731653" data-ad-format="auto")--><!--    script (adsbygoogle = window.adsbygoogle || []).push({});-->
+<div class="post-copyright"><blockquote><p>原文作者: fliter</p><p>原文链接: </p><a href="http://www.dashen.tech/2021/03/01/性能分析工具/">http://www.dashen.tech/2021/03/01/性能分析工具/</a><p>版权声明: 转载请注明出处</p></blockquote></div><div class="tags"><a href="/tags/Tools/">Tools</a></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/2021/03/01/一不留神就掉坑/" class="pre">一不留神就掉坑</a><a href="/2021/02/28/卡特兰数/" class="next">卡特兰数</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于profiling-性能分析，或特征分析与实践追踪"><span class="toc-text">关于profiling(性能分析，或特征分析与实践追踪)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pprof"><span class="toc-text">pprof</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#堆内存分析"><span class="toc-text">堆内存分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#命令行交互形式"><span class="toc-text">命令行交互形式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可视化形式"><span class="toc-text">可视化形式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#协程栈分析"><span class="toc-text">协程栈分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#base基准分析"><span class="toc-text">base基准分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mutex堵塞分析"><span class="toc-text">mutex堵塞分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU分析"><span class="toc-text">CPU分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#火焰图分析"><span class="toc-text">火焰图分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#trace"><span class="toc-text">trace</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#View-trace"><span class="toc-text">View trace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Goroutine-analysis选项"><span class="toc-text">Goroutine analysis选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#之后的四处profile选项"><span class="toc-text">之后的四处profile选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User-defined-tasks、User-defined-regions"><span class="toc-text">User-defined tasks、User-defined regions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Minimum-mutator-utilization"><span class="toc-text">Minimum mutator utilization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#trace-使用场景"><span class="toc-text">trace 使用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分析延迟问题"><span class="toc-text">分析延迟问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#诊断不良并行性"><span class="toc-text">诊断不良并行性</span></a></li></ol></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/02/03/向前兼容与向后兼容/">向前兼容与向后兼容</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/01/部署Spring-Boot项目/">部署Spring Boot项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/01/新建Spring-Boot项目/">新建Spring Boot项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/29/探究新版本新多出的协程/">探究新版本新多出的协程</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/08/Rust时间和日期/">Rust时间和日期</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/14/OBS推流/">OBS推流</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/14/二进制分析工具/">二进制分析工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/12/协程调度顺序/">协程调度顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/24/Go内存管理之内存分配/">Go内存管理之内存分配</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/17/Go内存优化/">Go内存优化</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-weixin"> 扫码关注-旅途散记</i></div><img width="100%" height="233" title="微信扫一扫" src="https://cuishuang.gitee.io/img/lvtusanji.jpg"></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DevOps/">DevOps</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/">Life</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tree/">Tree</a><span class="category-list-count">27</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/runtime/">runtime</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sync/">sync</a><span class="category-list-count">12</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/操作系统/" style="font-size: 15px;">操作系统</a> <a href="/tags/微服务/" style="font-size: 15px;">微服务</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/Todo/" style="font-size: 15px;">Todo</a> <a href="/tags/TCP-IP/" style="font-size: 15px;">TCP/IP</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Pearl/" style="font-size: 15px;">Pearl</a> <a href="/tags/译海一粟/" style="font-size: 15px;">译海一粟</a> <a href="/tags/Tools/" style="font-size: 15px;">Tools</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/Compiler/" style="font-size: 15px;">Compiler</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/密码学/" style="font-size: 15px;">密码学</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/Interview/" style="font-size: 15px;">Interview</a> <a href="/tags/杂谈/" style="font-size: 15px;">杂谈</a> <a href="/tags/金庸/" style="font-size: 15px;">金庸</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/bug/" style="font-size: 15px;">bug</a> <a href="/tags/数学/" style="font-size: 15px;">数学</a> <a href="/tags/Rust/" style="font-size: 15px;">Rust</a> <a href="/tags/explore/" style="font-size: 15px;">explore</a> <a href="/tags/书摘-影评/" style="font-size: 15px;">书摘/影评</a> <a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/足球-体育/" style="font-size: 15px;">足球&体育</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/读城记/" style="font-size: 15px;">读城记</a> <a href="/tags/星陨/" style="font-size: 15px;">星陨</a> <a href="/tags/奇文共赏/" style="font-size: 15px;">奇文共赏</a> <a href="/tags/区域经济/" style="font-size: 15px;">区域经济</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">三月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">二月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">九月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">四月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1093/02/">二月 1093</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="https://leetcode.com/" title="LeetCode" target="_blank">LeetCode</a><ul></ul><a href="https://golang.org/" title="Go官网" target="_blank">Go官网</a><ul></ul><a href="https://tonybai.com/" title="TonyBai" target="_blank">TonyBai</a><ul></ul><a href="http://lietoumai.com/" title="顾问麦的小站" target="_blank">顾问麦的小站</a><ul></ul><a href="https://www.coolshell.cn/" title="酷壳" target="_blank">酷壳</a><ul></ul><a href="https://notes.diguage.com/" title="瓜哥" target="_blank">瓜哥</a><ul></ul><a href="https://taoshu.in/" title="涛叔" target="_blank">涛叔</a><ul></ul><a href="https://colobu.com/" title="鸟窝" target="_blank">鸟窝</a><ul></ul><a href="http://xiaorui.cc/" title="峰云" target="_blank">峰云</a><ul></ul><a href="https://eddycjy.com/posts/" title="煎鱼" target="_blank">煎鱼</a><ul></ul><a href="https://hutusi.com/" title="胡涂说" target="_blank">胡涂说</a><ul></ul><a href="https://qcrao.com/" title="码农桃花源" target="_blank">码农桃花源</a><ul></ul><a href="https://github.com/KeKe-Li/For-learning-Go-Tutorial" title="远方的笔记" target="_blank">远方的笔记</a><ul></ul><a href="https://xargin.com/" title="No Headback" target="_blank">No Headback</a><ul></ul><a href="http://thoslin.github.io/" title="Eat Pray Code" target="_blank">Eat Pray Code</a><ul></ul><a href="https://www.ashenone66.cn/" title="AshenOne's Blog" target="_blank">AshenOne's Blog</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |  <a href="/atom.xml">订阅本站</a> |  <a href="/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> 备案号:<a href="http://www.beian.miit.gov.cn/"> 鲁ICP备18010105号</a></span></p><p><span> Copyright &copy;<a href="/." rel="nofollow">fliter.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e10d6858b78ff3fc7853fc72e7240eab";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/search.json.js?v=2.0.3"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+});</script><script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML" async></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.3" async></script><link rel="stylesheet" type="text/css" href="/share/css/share.css"><script type="text/javascript" src="/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/share/js/qrcode.js" charset="utf-8"></script></body></html>
