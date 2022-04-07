@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.dashen.tech/2021/04/07/Go-map%E8%BD%ACjson/</loc>
+    
+    <lastmod>2022-04-07T13:06:13.477Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2017/12/06/golang%E4%B9%8Bmap%E5%85%A5%E9%97%A8/</loc>
+    
+    <lastmod>2022-04-07T06:17:31.664Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.dashen.tech/2022/03/13/%E4%BD%BF%E7%94%A8govaluate%E5%BA%93%E8%BF%9B%E8%A1%8C%E9%80%BB%E8%BE%91%E5%88%A4%E6%96%AD/</loc>
     
     <lastmod>2022-04-07T03:21:20.875Z</lastmod>
@@ -4324,13 +4338,6 @@
     <loc>http://www.dashen.tech/2018/03/16/Magic-Package-gookit-color-%E6%8E%A7%E5%88%B6%E5%8F%B0%E9%A2%9C%E8%89%B2%E6%B8%B2%E6%9F%93%E5%B7%A5%E5%85%B7%E5%BA%93/</loc>
     
     <lastmod>2020-09-21T08:28:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2017/12/06/golang%E4%B9%8Bmap%E5%85%A5%E9%97%A8/</loc>
-    
-    <lastmod>2020-09-21T07:13:49.000Z</lastmod>
     
   </url>
   
