@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.dashen.tech/2017/12/26/git%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/</loc>
+    
+    <lastmod>2022-04-07T13:32:00.259Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.dashen.tech/2021/04/07/Go-map%E8%BD%ACjson/</loc>
     
     <lastmod>2022-04-07T13:06:13.477Z</lastmod>
@@ -187,13 +194,6 @@
     <loc>http://www.dashen.tech/2012/02/27/Go%E7%94%9F%E6%80%81%E7%9A%84%E5%87%A0%E4%B8%AA%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A1%86%E6%9E%B6/</loc>
     
     <lastmod>2022-03-20T11:04:04.786Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2017/12/26/git%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/</loc>
-    
-    <lastmod>2022-03-20T11:03:28.308Z</lastmod>
     
   </url>
   
