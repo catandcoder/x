@@ -2,16 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.dashen.tech/2021/05/30/gvm-%E7%81%B5%E6%B4%BB%E7%9A%84Go%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</loc>
+    <loc>http://www.dashen.tech/2019/04/18/json-Marshal%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%AF%B9-byte%E7%B1%BB%E5%9E%8B%E8%BF%9B%E8%A1%8Cbase64%E7%BC%96%E7%A0%81%E5%A4%84%E7%90%86%EF%BC%9F/</loc>
     
-    <lastmod>2022-04-16T14:15:50.657Z</lastmod>
+    <lastmod>2022-04-18T13:12:37.660Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2012/04/17/Eisel-Lemire%E7%AE%97%E6%B3%95%E4%B8%8E%E6%B5%AE%E7%82%B9%E6%95%B0%E8%A7%A3%E6%9E%90/</loc>
+    
+    <lastmod>2022-04-18T11:35:36.376Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2021/05/26/%E4%BA%91%E6%97%B6%E4%BB%A3%E7%9A%84%E5%BC%80%E5%8F%91/</loc>
+    
+    <lastmod>2022-04-18T02:44:14.538Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.dashen.tech/2018/07/19/golang%E4%B9%8Bstring%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F%E6%93%8D%E4%BD%9C%E7%9A%84%E5%8E%9F%E5%AD%90%E6%80%A7/</loc>
     
-    <lastmod>2022-04-16T14:09:55.101Z</lastmod>
+    <lastmod>2022-04-16T14:51:26.447Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2021/05/30/gvm-%E7%81%B5%E6%B4%BB%E7%9A%84Go%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</loc>
+    
+    <lastmod>2022-04-16T14:15:50.657Z</lastmod>
     
   </url>
   
@@ -2385,13 +2406,6 @@
     <loc>http://www.dashen.tech/2021/07/02/%E4%BD%BF%E7%94%A8FFmpeg%E5%B0%86%E8%A7%86%E9%A2%91%E8%BD%AC%E6%8D%A2%E6%88%90%E9%9F%B3%E9%A2%91/</loc>
     
     <lastmod>2021-09-11T13:24:19.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2021/05/26/%E4%BA%91%E6%97%B6%E4%BB%A3%E7%9A%84%E5%BC%80%E5%8F%91/</loc>
-    
-    <lastmod>2021-09-09T14:13:28.000Z</lastmod>
     
   </url>
   
