@@ -2,30 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.dashen.tech/2017/05/01/Rust%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</loc>
+    <loc>http://www.dashen.tech/2017/05/04/Rust%E6%93%8D%E4%BD%9CMySQL/</loc>
     
-    <lastmod>2022-05-01T09:57:13.289Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.dashen.tech/2017/04/30/Rust%E7%BC%96%E8%AF%91%E6%97%B6%E5%B8%B8%E5%87%BA%E7%8E%B0%E7%9A%84%E9%94%99%E8%AF%AF/</loc>
-    
-    <lastmod>2022-05-01T08:17:02.889Z</lastmod>
+    <lastmod>2022-05-04T09:07:16.066Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.dashen.tech/2017/04/30/Rust%E4%B8%AD%E7%9A%84%E5%AE%8F/</loc>
     
-    <lastmod>2022-04-30T13:40:53.597Z</lastmod>
+    <lastmod>2022-05-04T06:10:09.300Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2017/04/30/Rust%E7%BC%96%E8%AF%91%E6%97%B6%E5%B8%B8%E5%87%BA%E7%8E%B0%E7%9A%84%E9%94%99%E8%AF%AF/</loc>
+    
+    <lastmod>2022-05-02T16:11:07.048Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.dashen.tech/2012/04/27/%E5%A5%BD%E6%96%87%E9%9B%86%E5%BD%95/</loc>
     
-    <lastmod>2022-04-30T06:31:38.442Z</lastmod>
+    <lastmod>2022-05-01T14:43:56.786Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.dashen.tech/2017/05/01/Rust%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</loc>
+    
+    <lastmod>2022-05-01T09:57:13.289Z</lastmod>
     
   </url>
   
