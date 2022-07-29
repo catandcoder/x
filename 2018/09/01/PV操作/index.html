@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="崔某人的碎碎念,通才基础上的专才"><meta name="keywords" content="mysql,golang,算法"><title>PV操作 | 清澄秋爽</title><link rel="stylesheet" type="text/css" href="//fonts.loli.net/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.3"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.3"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="stylesheet" type="text/css" href="/css/donate.css"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">PV操作</h1><a id="logo" href="/.">清澄秋爽</a><p class="description">苹果树下的思索者 书写是对思维的缓存</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">PV操作</h1><div class="post-meta"><a href="/2018/09/01/PV操作/#comments" class="comment-count"></a><p><span class="date">Sep 01, 2018</span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><p><a href="https://mp.weixin.qq.com/s/Pc9iWLvW7kfP-19QnaYYVA" target="_blank" rel="noopener">什么是信号量</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">计数信号量具备两种操作动作，称为V（signal()）与P（wait()）（即部分参考书常称的“PV操作”）。V操作会增加信号量S的数值，P操作会减少它。</span><br><span class="line"></span><br><span class="line">运行方式：</span><br><span class="line"></span><br><span class="line">初始化信号量，给与它一个非负数的整数值。</span><br><span class="line">运行P（wait()），信号量S的值将被减少。企图进入临界区的进程，需要先运行P（wait()）。当信号量S减为负值时，进程会被阻塞住，不能继续；当信号量S不为负值时，进程可以获准进入临界区。</span><br><span class="line">运行V（signal()），信号量S的值会被增加。结束离开临界区的进程，将会运行V（signal()）。当信号量S不为负值时，先前被阻塞住的其他进程，将可获准进入临界区。</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p><br></p>
+<h4 id="例1"><a href="#例1" class="headerlink" title="例1"></a>例1</h4><p><br></p>
+<blockquote>
+<p>进程P1、P2、P3、P4和P5的前趋图如下所示：</p>
+</blockquote>
+<p><br></p>
+<p><img src="/2018/09/01/PV操作/0.png" width="80%" height="50%"></p>
+<p><br></p>
+<p>若用 <em>PV操作</em> 控制进程P1、P2、P3、P4 、P5并发执行的过程，则需要设置5个信号量S1、S2、S3、S4和S5，且信号量S1～S5的初值都等于零。下图中a、b 和c处应分别填写（ &nbsp;）；d和e处应分别填写（ &nbsp;），f和g处应分别填写（ &nbsp;）。</p>
+<p><br></p>
+<p><img src="/2018/09/01/PV操作/1.png" width="80%" height="50%"></p>
+<p><br></p>
+<p>问题1选项</p>
+<p><br> A.V（S1）、P（S1）和V（S2）V（S3）&nbsp;<br><br> B.P（S1）、V（S1）和V（S2）V（S3）&nbsp;<br><br> C.V（S1）、V（S2）和P（S1）V（S3）&nbsp;<br><br> D.P（S1）、V（S2）和V（S1）V（S3）&nbsp;</p>
+<p><br></p>
+<p>问题2选项</p>
+<p><br> A.V（S2）和P（S4）&nbsp;<br><br> B.P（S2）和V（S4）&nbsp;<br><br> C.P（S2）和P（S4）&nbsp;<br><br> D.V（S2）和V（S4）&nbsp;</p>
+<p><br></p>
+<p>问题3选项</p>
+<p><br> A.P（S3）和V（S4）V（S5）&nbsp;<br><br> B.V（S3）和P（S4）P（S5）&nbsp;<br><br> C.P（S3）和P（S4）P（S5）&nbsp;<br><br> D.V（S3）和V（S4）V（S5）&nbsp;</p>
+<p><br></p>
+<p>解:</p>
+<div> 空 (1) 的正确的选项为 A 。<br><br><br>根据前驱图，$P_1$进程执行完需要通知$P_2$进程，故需要利用$V(S_1)$操作通知$P_2$进程，所以空 a 应填$V(S_1)$;<br><br><br><br><br><br>$P_2$ 进程需要等待$P_1$进程的结果，故需要利用 $P(S_1)$ 操作测试 $P_1$ 进程是否运行完，所以空 b 应填 $P(S_1)$;<br><br><br><br><br>又由于$P_2$进程运行结束需要利用$V(S_2)$、$V(S_3)$操作分别通知$P_3$、$P_4$进程，所以空 c应填 $V(S_2)$、$V(S_3)$。<br></div>
+
+
+
+
+
+<hr>
+<p><br></p>
+<h4 id="例1-2"><a href="#例1-2" class="headerlink" title="例1-2"></a>例1-2</h4><p><br></p>
+<blockquote>
+<p>进程P1、P2、P3、P4和P5的前趋图如下所示：</p>
+</blockquote>
+<p><br></p>
+<p><img src="/2018/09/01/PV操作/2.png" width="80%" height="50%"></p>
+<p><br></p>
+<p>用 <em>PV操作</em> 控制这5个进程的同步与互斥的程序如下，程序中的空①和空②处应分别为（&nbsp; ），空③和空④处应分别为（&nbsp; ），空⑤和空⑥处应分别为（&nbsp; ）。</p>
+<p><img src="/2018/09/01/PV操作/2-1.png" width="80%" height="50%"></p>
+<p><br></p>
+<p>问题1选项</p>
+<p>A.V (S1）和P(S2）P (S3)）&nbsp;<br>B.P(S1）和V(S1）V (S2)）&nbsp;<br>C.V (S1）和V (S2）V (S3)）&nbsp;<br>D.P (S1）和V(S1）P (S2)）&nbsp;</p>
+<p><br></p>
+<p>问题2选项</p>
+<p> A.V (S4）V (S5）和P(S3)&nbsp;<br> B.V (S3) V (S4）和V(S5)&nbsp;<br> C.P (S4）和P (S5）V (S5)&nbsp;<br> D.P(S4）和P(S5) V (S4)&nbsp;</p>
+<p><br></p>
+<p>问题3选项</p>
+<p>A.P (S6）和P (S5） V (S6)&nbsp;<br>B.V (S5）和V (S5) V (S6)&nbsp;<br>C.P (S6）和P (S5）P (S6)&nbsp;<br>D.V (S6）和P (S5) P(S6)&nbsp;</p>
+<p><br></p>
+<p>解:</p>
+<p>根据前驱图，P1进程运行完需要利用V操作V(S1）通知P2进程，所以空①应填 V (S1)。P2进程运行完需要利用V操作V(S2)、V(S3）分别通知P3、P4进程，所以空②应填V (S2） V (S3）。<br></p>
+<p>根据前驱图，P3进程运行完需要利用V操作V(S4)、V(S5）分别通知P4、P5 进程，故空③应为填写V(S4）V(S5)。P4需要等待P2和P5进程的通知，需要执行2个Р操作，由于P4进程的程序中执行前有1个Р操作P(S4)，故空④应为填写P(S3)。<br></p>
+<p>根据前驱图，P4进程执行完需要通知P5进程，故P4进程应该执行1个V操作，即空⑤应填V(S6)。P5进程运行前需要等待P3和P4进程的通知，需要执行2个Р操作，故空⑥应填写P(S5）和P(S6)。<br></p>
+<p>根据上述分析，用PV操作控制这6个进程的同步与互斥的程序如下：</p>
+<p><img src="/2018/09/01/PV操作/2-2.png" width="80%" height="50%"></p>
+<p><br></p>
+<hr>
+<p><br></p>
+<h4 id="例1-3"><a href="#例1-3" class="headerlink" title="例1-3"></a>例1-3</h4><p><br></p>
+<blockquote>
+<p>进程P1、P2、P3、P4、P5的前趋图如下：</p>
+</blockquote>
+<p><img src="/2018/09/01/PV操作/3.jpg" width="90%" height="50%"></p>
+<p>若用PV操作控制进程并发执行的过程，则需要设置4个信号量S1、S2、S3和S4，且信号量初值都等于零。下图中a和b应分别填写( )，c和d应分别填写( )，e和f应分别填写( )。</p>
+<p><br></p>
+<p><img src="/2018/09/01/PV操作/3-1.jpg" width="90%" height="50%"></p>
+<p><br></p>
+<p>A．P(S1)和P(S2)</p><p>B．P(S1)和V(S2)</p><p>C．V(S1)和V(S2)</p><p>D．V(S1)和P(S2)</p><p></p>
+<p><br></p>
+<p><br></p>
+<hr>
+<p><br></p>
+<h4 id="例1-4"><a href="#例1-4" class="headerlink" title="例1-4"></a>例1-4</h4><p><br></p>
+<blockquote>
+<p>进程P1、P2、P3、P4和P5的前趋图如下：</p>
+</blockquote>
+<p><br></p>
+<p><img src="/2018/09/01/PV操作/4.png" width="90%" height="50%"></p>
+<p><br></p>
+<p>若用PV操作控制进程P1～P5并发执行的过程，则需要设置6个信号S1、S2、S3、S4、S5和S6，且信号量S1-S6的初值都等于零。下图中a和b处应分别填写（ &nbsp;）；c和d处应分别填写（ &nbsp;），e和f处应分别填写（ &nbsp;）。</p>
+<p><br></p>
+<p><img src="/2018/09/01/PV操作/4-1.png" width="90%" height="50%"></p>
+<p><br></p>
+<div class="p2"><br>问题1选项<br><br> A. P（S1）P（S2）和P（S3）P（S4）<br><br> B. P（S1）V（S2）和P（S2）V（S1）<br><br> C. V（S1）V（S2）和V（S3）V（S4）<br><br> D. P（S1）P（S2）和V（S1）V（S2）<br><br><br></div>
+
+<p><br></p>
+<div class="p2"><br>问题2选项<br><br> A. P（S1）P（S2）和V（S3）V（S4）<br><br> B. P（S1）P（S3）和V（S5）V（S6）<br><br> C. V（S1）V（S2）和P（S3）P（S4）<br><br> D. P（S1）V（S3）和P（S2）V（S4）<br><br><br></div>
+
+<p><br></p>
+<p>解:</p>
+<p>本题主要考查用PV操作控制进程的并发执行。首先我们需要弄清楚前驱图中给出的各进制的执行顺序。从图中我们不难看出进程P1和P2没有前驱，也就是可以首先并发执行，而进程P3的前驱是P1和P2，P4的前驱是P1和P3，P5的前驱是P2和P3。那么怎么理解前驱呢？其实前驱就是指只有在前驱进程完成后，该进程才能开始执行</p>
+<p>&nbsp; 在本题的前驱图中我们不难看出，有6条路径，分别是P1-&gt;P3，P1-&gt;P4，P2-&gt;P3，P2-&gt;P5，P3-&gt;P4，P3-&gt;P5。而且题目也告诉我们分别有6初值为0个信号量（S1-S6），要我们用PV操作来控制进程P1～P5的并发执行。这里我们就需要清楚P与V这两种操作。<br>&lt;</p>
+<pre><code>P原语的主要操作是：
+</code></pre><div><br>    （1）信号量（sem）减1； 　　</div><br><div><br>    （2）若相减结果大于等于零，则进程继续执行； 　　</div><br><div><br>    （3）若相减结果小于零，则阻塞一个在该信号量上的进程，然后再返回原进程继续执行或转进程调度。</div>
+
+<p><br></p>
+<div><br>    V原语的主要操作是： 　　</div><br><div><br>    （1）信号量（sem）加1； 　　</div><br><div><br>    （2）若相加结果大于零，则进程继续执行； 　　</div><br><div><br>    （3）若相加结果小于或等于零，则唤醒一阻塞在该信号量上的进程，然后再返回原进程继续执行或转进程调度。</div><br><div><br><br><br><br>    &nbsp; 总而言之，进行P操作的主要目的是阻塞某信号量上的进程，而进行V操作的主要目的是唤醒某信号量上的进程。</div><br><div><br>    &nbsp; 下面我们具体来求解这个题目。a空处，是在进程P1执行完成以后，那么根据题目的前驱图我们可以知道，这个时候它应该唤醒它的后继进程P3和P4，因此需要执行两个V操作，同样的道路，b空处也需要执行两个V操作，因此可以知道第一空答案选C。</div>
+
+<p><br></p>
+<div><br>    &nbsp; 至于C空处，它是在进程P3执行前进行的处理。根据前驱的意义，我们可以知道执行P3要在P1和P2完成后，因此这个时候，它首先需要判断P1和P2进程是否完成，如何它们完成的话，会分别执行唤醒P3的V操作（换句话说就是会给相应的信号量进行加1操作），那么这个时候我们也可以通过同样的信号量来判断，即对相应的信号量进行减1操作，判断它是否大于0，如果大于等于0，则执行P3，也就是需要P操作。从题目给出的答案来看，这两个信号量应该分别是S1和S3。那么执行完P3后，它也需要唤醒它的后继进程P4和P5，因此需要执行两个V操作，因此D空处应该是两个V操作。综上所述，我们可以知道第二空的答案选B。</div>
+
+<p><br></p>
+<div><br>    &nbsp; 分析到这里后，第三空的答案应该就很明显了，P4和P5进程在执行前，都需要做与P3进程执行前一样的判断，因此都需要进行两个P操作。所以本题答案选C。</div><br><br><br><br><div><br>    &nbsp; 其实做这类题也不难，首先需要我们对PV操作要有一个透彻的理解，另外就是能分析出题目执行的逻辑关系。</div><br>
+
+
+
+<p><br></p>
+<hr>
+<p><br></p>
+<h4 id="例2"><a href="#例2" class="headerlink" title="例2"></a>例2</h4><p><br></p>
+<blockquote>
+<p>若用PV操作来管理相关临界区，且信号量的值总是在[-2，1]之间变化，则(　　)</p>
+</blockquote>
+<div style="font-size: 16px;"><br><br><br> A.最多只有一个进程在相关临界区执行<br><br> B.至少有两个进程在等待进入相关临界区<br><br> C.相关临界区的个数最多2个<br><br> D.竞争相关临界区执行权的进程最多2个<br><br><br></div>
+
+
+<p>解:</p>
+<p>本题考查进程管理-进程同步。相关临界区：指并发进程中涉及到相同变量的那些临界区。对于若干个并发进程共享某一变量的相关临界区的管理有三个要求：（1）一次最多一个进程能够进入临界区；（2）不能让一个进程无限制地在临界区执行；（3）不能强迫一个进程无限制地等待进入它的临界区。<br><br>若用PV操作来管理相关临界区，且信号量的值总是在[-2，1]之间变化，则最多只有一个进程在相关临界区执行。故本题选A。</p>
+
+
+<p><br></p>
+<hr>
+<p><br></p>
+<h4 id="2-2"><a href="#2-2" class="headerlink" title="2-2"></a>2-2</h4><p><br></p>
+<blockquote>
+<div style="font-size: 16px;" class="re-render" data-html="<p>临界区是（）。</p>"><p>临界区是（）。</p></div>
+</blockquote>
+<div style="font-size: 16px;"><br><br><br> A.一段共享数据区<br><br> B.一个缓冲区<br><br> C.一段程序<br><br> D.一个同步机制<br><br><br></div>
+
+<p>解:</p>
+<p>本题考查进程管理-进程同步。临界区指的是一个访问共用资源（例如：共用设备或是共用存储器）的程序片段，而这些共用资源又无法同时被多个线程访问的特性。当有线程进入临界区段时，其他线程或是进程必须等待（例如：bounded waiting等待法），有一些同步的机制必须在临界区段的进入点与离开点实现，以确保这些共用资源是被互斥获得使用。故本题选C。</p>
+
+
+
+
+
+
+<hr>
+<p><br></p>
+<p>参考:</p>
+<p><a href="https://blog.csdn.net/weixin_43823808/article/details/108254765" target="_blank" rel="noopener">软件设计师：第五章：操作系统考点总结</a></p>
+<blockquote>
+<p>前趋图(Precedence Graph) 是一个有向无环图，记为：→={（P<sub>i</sub>，P<sub>j</sub>&nbsp;）|P<sub>i</sub><span style="font-size: 12px;">&nbsp; &nbsp;</span>must complete before &nbsp;P<sub>j</sub>&nbsp; may strat}。假设系统中进程P={P<sub>1，</sub>P<sub>2，</sub>P<sub>3，</sub>P<sub>4，</sub>P<sub>5，</sub>P<sub>6，</sub>P<sub>7，</sub>P<sub>8</sub>}，且进程的前驱图如下：<br></p>
+</blockquote>
+<p><img src="/2018/09/01/PV操作/5.png" width="80%" height="50%"></p>
+<p>那么前驱图可记为：（ &nbsp;）。</p>
+<p>问题1选项<br><br> A.→={（P<br><sub>2</sub>,P<br><sub>1</sub>）,（P<br><sub>3</sub>,P<br><sub>1</sub>）,（P<br><sub>4</sub>,P<br><sub>1</sub>）,（P<br><sub>6</sub>,P<br><sub>4</sub>）,（P<br><sub>7</sub>,P<br><sub>5</sub>）,（P<br><sub>7</sub>,P<br><sub>6</sub>）,（P<br><sub>8</sub>,P<br><sub>7</sub>）}<br><br> B.→={（P<br><sub>1</sub>,P<br><sub>2</sub>）,（P<br><sub>1</sub>,P<br><sub>3</sub>）,（P<br><sub>1</sub>,P<br><sub>4</sub>）,（P<br><sub>2</sub>,P<br><sub>5</sub>）,（P<br><sub>5</sub>,P<br><sub>7</sub>）,（P<br><sub>6</sub>,P<br><sub>7</sub>）,（P<br><sub>7</sub>,P<br><sub>8</sub>）}<br><br> C.→={（P<br><sub>1</sub>,P<br><sub>2</sub>）,（P<br><sub>1</sub>,P<br><sub>3</sub>）,（P<br><sub>1</sub>,P<br><sub>4</sub>）,（P<br><sub>2</sub>,P<br><sub>5</sub>）,（P<br><sub>3</sub>,P<br><sub>5</sub>）,（P<br><sub>4</sub>,P<br><sub>6</sub>）,（P<br><sub>5</sub>,P<br><sub>7</sub>）,（P<br><sub>6</sub>,P<br><sub>7</sub>）,（P<br><sub>7</sub>,P<br><sub>8</sub>）}<br><br> D.→={（P<br><sub>2</sub>,P<br><sub>1</sub>）,（P<br><sub>3</sub>,P<br><sub>1</sub>）,（P<br><sub>4</sub>,P<br><sub>1</sub>）,（P<br><sub>5</sub>,P<br><sub>2</sub>）,（P<br><sub>5</sub>,P<br><sub>3</sub>）,（P<br><sub>6</sub>,P<br><sub>4</sub>）,（P<br><sub>7</sub>,P<br><sub>5</sub>）, （P<br><sub>7</sub>,P<br><sub>6</sub>）,（P<br><sub>8</sub>,P<br><sub>7</sub>）}<br><br></p>
+<p><br></p>
+<p>解:</p>
+<div style="font-size: 16px;" id="answer">本题考查前趋图，该图的标记方法是将图中各条边的起始记录好，以便描述这个图。以本题的图为例，由于P<sub>1</sub>有箭头指向P<sub>2</sub>，所以有（P<sub>1</sub>，P<sub>2</sub>），又由于P<sub>1</sub>有指向P<sub>3</sub>的箭头，所以有（P<sub>1</sub>，P<sub>3</sub>）依次类推可得到完整的集合与C选项一致。</div>
+
+
+<p><br></p>
+<hr>
+<p><br></p>
+<!--爽哥为赞赏功能新加--></div><!--script(type='text/javascript', src=url_for(theme.js) + '/jquery.js' + '?v=' + theme.version, async)--><script type="text/javascript" src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script><div class="post-donate"><div id="donate_board" class="donate_bar center"><a id="btn_donate" href="javascript:;" title="打赏" class="btn_donate"></a><div class="donate_txt"> &uarr;<br>BTC Address:3NNxkM6ez7szsUAgTnK2VaF949LoGmXuBs<br></div></div><div id="donate_guide" class="donate_bar center hidden pay"><img src="http://cuishuang.gitee.io/img/weChatMoney.png" title="微信打赏" alt="微信打赏"><img src="http://cuishuang.gitee.io/img/alipayMoney.png" title="支付宝打赏" alt="支付宝打赏"><img src="http://cuishuang.gitee.io/img/btc.png" title="比特币打赏" alt="比特币打赏"></div><script type="text/javascript">document.getElementById('btn_donate').onclick = function(){
+    $('#donate_board').addClass('hidden');
+    $('#donate_guide').removeClass('hidden');
+}</script></div><!-- google adsense--><!--if theme.show_ad_post == true--><!--    script(async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")--><!--    ins.adsbygoogle(style="display:block" data-ad-client="ca-pub-1181798273731653" data-ad-format="auto")--><!--    script (adsbygoogle = window.adsbygoogle || []).push({});-->
+<div class="post-copyright"><blockquote><p>原文作者: fliter</p><p>原文链接: </p><a href="http://www.dashen.tech/2018/09/01/PV操作/">http://www.dashen.tech/2018/09/01/PV操作/</a><p>版权声明: 转载请注明出处</p></blockquote></div><div class="tags"><a href="/tags/操作系统/">操作系统</a></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/2018/09/02/网路迷踪/" class="pre">网路迷踪</a><a href="/2018/08/28/微服务入门篇/" class="next">微服务入门篇</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#例题"><span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#例1"><span class="toc-text">例1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#例1-2"><span class="toc-text">例1-2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#例1-3"><span class="toc-text">例1-3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#例1-4"><span class="toc-text">例1-4</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#例2"><span class="toc-text">例2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2"><span class="toc-text">2-2</span></a></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/03/25/time-After和select搭配使用时存在的坑/">time.After和select搭配使用时存在的坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/20/context-WithCancel-的使用/">context.WithCancel()的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/使用govaluate库进行逻辑判断/">使用govaluate库进行逻辑判断</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/03/向前兼容与向后兼容/">向前兼容与向后兼容</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/01/部署Spring-Boot项目/">部署Spring Boot项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/01/新建Spring-Boot项目/">新建Spring Boot项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/29/探究新版本新多出的协程/">探究新版本新多出的协程</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/08/Rust时间和日期/">Rust时间和日期</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/14/OBS推流/">OBS推流</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/14/二进制分析工具/">二进制分析工具</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-weixin"> 扫码关注-旅途散记</i></div><img width="100%" height="233" title="微信扫一扫" src="https://cuishuang.gitee.io/img/lvtusanji.jpg"></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DevOps/">DevOps</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/">Life</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tree/">Tree</a><span class="category-list-count">27</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/runtime/">runtime</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sync/">sync</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/unit-testing/">unit testing</a><span class="category-list-count">9</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/Todo/" style="font-size: 15px;">Todo</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/微服务/" style="font-size: 15px;">微服务</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/操作系统/" style="font-size: 15px;">操作系统</a> <a href="/tags/TCP-IP/" style="font-size: 15px;">TCP/IP</a> <a href="/tags/译海一粟/" style="font-size: 15px;">译海一粟</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Pearl/" style="font-size: 15px;">Pearl</a> <a href="/tags/Tools/" style="font-size: 15px;">Tools</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/Compiler/" style="font-size: 15px;">Compiler</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/密码学/" style="font-size: 15px;">密码学</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/Interview/" style="font-size: 15px;">Interview</a> <a href="/tags/杂谈/" style="font-size: 15px;">杂谈</a> <a href="/tags/金庸/" style="font-size: 15px;">金庸</a> <a href="/tags/数学/" style="font-size: 15px;">数学</a> <a href="/tags/bug/" style="font-size: 15px;">bug</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Rust/" style="font-size: 15px;">Rust</a> <a href="/tags/explore/" style="font-size: 15px;">explore</a> <a href="/tags/书摘-影评/" style="font-size: 15px;">书摘/影评</a> <a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/足球-体育/" style="font-size: 15px;">足球&体育</a> <a href="/tags/读城记/" style="font-size: 15px;">读城记</a> <a href="/tags/星陨/" style="font-size: 15px;">星陨</a> <a href="/tags/奇文共赏/" style="font-size: 15px;">奇文共赏</a> <a href="/tags/区域经济/" style="font-size: 15px;">区域经济</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">七月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">六月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">五月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">四月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">三月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">二月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">九月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">四月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1093/02/">二月 1093</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="https://leetcode.com/" title="LeetCode" target="_blank">LeetCode</a><ul></ul><a href="https://golang.org/" title="Go官网" target="_blank">Go官网</a><ul></ul><a href="https://tonybai.com/" title="TonyBai" target="_blank">TonyBai</a><ul></ul><a href="http://lietoumai.com/" title="顾问麦的小站" target="_blank">顾问麦的小站</a><ul></ul><a href="https://www.coolshell.cn/" title="酷壳" target="_blank">酷壳</a><ul></ul><a href="https://notes.diguage.com/" title="瓜哥" target="_blank">瓜哥</a><ul></ul><a href="https://taoshu.in/" title="涛叔" target="_blank">涛叔</a><ul></ul><a href="https://colobu.com/" title="鸟窝" target="_blank">鸟窝</a><ul></ul><a href="http://xiaorui.cc/" title="峰云" target="_blank">峰云</a><ul></ul><a href="https://eddycjy.com/posts/" title="煎鱼" target="_blank">煎鱼</a><ul></ul><a href="https://hutusi.com/" title="胡涂说" target="_blank">胡涂说</a><ul></ul><a href="https://qcrao.com/" title="码农桃花源" target="_blank">码农桃花源</a><ul></ul><a href="https://github.com/KeKe-Li/For-learning-Go-Tutorial" title="远方的笔记" target="_blank">远方的笔记</a><ul></ul><a href="https://xargin.com/" title="No Headback" target="_blank">No Headback</a><ul></ul><a href="http://thoslin.github.io/" title="Eat Pray Code" target="_blank">Eat Pray Code</a><ul></ul><a href="https://www.ashenone66.cn/" title="AshenOne's Blog" target="_blank">AshenOne's Blog</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |  <a href="/atom.xml">订阅本站</a> |  <a href="/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> 备案号:<a href="http://www.beian.miit.gov.cn/"> 鲁ICP备18010105号</a></span></p><p><span> Copyright &copy;<a href="/." rel="nofollow">fliter.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e10d6858b78ff3fc7853fc72e7240eab";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/search.json.js?v=2.0.3"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+});</script><script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML" async></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.3" async></script><link rel="stylesheet" type="text/css" href="/share/css/share.css"><script type="text/javascript" src="/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/share/js/qrcode.js" charset="utf-8"></script></body></html>

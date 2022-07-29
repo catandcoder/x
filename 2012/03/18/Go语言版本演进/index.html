@@ -1,0 +1,561 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="崔某人的碎碎念,通才基础上的专才"><meta name="keywords" content="mysql,golang,算法"><title>Go语言版本演进 | 清澄秋爽</title><link rel="stylesheet" type="text/css" href="//fonts.loli.net/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.3"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.3"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="stylesheet" type="text/css" href="/css/donate.css"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Go语言版本演进</h1><a id="logo" href="/.">清澄秋爽</a><p class="description">苹果树下的思索者 书写是对思维的缓存</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">Go语言版本演进</h1><div class="post-meta"><a href="/2012/03/18/Go语言版本演进/#comments" class="comment-count"></a><p><span class="date">Mar 18, 2012</span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><p><br></p>
+<h3 id="Go-1-0-2012-年-3-月："><a href="#Go-1-0-2012-年-3-月：" class="headerlink" title="Go 1.0 - 2012 年 3 月："></a><a href="https://go.dev/blog/go1" target="_blank" rel="noopener">Go 1.0</a> - 2012 年 3 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1" target="_blank" rel="noopener">Go 1 Release Notes</a></p>
+<p>随着 Go 第一个版本发布的还有一份<a href="https://go.dev/doc/go1compat" target="_blank" rel="noopener">兼容性说明文档</a>。该文档承诺，Go 的未来版本会尽可能确保<a href="https://dashen.tech/2022/02/03/%E5%90%91%E5%89%8D%E5%85%BC%E5%AE%B9%E4%B8%8E%E5%90%91%E5%90%8E%E5%85%BC%E5%AE%B9/" target="_blank" rel="noopener">向后兼容性</a>，不会破坏现有程序。</p>
+<blockquote>
+<p> For instance, code that runs under Go 1.2 should be compatible with Go 1.2.1, Go 1.3, Go 1.4, etc., although not necessarily with Go 1.1 since it may use features added only in Go 1.2</p>
+</blockquote>
+<p>此版本中已包含 <code>go tool pprof</code> 命令，它是<a href="https://github.com/gperftools/gperftools" target="_blank" rel="noopener">Google的pprof C++分析器</a>的一个变种；</p>
+<p>同时还包含 <code>go vet</code> 命令（之前的是 <code>go tool vet</code>），它可以报告程序包中可能存在的错误。</p>
+<p><br></p>
+<h3 id="Go-1-1-2013-年-5-月："><a href="#Go-1-1-2013-年-5-月：" class="headerlink" title="Go 1.1 - 2013 年 5 月："></a><a href="https://go.dev/blog/go1.1" target="_blank" rel="noopener">Go 1.1</a> - 2013 年 5 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1.1" target="_blank" rel="noopener">Go 1.1 Release Notes</a></p>
+<blockquote>
+<p>The most significant improvements are performance-related. We have made optimizations in the compiler and linker, garbage collector, goroutine scheduler, map implementation, and parts of the standard library. It is likely that your Go code will run noticeably faster when built with Go 1.1.</p>
+</blockquote>
+<ul>
+<li>这个版本的 Go 致力于增强语言特性（编译器、垃圾回收机制、映射、goroutine 调度器）与性能。 </li>
+</ul>
+<p>下面是改进的图例：(图片来自<a href="https://dave.cheney.net/2013/05/21/go-11-performance-improvements" target="_blank" rel="noopener">Go 1.1 performance improvements–Dave Cheney</a>)</p>
+<p><img src="/2012/03/18/Go语言版本演进/bm0.png" width="90%" height="100%"><br><img src="/2012/03/18/Go语言版本演进/bm1.png" width="90%" height="100%"><br><img src="/2012/03/18/Go语言版本演进/bm2.png" width="90%" height="100%"></p>
+<p><br></p>
+<p>重新编写后的Go的调度器性能有了显著提高。调度器目前的设计如下：</p>
+<p>M 是操作系统线程，P 表示一个处理器（P 的数量不能超过 GOMAXPROCS），其中每个 P 对应一个本地 go 协程队列。 <strong>1.1 版本之前，P 的概念没有被引入，go 协程在全局范围通过存在于全局的单个互斥锁管理。</strong>  这次改进实现了“任务窃取（work-stealing）”，允许一个 P 处理队列“窃取”另外一个 P 处理队列的协程任务。</p>
+<p>(图片来自<a href="https://rakyll.org/scheduler/" target="_blank" rel="noopener">Go’s work-stealing scheduler</a>)</p>
+<p><img src="/2012/03/18/Go语言版本演进/gmp.png" width="90%" height="100%"></p>
+<p><img src="/2012/03/18/Go语言版本演进/gmp1.png" width="90%" height="100%"></p>
+<p><br></p>
+<ul>
+<li>Go 1.0需要在每个函数最后，显式地return(或panic)；在Go 1.1中，如果函数的最终语句可以在语法上显示为终止语句，<a href="https://go.dev/doc/go1.1#return" target="_blank" rel="noopener">则可以省略最终的“return”语句</a></li>
+</ul>
+<ul>
+<li>增加了<a href="https://go.dev/doc/articles/race_detector" target="_blank" rel="noopener">竞态检测器</a>，提高并发编程的安全性. <a href="https://medium.com/a-journey-with-go/go-race-detector-with-threadsanitizer-8e497f9e42db" target="_blank" rel="noopener">Go: Race Detector with ThreadSanitizer</a></li>
+</ul>
+<p><br></p>
+<h3 id="Go-1-2-2013-年-12-月："><a href="#Go-1-2-2013-年-12-月：" class="headerlink" title="Go 1.2 - 2013 年 12 月："></a><a href="https://go.dev/blog/go1.2" target="_blank" rel="noopener">Go 1.2</a> - 2013 年 12 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1.2" target="_blank" rel="noopener">Go 1.2 Release Notes</a></p>
+<p><br></p>
+<ul>
+<li><a href="https://go.dev/doc/go1.2#three_index" target="_blank" rel="noopener">Three-index slices</a></li>
+</ul>
+<p>Go 1.2之前，切片的参数只允许有两个，即 <em>sli[i:j]</em>，即初始位置i和(长度的)结束位置j，其cap默认是底层数组的容器，如：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> array [<span class="number">10</span>]<span class="keyword">int</span></span><br><span class="line">	sli := array[<span class="number">0</span>:<span class="number">8</span>]</span><br><span class="line">	slice := array[<span class="number">2</span>:<span class="number">4</span>] <span class="comment">//只看头(从哪里切)，不看尾，即顾头不顾腚...</span></span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="built_in">cap</span>(sli)) <span class="comment">//10</span></span><br><span class="line">	fmt.Println(<span class="built_in">cap</span>(slice)) <span class="comment">//8</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Go 1.2 adds new syntax to allow a slicing operation to specify the capacity as well as the length. A second colon introduces the capacity value, which must be less than or equal to the capacity of the source slice or array, adjusted for the origin. </p>
+</blockquote>
+<p>即之前的<code>slice := array[2:4]</code> 等价于 <code>slice := array[2:4:10]</code>，在Go 1.2中因为引入了新的语法，即支持第三个参数，可以调整切片的容量。</p>
+<p>“第二个冒号引入容量值，该值必须小于或等于源切片或数组的容量”</p>
+<p><code>slice := array[2:4:7]</code>的cap为 7-2=5</p>
+<p><br></p>
+<p>如果第一项不写，[:i:j]，即认为是0</p>
+<p><br></p>
+<p><a href="https://docs.google.com/document/d/1GKKdiGYAghXRxC2BFrSEbHBZZgAGKQ-yXK-hRKBo0Kk/pub" target="_blank" rel="noopener">更多细节参考设计文件</a></p>
+<p><br></p>
+<ul>
+<li>go test 命令支持代码覆盖率报告，并提供新的 <code>go tool cover</code> 命令输出代码测试覆盖率的统计信息. <a href="https://go.dev/blog/cover" target="_blank" rel="noopener">The cover story</a></li>
+</ul>
+<blockquote>
+<p>One major new feature of go test is that it can now compute and, with help from a new, separately installed “go tool cover” program, display test coverage results.</p>
+</blockquote>
+<p><br></p>
+<h3 id="Go-1-3-2014-年-6-月："><a href="#Go-1-3-2014-年-6-月：" class="headerlink" title="Go 1.3 - 2014 年 6 月："></a><a href="https://go.dev/blog/go1.3" target="_blank" rel="noopener">Go 1.3</a> - 2014 年 6 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1.3" target="_blank" rel="noopener">Go 1.3 Release Notes</a></p>
+<p><br></p>
+<blockquote>
+<p>Changes to the runtime have improved the performance of Go binaries, with an improved garbage collector, a new “contiguous” goroutine stack management strategy, a faster race detector, and improvements to the regular expression engine.</p>
+</blockquote>
+<ul>
+<li>堆栈管理在此版本中得到了重要改善。</li>
+</ul>
+<p>堆栈现在会分配<a href="https://docs.google.com/document/d/1wAaf1rYoM4S4gtnPh0zOlGzWtrZFQ5suE8qr2sD8uWQ/pub" target="_blank" rel="noopener">连续的内存片段</a>，并提高了分配效率。这使得 Go 语言在下个版本中将堆栈大小减少到 2KB。</p>
+<p>同时改进了某些组件中堆栈的错误拆分所导致的性能下降问题，此类问题会在堆栈密集分配/释放状态下出现。以下 json 包的例子展示了性能对于堆栈大小的相关度：</p>
+<p><img src="/2012/03/18/Go语言版本演进/json.png" width="90%" height="100%"></p>
+<p>引入连续堆栈的机制修复了这类组件的性能问题。下面是另一个 html/template 包的例子，它也展示出了性能对于堆栈大小的敏感度：</p>
+<p><img src="/2012/03/18/Go语言版本演进/html.png" width="90%" height="100%"></p>
+<p>更多信息可阅读：</p>
+<p><a href="https://medium.com/a-journey-with-go/go-how-does-the-goroutine-stack-size-evolve-447fc02085e5" target="_blank" rel="noopener">How Does the Goroutine Stack Size Evolve?</a></p>
+<p>翻译：<a href="https://studygolang.com/articles/28971" target="_blank" rel="noopener">Go: Goroutine 的堆栈大小是如何演进的</a></p>
+<p><br></p>
+<ul>
+<li>发布了 sync 包的 Pool 组件</li>
+</ul>
+<p>通过 Pool可以复用代码结构，减少分配资源的数量.  该组件随后成为 Go 生态中许多改进的来源，如标准库中的 encoding/json 和 net/http 包，及 Go 社区中的 zap 等包。</p>
+<p>更多信息可阅读：</p>
+<p><a href="https://medium.com/a-journey-with-go/go-understand-the-design-of-sync-pool-2dde3024e277" target="_blank" rel="noopener">Go: Understand the Design of Sync.Pool</a></p>
+<p>翻译：<a href="https://studygolang.com/articles/21554" target="_blank" rel="noopener">Go: 理解 Sync.Pool 的设计</a></p>
+<p><br></p>
+<ul>
+<li>改进了<a href="https://docs.google.com/document/d/1yIAYmbvL3JxOKOjuCyon7JhW4cSv1wy5hC0ApeGMV9s/pub" target="_blank" rel="noopener">channel的实现</a>，提升了性能</li>
+</ul>
+<p>Go 1.2 与 Go 1.3 版本间 channel 的性能对比:</p>
+<p><img src="/2012/03/18/Go语言版本演进/channel.webp" width="90%" height="100%"></p>
+<p><br></p>
+<h3 id="Go-1-4-2014-年-12-月："><a href="#Go-1-4-2014-年-12-月：" class="headerlink" title="Go 1.4 - 2014 年 12 月："></a><a href="https://go.dev/blog/go1.4" target="_blank" rel="noopener">Go 1.4</a> - 2014 年 12 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1.4" target="_blank" rel="noopener">Go 1.4 Release Notes</a></p>
+<blockquote>
+<p>The release focuses primarily on implementation work, improving the garbage collector and preparing the ground for a fully concurrent collector to be rolled out in the next few releases. Stacks are now contiguous, reallocated when necessary rather than linking on new “segments”; this release therefore eliminates the notorious “hot stack split” problem.</p>
+</blockquote>
+<p><em>该版本主要侧重于实现工作、改进垃圾收集器并为在接下来的几个版本中推出的完全并发收集器奠定基础。 堆栈现在是连续的，在必要时重新分配，而不是链接到新的“段”； 因此，此版本消除了臭名昭著的“热堆栈拆分”问题。</em></p>
+<p><br></p>
+<ul>
+<li>For-range loops支持新语法</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">	sli := []<span class="keyword">string</span>&#123;<span class="string">"shandong"</span>, <span class="string">"zhejiang"</span>, <span class="string">"guangdong"</span>, <span class="string">"jiangsu"</span>&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> k, v := <span class="keyword">range</span> sli &#123;</span><br><span class="line">		fmt.Println(<span class="string">"k-v:"</span>, k, v) <span class="comment">//go 1.3及之前的For-range loops</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> <span class="keyword">range</span> sli &#123;</span><br><span class="line">		fmt.Println(<span class="string">"从1.4开始这种写法是可以通过编译的"</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Android 的官方支持包<a href="https://github.com/golang/mobile" target="_blank" rel="noopener">golang.org/x/mobile</a>随该版本一同发布，使开发者可以仅用 Go 代码编写简单的 Android 应用。</p>
+</li>
+<li><p>之前用 C 和汇编语言编写的大多数运行时已转换为用 Go 语言实现 &amp;&amp; 使用了更精准的垃圾收集器，堆栈大小减少了 10~30%</p>
+</li>
+</ul>
+<font size="1" color="grey"><br><br>Prior to Go 1.4, the runtime (garbage collector, concurrency support, interface management, maps, slices, strings, …) was mostly written in C, with some assembler support. In 1.4, much of the code has been translated to Go so that the garbage collector can scan the stacks of programs in the runtime and get accurate information about what variables are active. This change was large but should have no semantic effect on programs.<br><br>This rewrite allows the garbage collector in 1.4 to be fully precise, meaning that it is aware of the location of all active pointers in the program. This means the heap will be smaller as there will be no false positives keeping non-pointers alive. Other related changes also reduce the heap size, which is smaller by 10%-30% overall relative to the previous release.<br><br>A consequence is that stacks are no longer segmented, eliminating the “hot split” problem. When a stack limit is reached, a new, larger stack is allocated, all active frames for the goroutine are copied there, and any pointers into the stack are updated. Performance can be noticeably better in some cases and is always more predictable. Details are available in the design document.<br><br>The use of contiguous stacks means that stacks can start smaller without triggering performance issues, so the default starting size for a goroutine’s stack in 1.4 has been reduced from 8192 bytes to 2048 bytes.<br><br>As preparation for the concurrent garbage collector scheduled for the 1.5 release, writes to pointer values in the heap are now done by a function call, called a write barrier, rather than directly from the function updating the value. In this next release, this will permit the garbage collector to mediate writes to the heap while it is running. This change has no semantic effect on programs in 1.4, but was included in the release to test the compiler and the resulting performance.<br><br>The implementation of interface values has been modified. In earlier releases, the interface contained a word that was either a pointer or a one-word scalar value, depending on the type of the concrete object stored. This implementation was problematical for the garbage collector, so as of 1.4 interface values always hold a pointer. In running programs, most interface values were pointers anyway, so the effect is minimal, but programs that store integers (for example) in interfaces will see more allocations.<br><br>As of Go 1.3, the runtime crashes if it finds a memory word that should contain a valid pointer but instead contains an obviously invalid pointer (for example, the value 3). Programs that store integers in pointer values may run afoul of this check and crash. In Go 1.4, setting the GODEBUG variable invalidptr=0 disables the crash as a workaround, but we cannot guarantee that future releases will be able to avoid the crash; the correct fix is to rewrite code not to alias integers and pointers.<br><br></font>
+
+
+<ul>
+<li>发布 go generate 命令，此命令会扫描//go:generate 指令提供的信息生成代码，简化了代码生成的方式。 <a href="https://go.dev/blog/generate" target="_blank" rel="noopener">Generating code</a></li>
+</ul>
+<ul>
+<li>引入了Internal包</li>
+</ul>
+<p><a href="https://docs.google.com/document/d/1e8kOo3r51b2BWtTs_1uADIA5djfXhPT36s6eHVRIvaU/edit" target="_blank" rel="noopener">Go 1.4 “Internal” Packages</a></p>
+<p>Go 的项目代码管理工具从 Mercurial 切换为 Git，与此同时，项目也从 Google Code 迁移到了 Github 上</p>
+<p><br></p>
+<h3 id="Go-1-5-2015-年-8-月："><a href="#Go-1-5-2015-年-8-月：" class="headerlink" title="Go 1.5 - 2015 年 8 月："></a><a href="https://go.dev/blog/go1.5" target="_blank" rel="noopener">Go 1.5</a> - 2015 年 8 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1.5" target="_blank" rel="noopener">Go 1.5 Release Notes</a></p>
+<p>从该版本开始，Go的发布时间延迟两个月，从之前的每年6月和12月 调整为每年 8 月和 2 月发布新版本：</p>
+<p><a href="https://docs.google.com/document/d/106hMEZj58L9nq9N9p7Zll_WKfo-oyZHFyI6MttuZmBU/edit#" target="_blank" rel="noopener">Go Release Cycle</a></p>
+<p><img src="/2012/03/18/Go语言版本演进/cycle.png" width="90%" height="100%"></p>
+<p><a href="https://github.com/golang/go/wiki/Go-Release-Cycle" target="_blank" rel="noopener">图片来源</a></p>
+<p><br></p>
+<ul>
+<li><a href="https://go.dev/doc/go1.5#gc" target="_blank" rel="noopener">垃圾回收器</a>被完全重新设计实现</li>
+</ul>
+<p><a href="https://docs.google.com/document/d/1wmjrocXIWTr1JxU-3EQBI6BK6KgtiFArkG47XK73xIQ/edit#" target="_blank" rel="noopener">Go 1.5 concurrent garbage collector pacing</a></p>
+<p><a href="https://go.dev/talks/2015/go-gc.pdf" target="_blank" rel="noopener">Go GC: Latency Problem Solved</a></p>
+<p>归功于基于并发的回收器，垃圾回收延迟被显著降低。</p>
+<p>以下来自于 Twitter 生产环境服务器的例子，其中 GC 延迟从 300 毫秒降低到 30 毫秒：</p>
+<p><img src="/2012/03/18/Go语言版本演进/gc.webp" width="90%" height="100%"></p>
+<p>图片来源:<a href="https://go.dev/blog/ismmkeynote" target="_blank" rel="noopener">Getting to Go: The Journey of Go’s Garbage Collector</a></p>
+<p><br></p>
+<ul>
+<li>调度程序的相关改进允许将默认的 GOMAXPROCS 值（并发执行的 goroutine 的数量）从 1 更改为逻辑 CPU 的数量。在以前的版本中，默认值为 1</li>
+</ul>
+<p><a href="https://docs.google.com/document/d/1At2Ls5_fhJQ59kDK2DFVhFu3g5mATSXqqV5QrxinasI/edit" target="_blank" rel="noopener">Go 1.5 GOMAXPROCS Default</a></p>
+<font size="1"><br><br>Runtime<br>In Go 1.5, the order in which goroutines are scheduled has been changed. The properties of the scheduler were never defined by the language, but programs that depend on the scheduling order may be broken by this change. We have seen a few (erroneous) programs affected by this change. If you have programs that implicitly depend on the scheduling order, you will need to update them.<br><br>Another potentially breaking change is that the runtime now sets the default number of threads to run simultaneously, defined by GOMAXPROCS, to the number of cores available on the CPU. In prior releases the default was 1. Programs that do not expect to run with multiple cores may break inadvertently. They can be updated by removing the restriction or by setting GOMAXPROCS explicitly. For a more detailed discussion of this change, see the design document.<br><br></font>
+
+
+
+<p><br></p>
+<ul>
+<li>go tool trace</li>
+</ul>
+<p>可以在运行时可视化跟踪程序</p>
+<p>追踪信息可在测试或运行期间生成，展示在浏览器窗口中</p>
+<p><img src="/2012/03/18/Go语言版本演进/trace.webp" width="90%" height="100%"></p>
+<p><a href="https://docs.google.com/document/d/1FP5apqzBgr7ahCCgFO-yoVhk4YZrNIDNf9RybngBc14/pub" target="_blank" rel="noopener">Go Execution Tracer</a></p>
+<p><br></p>
+<ul>
+<li>map语法的更改 </li>
+</ul>
+<p>由于疏忽，允许从slice literals中省略元素类型的规则未应用于map。在1.5版本得到了修正</p>
+<p>以下两种定义map的方式从1.5及之后都可以（即可以省略Point的类型）</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">type</span> Point <span class="keyword">struct</span> &#123;</span><br><span class="line">		a <span class="keyword">float64</span></span><br><span class="line">		b <span class="keyword">float64</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	m1 := <span class="keyword">map</span>[Point]<span class="keyword">string</span>&#123;</span><br><span class="line">		Point&#123;<span class="number">29.935523</span>, <span class="number">52.891566</span>&#125;:   <span class="string">"Persepolis"</span>,</span><br><span class="line">		Point&#123;<span class="number">-25.352594</span>, <span class="number">131.034361</span>&#125;: <span class="string">"Uluru"</span>,</span><br><span class="line">		Point&#123;<span class="number">37.422455</span>, <span class="number">-122.084306</span>&#125;: <span class="string">"Googleplex"</span>,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	m2 := <span class="keyword">map</span>[Point]<span class="keyword">string</span>&#123;</span><br><span class="line">		&#123;<span class="number">29.935523</span>, <span class="number">52.891566</span>&#125;:   <span class="string">"Persepolis"</span>,</span><br><span class="line">		&#123;<span class="number">-25.352594</span>, <span class="number">131.034361</span>&#125;: <span class="string">"Uluru"</span>,</span><br><span class="line">		&#123;<span class="number">37.422455</span>, <span class="number">-122.084306</span>&#125;: <span class="string">"Googleplex"</span>,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	_, _ = m1, m2</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="Go-1-6-2016-年-2-月："><a href="#Go-1-6-2016-年-2-月：" class="headerlink" title="Go 1.6 - 2016 年 2 月："></a><a href="https://go.dev/blog/go1.6" target="_blank" rel="noopener">Go 1.6</a> - 2016 年 2 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1.6" target="_blank" rel="noopener">Go 1.6 Release Notes</a></p>
+<ul>
+<li><p>增加对于 HTTP/2 协议的默认支持</p>
+</li>
+<li><p>再一次降低了垃圾回收器的延迟</p>
+</li>
+<li><p>runtime改变了打印程序结束恐慌的方式。现在只打印发生panic的 goroutine 的堆栈，而不是所有现有的 goroutine</p>
+</li>
+</ul>
+<p>(可以使用 GOTRACEBACK 环境变量或调用 debug.SetTraceback 函数来配置此行为。对搞清楚当前程序一共起了多少个goroutine还是很有用的~)</p>
+<blockquote>
+<p>For program-ending panics, the runtime now by default prints only the stack of the running goroutine, not all existing goroutines. Usually only the current goroutine is relevant to a panic, so omitting the others significantly reduces irrelevant output in a crash message. To see the stacks from all goroutines in crash messages, set the environment variable GOTRACEBACK to all or call debug.SetTraceback before the crash, and rerun the program. See the <a href="https://pkg.go.dev/runtime#hdr-Environment_Variables" target="_blank" rel="noopener">runtime documentation</a> for details.<br><br>Updating: Uncaught panics intended to dump the state of the entire program, such as when a timeout is detected or when explicitly handling a received signal, should now call debug.SetTraceback(“all”) before panicking. Searching for uses of signal.Notify may help identify such code.</p>
+</blockquote>
+<ul>
+<li><p>默认启用vendor目录</p>
+</li>
+<li><p>sort.Sort 内部的算法进行了改进，运行速度提高了约 10%</p>
+</li>
+</ul>
+<blockquote>
+<p>In the sort package, the implementation of Sort has been rewritten to make about 10% fewer calls to the Interface’s Less and Swap methods, with a corresponding overall time savings. The new algorithm does choose a different ordering than before for values that compare equal (those pairs for which Less(i, j) and Less(j, i) are false).<br><br>Updating: The definition of Sort makes no guarantee about the final order of equal values, but the new behavior may still break programs that expect a specific order. Such programs should either refine their Less implementations to report the desired order or should switch to Stable, which preserves the original input order of equal values.</p>
+</blockquote>
+<p><br></p>
+<h3 id="Go-1-7-2016-年-8-月："><a href="#Go-1-7-2016-年-8-月：" class="headerlink" title="Go 1.7 - 2016 年 8 月："></a><a href="https://go.dev/blog/go1.7" target="_blank" rel="noopener">Go 1.7</a> - 2016 年 8 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1.7" target="_blank" rel="noopener">Go 1.7 Release Notes</a></p>
+<p><br></p>
+<ul>
+<li>context包转正</li>
+</ul>
+<p>可以为用户提供处理超时和任务取消的机制</p>
+<blockquote>
+<p>Over the past few years, the golang.org/x/net/context package has proven to be essential to many Go applications. Contexts are used to great effect in applications related to networking, infrastructure, and microservices (such as Kubernetes and Docker). They make it easy to enable cancellation, timeouts, and passing request-scoped data. To make use of contexts within the standard library and to encourage more extensive use, the package has been moved from the x/net repository to the standard library as the context package. Support for contexts has been added to the net, net/http, and os/exec packages. For more information about contexts, see the package documentation and the Go blog post <a href="https://go.dev/blog/context" target="_blank" rel="noopener">Go Concurrency Patterns: Context</a>.</p>
+</blockquote>
+<p>在过去的几年里，golang.org/x/net/context 包已被证明对许多 Go 应用程序至关重要。上下文在与网络、基础设施和微服务（例如 Kubernetes 和 Docker）相关的应用程序中发挥了重要作用。它们使启用取消、超时和传递请求范围的数据变得容易。为了在标准库中使用上下文并鼓励更广泛的使用，该包已作为上下文包从 x/net 存储库移至标准库。对上下文的支持已添加到 net、net/http 和 os/exec 包中。有关上下文的更多信息，请参阅包文档和 Go 博客文章 Go Concurrency Patterns: Context。</p>
+<ul>
+<li>编译时间显着加快</li>
+</ul>
+<p>二进制文件大小减少了 20-30%, CPU 时间减少了 5-35%</p>
+<blockquote>
+<p>A new compiler back end, based on static single-assignment form (SSA), has been under development for the past year. By representing a program in SSA form, a compiler may perform advanced optimizations more easily. This new back end generates more compact, more efficient code that includes optimizations like bounds check elimination and common subexpression elimination. We observed a 5–35% speedup across our benchmarks. For now, the new backend is only available for the 64-bit x86 platform (“amd64”), but we’re planning to convert more architecture backends to SSA in future releases.</p>
+</blockquote>
+<p>过去一年一直在开发基于静态单一赋值形式 (SSA) 的新编译器后端。通过以 SSA 形式表示程序，编译器可以更轻松地执行高级优化。这个新的后端生成更紧凑、更高效的代码，包括边界检查消除和公共子表达式消除等优化。我们在基准测试中观察到了 5-35% 的加速。目前，新后端仅适用于 64 位 x86 平台（“amd64”），但我们计划在未来版本中将更多架构后端转换为 SSA。</p>
+<p>编译器前端使用一种新的、更紧凑的导出数据格式，并更有效地处理导入声明。虽然编译器工具链中的这些变化大多是不可见的，但用户已经观察到编译时间显着加快，二进制文件大小减少了 20-30%。</p>
+<p>为 crypto/sha1, crypto/sha256, encoding/binary, fmt, hash/adler32, hash/crc32, hash/crc64, image/color, math/big, strconv, strings, unicode, and unicode/utf16包的实现带来了 10% 以上的提升</p>
+<ul>
+<li>垃圾收集器的加速和标准库的优化</li>
+</ul>
+<p>程序应该运行得更快一些。与 Go 1.6 相比，具有许多空闲 goroutine 的程序将经历更短的垃圾收集暂停。</p>
+<ul>
+<li>改进了 go tool trace</li>
+</ul>
+<p><br></p>
+<h3 id="Go-1-8-2017-年-2-月："><a href="#Go-1-8-2017-年-2-月：" class="headerlink" title="Go 1.8 - 2017 年 2 月："></a><a href="https://go.dev/blog/go1.8" target="_blank" rel="noopener">Go 1.8</a> - 2017 年 2 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1.8" target="_blank" rel="noopener">Go 1.8 Release Notes</a></p>
+<p><br></p>
+<ul>
+<li>优化编译</li>
+</ul>
+<p>CPU 时间在 32 位 ARM 系统上减少了 20-30%, 还针对 64 位 x86 系统进行了一些适度的性能改进。编译器和链接器变得更快。</p>
+<p>编译时间应该比 Go 1.7 改进了大约 15%</p>
+<ul>
+<li>对垃圾回收器改进，使两次垃圾回收的暂停时间减小到了毫秒级</li>
+</ul>
+<p>同时识别了剩余仍未解决的暂停模式，并在下一个版本中得到修复。修复后，通常情况下暂停时间能控制在 100 微秒左右,甚至能低至 10 微秒。</p>
+<ul>
+<li>改进了 defer 函数</li>
+</ul>
+<ul>
+<li>部分标准库使用context包来改造</li>
+</ul>
+<p>Go 1.7中进入标准库的context，提供了取消和超时机制。</p>
+<p>Go 1.8 让标准库中更多package使用(支持)context，包括 database/sql，net 包， net/http 包中的 Server.Shutdown等</p>
+<ul>
+<li>sort 包中新添加的 Slice 函数，对切片进行排序变得比之前简单得多</li>
+</ul>
+<p>例如，对一个结构体类型的切片，使用结构体的一个字段来进行排序：</p>
+<p><code>sort.Slice(s, func(i, j int) bool { return s[i].Name &lt; s[j].Name })</code></p>
+<p><br></p>
+<h3 id="Go-1-9-2017-年-8-月："><a href="#Go-1-9-2017-年-8-月：" class="headerlink" title="Go 1.9 - 2017 年 8 月："></a><a href="https://go.dev/blog/go1.9" target="_blank" rel="noopener">Go 1.9</a> - 2017 年 8 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1.9" target="_blank" rel="noopener">Go 1.9 Release Notes</a></p>
+<p><br></p>
+<ul>
+<li>提升了垃圾收集器和编译器</li>
+</ul>
+<blockquote>
+<p><strong>Most of the engineering effort put into this release went to improvements of the runtime and tooling</strong>, which makes for a less exciting announcement, but nonetheless a great release.</p>
+</blockquote>
+<p>GC性能进一步提升，这要归功于一些库函数会触发并发垃圾收集机制，这样的话只会阻塞调用协程（goroutine），而不会阻塞整个程序。另外，大对象的堆内存分配也得到了明显提升。</p>
+<p><strong>Go 1.9 编译器能够并行编译同一个包中的函数。在之前版本的编译器中，已经支持了并行编译不同包中的函数。</strong></p>
+<ul>
+<li>增加了类型别名</li>
+</ul>
+<p>支持通过声明类型别名（type alias）实现<a href="https://www.cnblogs.com/majianguo/p/6792189.html" target="_blank" rel="noopener">渐进式代码重构</a>（gradual code repair）</p>
+<font size="1"><br>渐进式代码修复是代码重构中一种很有用的方式，对于大型的代码库来说很有价值。简而言之，渐进式代码修复的目标是通过一系列的步骤完成一个较大规模的重构，也就是说不会在一次自动化的提交中完成所有的变更，而是分成多次提交。原子性的重构方式在概念上通常很简单，但是如果代码库很大的话，就会造成规模很大的代码提交，这样很难审查和合并。借助渐进式代码修复，我们可以按照三个步骤来重构代码：首先，引入新的API，它应该能与旧的API 共存，所以我们不必立即修改所有使用旧API 的代码；然后，我们将使用旧API 的所有地方替换为新API；最后，将旧的API 移除。<br><br>为了启用渐进式代码修复，必须能为常量、函数、变量和类型创建另外一个备选的名称。现在，Go 允许通过如下的方式声明类型别名：<br><br><code>type OldAPI = NewPackage.API</code><br><br>这样的话，所有引用OldAPI的地方都会使用重构之后的类型<br><br>—详见Russ Cox <a href="https://talks.golang.org/2016/refactor.article" target="_blank" rel="noopener">Codebase Refactoring (with help from Go)</a><br><br></font>
+
+
+<ul>
+<li>新增了sync.Map</li>
+</ul>
+<p>提供了线程安全的并发map，具有恒定分摊时间（amortized-constant-time）的加载、存储和删除功能</p>
+<p>其诞生是<a href="https://www.youtube.com/watch?v=C1EtfDnsdDs" target="_blank" rel="noopener">GopherCon 2017 - Lightning Talk: Bryan C Mills - An overview of sync.Map</a>得到灵感的</p>
+<ul>
+<li>time包更加安全</li>
+</ul>
+<p>Go 1.9 借助单调时间跟踪（monotonic time tracking），让time包的使用变得更加安全。即便是存在挂钟时间调整（wall clock adjustment），Time的对比也会更加容易。</p>
+<p>(可以透明地跟踪每个时间值的 monotonic time，使两个时间之间的差值计算不受<a href="https://www.cnblogs.com/fortunely/p/14779041.html" target="_blank" rel="noopener">墙上时钟</a>调整的影响)</p>
+<ul>
+<li>testing包新增helper方法</li>
+</ul>
+<p>新的 Helper 方法，添加到 testing.T 和 testing.B 中，将调用函数标记为测试助手函数。当测试包打印文件和行信息时，它会显示对辅助函数的调用位置，而不是辅助函数本身中的一行。</p>
+<p><em>go1.9_test.go</em>:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> user</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"testing"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">failure</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	t.Helper() <span class="comment">// This call silences this function in error reports.</span></span><br><span class="line">	t.Fatal(<span class="string">"failure"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Test</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	failure(t)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为 failure 将自己标识为测试助手，所以在 Test 期间打印的错误消息将指示第 11 行调用失败的位置，而不是第 7 行调用失败调用 t.Fatal 的位置。</p>
+<p><img src="/2012/03/18/Go语言版本演进/testing.png" width="90%" height="100%"></p>
+<p><a href="https://www.infoq.cn/article/2017/09/golang-19-released" target="_blank" rel="noopener">Go 1.9 引入了类型别名并提升了运行时和工具支持</a></p>
+<p><a href="https://blog.csdn.net/qiansg123/article/details/80131217" target="_blank" rel="noopener">Go 1.9发布 支持渐进式代码重构</a></p>
+<p><br></p>
+<h3 id="Go-1-10-2018-年-2-月："><a href="#Go-1-10-2018-年-2-月：" class="headerlink" title="Go 1.10 - 2018 年 2 月："></a><a href="https://go.dev/blog/go1.10" target="_blank" rel="noopener">Go 1.10</a> - 2018 年 2 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1.10" target="_blank" rel="noopener">Go 1.10 Release Notes</a></p>
+<p><br></p>
+<blockquote>
+<p>Most of its changes are in the implementation of the toolchain, runtime, and libraries.<br> …<br>There are no significant changes to the language specification.</p>
+</blockquote>
+<p>它的大部分更改都在工具链、运行时和库的实现中,语言规范没有重大变化</p>
+<p><br></p>
+<ul>
+<li>go test命令可以缓存测试结果</li>
+</ul>
+<font size="1"><br><br>&gt;The go test command now caches test results: if the test executable and command line match a previous run and the files and environment variables consulted by that run have not changed either, go test will print the previous test output, replacing the elapsed time with the string “(cached).” Test caching applies only to successful test results; only to go test commands with an explicit list of packages; and only to command lines using a subset of the -cpu, -list, -parallel, -run, -short, and -v test flags. The idiomatic way to bypass test caching is to use -count=1.<br><br><br>go test命令现在可以缓存测试结果：如果测试的可执行文件和命令行与之前的运行相匹配，并且该运行所查询的文件和环境变量也没有改变，go test将打印之前的测试输出，用字符串”（cached）”代替经过的时间。测试缓存只适用于成功的测试结果；只适用于有明确软件包列表的go test命令；只适用于使用-cpu、-list、-parallel、-run、-short和-v测试标志的子集的命令行。绕过测试缓存的习惯性方法是使用-count=1。<br><br><br><br></font>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">first run:</span><br><span class="line">ok      /<span class="keyword">go</span>/src/retro <span class="number">0.027</span>s</span><br><span class="line"></span><br><span class="line">second run:</span><br><span class="line">ok      /<span class="keyword">go</span>/src/retro (cached)</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<ul>
+<li>go build 命令会缓存最近构建过的包，从而加快了构建过程</li>
+</ul>
+<blockquote>
+<p>Go语言具有较高的编译性能是Go语言最初设计时就确定下来的目标，Go编译器的性能在Go 1.4.3版本达到顶峰，这虽然是得益于其使用C语言实现，但更重要的是其为高性能构建而定义的便于依赖分析的语言构建模型，同时避免了像C/C++那样的重复多次扫描大量头文件的负担。随着Go自举的实现，使用Go语言实现的go compiler性能有较大下降，但即便这样，其编译速度在主流编程语言中仍然是数一数二的。在经过了Go 1.6到Go1.9等多个版本对compiler的优化后，go compiler的编译速度已经恢复到Go 1.4.3 compiler的2/3左右或是更为接近的水平。在Go 1.9版本引入并行编译后，Go team在提升工具性能方面的思路发生了些许变化：不再是一味地进行代码级的性能优化，而是选择通过Cache，重复利用中间结果，实现增量构建，来减少编译构建所用的时间</p>
+</blockquote>
+<p><a href="https://tonybai.com/2018/02/17/some-changes-in-go-1-10/" target="_blank" rel="noopener">Go 1.10中值得关注的几个变化</a></p>
+<p><br></p>
+<h3 id="Go-1-11-2018-年-8-月："><a href="#Go-1-11-2018-年-8-月：" class="headerlink" title="Go 1.11 - 2018 年 8 月："></a><a href="https://go.dev/blog/go1.11" target="_blank" rel="noopener">Go 1.11</a> - 2018 年 8 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1.11" target="_blank" rel="noopener">Go 1.11 Release Notes</a></p>
+<p><br></p>
+<blockquote>
+<p>There are many changes and improvements to the toolchain, runtime, and libraries, but two features stand out as being especially exciting: <strong>modules and WebAssembly support</strong>.</p>
+</blockquote>
+<ul>
+<li>Go modules</li>
+</ul>
+<p>根据<a href="https://go.dev/blog/survey2018-results" target="_blank" rel="noopener">Go 2018 Survey Results</a>问卷调查，大多数人面临的最大挑战是包管理</p>
+<p><img src="/2012/03/18/Go语言版本演进/survey.svg" width="90%" height="100%"></p>
+<font size="1"><br><br>&gt;This release adds preliminary support for a new concept called “modules,” an alternative to GOPATH with integrated support for versioning and package distribution.<br><br>此版本增加了对名为“模块”的新概念的初步支持，它是 GOPATH 的替代方案，具有对版本控制和包分发的集成支持。<br><br></font>
+
+<p><a href="https://go.dev/blog/using-go-modules" target="_blank" rel="noopener">Using Go Modules</a></p>
+<ul>
+<li>增加了实验性的WebAssembly支持</li>
+</ul>
+<p>这允许程序员将 Go 程序编译为与四种主要 Web 浏览器兼容的二进制格式</p>
+<p><br></p>
+<h3 id="Go-1-12-2019-年-2-月："><a href="#Go-1-12-2019-年-2-月：" class="headerlink" title="Go 1.12 - 2019 年 2 月："></a><a href="https://go.dev/blog/go1.12" target="_blank" rel="noopener">Go 1.12</a> - 2019 年 2 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1.12" target="_blank" rel="noopener">Go 1.12 Release Notes</a></p>
+<p><br></p>
+<ul>
+<li>改进了Go modules</li>
+</ul>
+<p>准备成为 Go 1.13 中的默认设置</p>
+<ul>
+<li>在<a href="https://pkg.go.dev/golang.org/x/tools/go/analysis" target="_blank" rel="noopener">analysis包</a>基础上重写了 go vet 命令</li>
+</ul>
+<p>这个包有着更大的灵活性，允许开发人员编写自己的代码检查工具。</p>
+<p>go vet 命令已被重写，可作为一系列不同源代码分析工具的基础。 </p>
+<p>一个副作用是不再支持 <code>go tool vet</code>。 使用 go tool vet 的外部工具必须更改为使用 go vet。 使用 go vet 而不是 go tool vet 应该适用于所有受支持的 Go 版本。</p>
+<p><br></p>
+<h3 id="Go-1-13-2019-年-9-月："><a href="#Go-1-13-2019-年-9-月：" class="headerlink" title="Go 1.13 - 2019 年 9 月："></a><a href="https://go.dev/blog/go1.13" target="_blank" rel="noopener">Go 1.13</a> - 2019 年 9 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1.13" target="_blank" rel="noopener">Go 1.13 Release Notes</a></p>
+<p><br></p>
+<ul>
+<li>优化sync.Pool</li>
+</ul>
+<p>sync 包的 Pool 组件得到改进，得其中的资源不会在垃圾回收时被清除(通过新机制里引入的缓存，两次垃圾回收之间没有被使用过的实例才会被清除)</p>
+<ul>
+<li>重了逃逸分析逻辑，使得 Go 程序减少了堆上的分配次数</li>
+</ul>
+<ul>
+<li><p>go 命令默认使用 Go module mirror and Go checksum database下载和验证模块</p>
+</li>
+<li><p>对数字文字的改进</p>
+</li>
+<li><p>错误换行</p>
+</li>
+<li><p>默认开启 TLS 1.3</p>
+</li>
+</ul>
+<p><br></p>
+<h3 id="Go-1-14-2020-年-2-月："><a href="#Go-1-14-2020-年-2-月：" class="headerlink" title="Go 1.14 - 2020 年 2 月："></a><a href="https://go.dev/blog/go1.14" target="_blank" rel="noopener">Go 1.14</a> - 2020 年 2 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1.14" target="_blank" rel="noopener">Go 1.14 Release Notes</a></p>
+<p><br></p>
+<ul>
+<li>Go Module已可用于生产使用</li>
+</ul>
+<p>鼓励所有用户迁移到 go modules进行依赖管理</p>
+<ul>
+<li>嵌入具有重叠方法集的接口</li>
+</ul>
+<font size="1"><br><br>&gt;Per the overlapping interfaces proposal, Go 1.14 now permits embedding of interfaces with overlapping method sets: methods from an embedded interface may have the same names and identical signatures as methods already present in the (embedding) interface. This solves problems that typically (but not exclusively) occur with diamond-shaped embedding graphs. Explicitly declared methods in an interface must remain unique, as before.<br><br>根据<a href="https://github.com/golang/proposal/blob/master/design/6977-overlapping-interfaces.md" target="_blank" rel="noopener">重叠接口提案</a>，Go 1.14 现在允许嵌入具有重叠方法集的接口：来自嵌入式接口的方法可能与（嵌入）接口中已经存在的方法具有相同的名称和相同的签名。这解决了菱形嵌入图通常（但不是唯一）出现的问题。像以前一样，接口中显式声明的方法必须保持<a href="https://tip.golang.org/ref/spec#Uniqueness_of_identifiers" target="_blank" rel="noopener">唯一</a>。<br><br><br></font>
+
+
+<p><a href="https://dave.cheney.net/2020/05/24/diamond-interface-composition-in-go-1-14" target="_blank" rel="noopener">Diamond interface composition in Go 1.14</a></p>
+<ul>
+<li>改进了defer的性能</li>
+</ul>
+<font size="1"><br><br>&gt; This release improves the performance of most uses of defer to incur almost zero overhead compared to calling the deferred function directly. As a result, defer can now be used in performance-critical code without overhead concerns.<br><br><br><br></font>
+
+<ul>
+<li>goroutines 是异步可抢占的</li>
+</ul>
+<font size="1"><br><br>&gt;Goroutines are now asynchronously preemptible. As a result, loops without function calls no longer potentially deadlock the scheduler or significantly delay garbage collection. This is supported on all platforms except windows/arm, darwin/arm, js/wasm, and plan9/<em>.<br><br>A consequence of the implementation of preemption is that on Unix systems, including Linux and macOS systems, programs built with Go 1.14 will receive more signals than programs built with earlier releases. This means that programs that use packages like syscall or golang.org/x/sys/unix will see more slow system calls fail with EINTR errors. Those programs will have to handle those errors in some way, most likely looping to try the system call again. For more information about this see man 7 signal for Linux systems or similar documentation for other systems.<br><br><br>Goroutines 现在是异步可抢占的。因此，没有函数调用的循环不再可能使调度程序死锁或显着延迟垃圾收集。这在除 windows/arm、darwin/arm、js/wasm 和 plan9/</em> 之外的所有平台上都受支持。<br><br>实施抢占的结果是，在包括 Linux 和 macOS 系统在内的 Unix 系统上，使用 Go 1.14 构建的程序将接收到比使用早期版本构建的程序更多的信号。这意味着使用 syscall 或 golang.org/x/sys/unix 等软件包的程序将看到更多缓慢的系统调用失败并出现 EINTR 错误。这些程序必须以某种方式处理这些错误，很可能会循环以再次尝试系统调用。有关这方面的更多信息，请参阅 Linux 系统的 man 7 signal 或其他系统的类似文档。<br><br><br></font>
+
+
+<ul>
+<li>页面分配器更高效</li>
+</ul>
+<font size="1"><br><br>&gt;The page allocator is more efficient and incurs significantly less lock contention at high values of GOMAXPROCS. This is most noticeable as lower latency and higher throughput for large allocations being done in parallel and at a high rate.<br><br>页面分配器效率更高，并且在 GOMAXPROCS 值较高时会显着减少锁争用。这是最明显的，因为并行和高速完成的大型分配具有更低的延迟和更高的吞吐量。<br></font>
+
+
+<ul>
+<li>内部定时器更高效</li>
+</ul>
+<font size="1"><br><br>&gt;<br>Internal timers, used by time.After, time.Tick, net.Conn.SetDeadline, and friends, are more efficient, with less lock contention and fewer context switches. This is a performance improvement that should not cause any user visible changes.<br><br><br>time.After、time.Tick、net.Conn.SetDeadline 等使用的内部计时器效率将会更高，锁争用更少，上下文切换更少。这是一项性能改进，不会导致任何用户可见的更改。<br><br></font>
+
+
+
+
+<p><br></p>
+<h3 id="Go-1-15-2020-年-8-月："><a href="#Go-1-15-2020-年-8-月：" class="headerlink" title="Go 1.15 - 2020 年 8 月："></a><a href="https://go.dev/blog/go1.15" target="_blank" rel="noopener">Go 1.15</a> - 2020 年 8 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1.15" target="_blank" rel="noopener">Go 1.15 Release Notes</a></p>
+<p><br></p>
+<ul>
+<li>一些优化，如改进了对高核心数的小对象的分配</li>
+</ul>
+<font size="1"><br><br><br>Allocation of small objects now performs much better at high core counts, and has lower worst-case latency.<br><br>Converting a small integer value into an interface value no longer causes allocation.<br><br>Non-blocking receives on closed channels now perform as well as non-blocking receives on open channels.<br><br>现在，小对象的分配在高核心数下表现得更好，并且具有更低的最坏情况延迟。<br><br>将小整数值转换为接口值不再导致分配。<br><br>现在，关闭通道上的非阻塞接收与开放通道上的非阻塞接收一样好。<br></font>
+
+
+<ul>
+<li>编译器/汇编器/链接器的优化</li>
+</ul>
+<blockquote>
+<p>Go 1.15 reduces typical binary sizes by around 5% compared to Go 1.14 by eliminating certain types of GC metadata and more aggressively eliminating unused type metadata.</p>
+</blockquote>
+<p>与 Go 1.14 相比，Go 1.15 通过消除某些类型的 GC 元数据并更积极地消除未使用的类型元数据，将二进制大小减少了约 5%。</p>
+<blockquote>
+<p>This release includes substantial improvements to the Go linker, which reduce linker resource usage (both time and memory) and improve code robustness/maintainability.</p>
+</blockquote>
+<p>Go 1.15包括对 Go 链接器的重大改进，这减少了链接器资源的使用（时间和内存）并提高了代码的稳健性/可维护性。</p>
+<ul>
+<li>内置了tzdata包</li>
+</ul>
+<p>Go 1.15 包含一个新包 time/tzdata，它允许将时区数据库嵌入到程序中。导入此包（如 import _ “time/tzdata”）允许程序查找时区信息，即使本地系统上没有时区数据库。还可以嵌入时区数据库</p>
+<font size="1"><br><br>Go的LoadLocation 有个问题，其依赖于 IANA Time Zone Database (简称 tzdata)<br><br>这个数据库Linux系统一般都有，是windows系统都没带。<br><br>没有 tzdata 就会从$GOROOT/中找。对于没有安装go环境的windows系统来说，就没办法通过 LoadLocation 设置时区。<br><br><br>在Go 1.15现在之前解决这个问题的办法，是自己把tzdata文件放到程序目录中，保证 time包能够从目录中加载到时区文件<br><br><a href="https://studygolang.com/articles/13027" target="_blank" rel="noopener">go设置时区</a><br><br></font>
+
+
+
+<ul>
+<li><p>X.509 CommonName 弃用</p>
+</li>
+<li><p>GOPROXY 支持跳过返回错误的代理</p>
+</li>
+<li><p>一些库改进（基本每个版本都有）</p>
+</li>
+</ul>
+<p>如 sql库支持 <code>DB.SetConnMaxIdleTime</code>; <code>time.Ticker</code> 支持 Reset；strconv库增加了<code>FormatComplex</code>和<code>ParseComplex</code>用来处理复数</p>
+<p><br></p>
+<h3 id="Go-1-16-2021-年-2-月："><a href="#Go-1-16-2021-年-2-月：" class="headerlink" title="Go 1.16 - 2021 年 2 月："></a><a href="https://go.dev/blog/go1.16" target="_blank" rel="noopener">Go 1.16</a> - 2021 年 2 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1.16" target="_blank" rel="noopener">Go 1.16 Release Notes</a></p>
+<p><br></p>
+<ul>
+<li>GO111MODULE 默认为 on</li>
+</ul>
+<p>根据 2020 年 Go 开发者调查，96% 的 Go 开发者已经改用Modules</p>
+<ul>
+<li>//go:embed</li>
+</ul>
+<p>可以在编译阶段将静态资源文件打包进编译好的程序中，并提供访问这些文件的能力</p>
+<p><a href="https://zhuanlan.zhihu.com/p/351931501" target="_blank" rel="noopener">Go 1.16新特性-embed包及其使用</a></p>
+<ul>
+<li>对macOS ARM64的支持</li>
+</ul>
+<ul>
+<li>Linux 上释放内存改回用Go 1.12之前的 MADV_DONTNEED</li>
+</ul>
+<p>之前为了使监控不告警，都需要指定 GODEBUG=madvdontneed=1 </p>
+<font size="1"><br><br>&gt;On Linux, the runtime now defaults to releasing memory to the operating system promptly (using MADV_DONTNEED), rather than lazily when the operating system is under memory pressure (using MADV_FREE). This means process-level memory statistics like RSS will more accurately reflect the amount of physical memory being used by Go processes. Systems that are currently using GODEBUG=madvdontneed=1 to improve memory monitoring behavior no longer need to set this environment variable.<br><br>在 Linux 上，运行时现在默认立即向操作系统释放内存（使用 MADV_DONTNEED），而不是在操作系统处于内存压力下时懒惰地释放内存（使用 MADV_FREE）。这意味着像 RSS 这样的进程级内存统计数据将更准确地反映 Go 进程正在使用的物理内存量。当前使用 GODEBUG=madvdontneed=1 来改善内存监控行为的系统不再需要设置此环境变量。<br><br><br></font>
+
+
+<p><a href="https://dashen.tech/2021/03/26/Go-1-12-%E5%85%B3%E4%BA%8E%E5%86%85%E5%AD%98%E9%87%8A%E6%94%BE%E7%9A%84%E4%B8%80%E4%B8%AA%E6%94%B9%E8%BF%9B/" target="_blank" rel="noopener">Go 1.12 关于内存释放的一个”改进”</a></p>
+<ul>
+<li>弃用io/ioutil</li>
+</ul>
+<p>该包的函数， 挪到了io包和os包</p>
+<ul>
+<li><p>许多其他改进和错误修复</p>
+<p>包括构建速度提高了 25%，内存使用量减少了 15%</p>
+</li>
+</ul>
+<p><br></p>
+<h3 id="Go-1-17-2021-年-8-月："><a href="#Go-1-17-2021-年-8-月：" class="headerlink" title="Go 1.17 - 2021 年 8 月："></a><a href="https://go.dev/blog/go1.17" target="_blank" rel="noopener">Go 1.17</a> - 2021 年 8 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1.17" target="_blank" rel="noopener">Go 1.17 Release Notes</a></p>
+<p><br></p>
+<blockquote>
+<p>As always, the release maintains the Go 1 promise of compatibility. We expect almost all Go programs to continue to compile and run as before.</p>
+</blockquote>
+<p>与往常一样，该版本保持了 Go 1 的兼容性承诺。我们希望几乎所有 Go 程序都能像以前一样继续编译和运行。</p>
+<ul>
+<li>go modules 支持“修剪模块图”（Pruned module graphs）</li>
+</ul>
+<p>如果模块指定 go 1.17 或更高版本，则模块图仅包含其他 go 1.17 模块的直接依赖关系，而不包括它们完整传递依赖关系</p>
+<p>但是会在 go.mod 记录间接依赖的库版本。执行以下命令升级<br><code>go mod tidy -go=1.17</code></p>
+<ul>
+<li>编译器带来了额外的改进</li>
+</ul>
+<p>即一种传递函数参数和结果的新方法，程序性能提高了约 5%，amd64 平台的二进制大小减少了约 2%。</p>
+<ul>
+<li>unsafe包新增了<code>unsafe.Add</code>和<code>unsafe.Slice</code></li>
+</ul>
+<ul>
+<li>一些包的改变</li>
+</ul>
+<p>如net包：</p>
+<p>URL 参数解析对 <em>;</em> 支持的变化，原先 example?a=1;b=2&amp;c=3 会解析成 <code>map[a:[1] b:[2] c:[3]]</code>,  现在解析成<code>map[c:[3]]</code></p>
+<p>增加 IP.IsPrivate 判断私有 IP<br>a.b.c.d 格式的 ip v4 地址不允许每段有前缀 0（因为某些系统会认为前缀 0 表示 8进制）</p>
+<p><br></p>
+<h3 id="Go-1-18-2022-年-3-月："><a href="#Go-1-18-2022-年-3-月：" class="headerlink" title="Go 1.18 - 2022 年 3 月："></a><a href="https://go.dev/blog/go1.18" target="_blank" rel="noopener">Go 1.18</a> - 2022 年 3 月：</h3><p><br></p>
+<p><a href="https://go.dev/doc/go1.18" target="_blank" rel="noopener">Go 1.18 Release Notes</a></p>
+<p><br></p>
+<blockquote>
+<p>Go 1.18 is a massive release that includes new features, performance improvements, and our biggest change ever to the language.</p>
+</blockquote>
+<p>按惯例应该在2月份发布，Delay了一个多月</p>
+<p><br></p>
+<ul>
+<li>泛型</li>
+</ul>
+<p>千呼万唤，伴随争议终于到来</p>
+<p><a href="https://go.googlesource.com/proposal/+/refs/heads/master/design/43651-type-parameters.md" target="_blank" rel="noopener">Type Parameters Proposal</a></p>
+<p>Go  Blog提到 <code>It isn’t a stretch to say that the design for parts of Go 1.18 started over a decade ago when we first released Go.</code>,指的可能就是2009年rsc在博客里探讨<a href="https://research.swtch.com/generic" target="_blank" rel="noopener">泛型如何设计</a></p>
+<p>好奇为啥用<code>[]</code>而不是其他语言普遍采用的<code>&lt;&gt;</code></p>
+<p><br></p>
+<p><a href="https://github.com/golang/go/issues/48918" target="_blank" rel="noopener">Rob Pike的担忧</a>,建议先不要用泛型，改动 Go 1.18 中的标准库</p>
+<p><br></p>
+<ul>
+<li>模糊测试（Fuzzing）</li>
+</ul>
+<blockquote>
+<p>Go is the first major language with fuzzing fully integrated into its standard toolchain</p>
+</blockquote>
+<p><a href="https://go.dev/doc/fuzz/" target="_blank" rel="noopener">Go Fuzzing</a></p>
+<p>作为代价，fuzzing 会消耗大量内存，影响机器性能，占用也许是几个G的存储空间</p>
+<p><br></p>
+<p><a href="https://github.com/golang/go/issues/44551" target="_blank" rel="noopener">Rob Pike对fuzzing的疑虑</a></p>
+<p><img src="/2012/03/18/Go语言版本演进/fuzz.png" width="90%" height="100%"></p>
+<p><br></p>
+<ul>
+<li>Workspaces 工作区</li>
+</ul>
+<p>在2021 年用户调查中，反馈最多的挑战是跨多个模块工作。 在 Go 1.18 中，使用新的 Go 工作区模式解决了这个问题，使用多个模块将变得简单。</p>
+<font size="1"><br><br> 如在工作目录或父目录中有<em>go.work</em>文件，或使用<em>GOWORK</em>环境变量进行指定，将使go命令进入工作区模式。<br><br> 在此模式下，<em>go.work</em>文件将被用来确定作为模块解析根的一组主模块，而不是使用通常找到的go.mod文件来指定单一的主模块。<br><br> </font>
+
+
+<p><br></p>
+<ul>
+<li>20%的性能提升</li>
+</ul>
+<p>Go 1.18将为ARM64架构带来高达 20% 的 CPU 性能改进</p>
+<p>但由于编译器中与支持泛型有关的变化，Go 1.18 的编译速度可能比Go 1.17的编译速度大约慢15%。编译后的代码的执行时间不受影响。打算在Go 1.19中提高编译器的速度。</p>
+<p><br></p>
+<hr>
+<p><br></p>
+<p><a href="https://go.dev/blog/all" target="_blank" rel="noopener">所有版本的发布说明</a></p>
+<p><a href="https://golang.design/history/cn.html" target="_blank" rel="noopener">Go 语言历史</a></p>
+<p><a href="https://www.infoq.cn/article/kx69fgexcjeeczz6crie" target="_blank" rel="noopener">Go 语言的历史回顾</a></p>
+<!--爽哥为赞赏功能新加--></div><!--script(type='text/javascript', src=url_for(theme.js) + '/jquery.js' + '?v=' + theme.version, async)--><script type="text/javascript" src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script><div class="post-donate"><div id="donate_board" class="donate_bar center"><a id="btn_donate" href="javascript:;" title="打赏" class="btn_donate"></a><div class="donate_txt"> &uarr;<br>BTC Address:3NNxkM6ez7szsUAgTnK2VaF949LoGmXuBs<br></div></div><div id="donate_guide" class="donate_bar center hidden pay"><img src="http://cuishuang.gitee.io/img/weChatMoney.png" title="微信打赏" alt="微信打赏"><img src="http://cuishuang.gitee.io/img/alipayMoney.png" title="支付宝打赏" alt="支付宝打赏"><img src="http://cuishuang.gitee.io/img/btc.png" title="比特币打赏" alt="比特币打赏"></div><script type="text/javascript">document.getElementById('btn_donate').onclick = function(){
+    $('#donate_board').addClass('hidden');
+    $('#donate_guide').removeClass('hidden');
+}</script></div><!-- google adsense--><!--if theme.show_ad_post == true--><!--    script(async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")--><!--    ins.adsbygoogle(style="display:block" data-ad-client="ca-pub-1181798273731653" data-ad-format="auto")--><!--    script (adsbygoogle = window.adsbygoogle || []).push({});-->
+<div class="post-copyright"><blockquote><p>原文作者: fliter</p><p>原文链接: </p><a href="http://www.dashen.tech/2012/03/18/Go语言版本演进/">http://www.dashen.tech/2012/03/18/Go语言版本演进/</a><p>版权声明: 转载请注明出处</p></blockquote></div><div class="tags"><a href="/tags/Go/">Go</a></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/2012/03/20/用Markdown做PPT/" class="pre">用Markdown做PPT</a><a href="/2012/03/17/常用压测工具/" class="next">常用压测工具</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-0-2012-年-3-月："><span class="toc-text">Go 1.0 - 2012 年 3 月：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-1-2013-年-5-月："><span class="toc-text">Go 1.1 - 2013 年 5 月：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-2-2013-年-12-月："><span class="toc-text">Go 1.2 - 2013 年 12 月：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-3-2014-年-6-月："><span class="toc-text">Go 1.3 - 2014 年 6 月：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-4-2014-年-12-月："><span class="toc-text">Go 1.4 - 2014 年 12 月：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-5-2015-年-8-月："><span class="toc-text">Go 1.5 - 2015 年 8 月：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-6-2016-年-2-月："><span class="toc-text">Go 1.6 - 2016 年 2 月：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-7-2016-年-8-月："><span class="toc-text">Go 1.7 - 2016 年 8 月：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-8-2017-年-2-月："><span class="toc-text">Go 1.8 - 2017 年 2 月：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-9-2017-年-8-月："><span class="toc-text">Go 1.9 - 2017 年 8 月：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-10-2018-年-2-月："><span class="toc-text">Go 1.10 - 2018 年 2 月：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-11-2018-年-8-月："><span class="toc-text">Go 1.11 - 2018 年 8 月：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-12-2019-年-2-月："><span class="toc-text">Go 1.12 - 2019 年 2 月：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-13-2019-年-9-月："><span class="toc-text">Go 1.13 - 2019 年 9 月：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-14-2020-年-2-月："><span class="toc-text">Go 1.14 - 2020 年 2 月：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-15-2020-年-8-月："><span class="toc-text">Go 1.15 - 2020 年 8 月：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-16-2021-年-2-月："><span class="toc-text">Go 1.16 - 2021 年 2 月：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-17-2021-年-8-月："><span class="toc-text">Go 1.17 - 2021 年 8 月：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-18-2022-年-3-月："><span class="toc-text">Go 1.18 - 2022 年 3 月：</span></a></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/03/25/time-After和select搭配使用时存在的坑/">time.After和select搭配使用时存在的坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/20/context-WithCancel-的使用/">context.WithCancel()的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/使用govaluate库进行逻辑判断/">使用govaluate库进行逻辑判断</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/03/向前兼容与向后兼容/">向前兼容与向后兼容</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/01/部署Spring-Boot项目/">部署Spring Boot项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/01/新建Spring-Boot项目/">新建Spring Boot项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/29/探究新版本新多出的协程/">探究新版本新多出的协程</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/08/Rust时间和日期/">Rust时间和日期</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/14/OBS推流/">OBS推流</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/14/二进制分析工具/">二进制分析工具</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-weixin"> 扫码关注-旅途散记</i></div><img width="100%" height="233" title="微信扫一扫" src="https://cuishuang.gitee.io/img/lvtusanji.jpg"></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DevOps/">DevOps</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/">Life</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tree/">Tree</a><span class="category-list-count">27</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/runtime/">runtime</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sync/">sync</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/unit-testing/">unit testing</a><span class="category-list-count">9</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/Todo/" style="font-size: 15px;">Todo</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/微服务/" style="font-size: 15px;">微服务</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/操作系统/" style="font-size: 15px;">操作系统</a> <a href="/tags/TCP-IP/" style="font-size: 15px;">TCP/IP</a> <a href="/tags/译海一粟/" style="font-size: 15px;">译海一粟</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Pearl/" style="font-size: 15px;">Pearl</a> <a href="/tags/Tools/" style="font-size: 15px;">Tools</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/Compiler/" style="font-size: 15px;">Compiler</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/密码学/" style="font-size: 15px;">密码学</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/Interview/" style="font-size: 15px;">Interview</a> <a href="/tags/杂谈/" style="font-size: 15px;">杂谈</a> <a href="/tags/金庸/" style="font-size: 15px;">金庸</a> <a href="/tags/数学/" style="font-size: 15px;">数学</a> <a href="/tags/bug/" style="font-size: 15px;">bug</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Rust/" style="font-size: 15px;">Rust</a> <a href="/tags/explore/" style="font-size: 15px;">explore</a> <a href="/tags/书摘-影评/" style="font-size: 15px;">书摘/影评</a> <a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/足球-体育/" style="font-size: 15px;">足球&体育</a> <a href="/tags/读城记/" style="font-size: 15px;">读城记</a> <a href="/tags/星陨/" style="font-size: 15px;">星陨</a> <a href="/tags/奇文共赏/" style="font-size: 15px;">奇文共赏</a> <a href="/tags/区域经济/" style="font-size: 15px;">区域经济</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">七月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">六月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">五月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">四月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">三月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">二月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">九月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">四月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1093/02/">二月 1093</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="https://leetcode.com/" title="LeetCode" target="_blank">LeetCode</a><ul></ul><a href="https://golang.org/" title="Go官网" target="_blank">Go官网</a><ul></ul><a href="https://tonybai.com/" title="TonyBai" target="_blank">TonyBai</a><ul></ul><a href="http://lietoumai.com/" title="顾问麦的小站" target="_blank">顾问麦的小站</a><ul></ul><a href="https://www.coolshell.cn/" title="酷壳" target="_blank">酷壳</a><ul></ul><a href="https://notes.diguage.com/" title="瓜哥" target="_blank">瓜哥</a><ul></ul><a href="https://taoshu.in/" title="涛叔" target="_blank">涛叔</a><ul></ul><a href="https://colobu.com/" title="鸟窝" target="_blank">鸟窝</a><ul></ul><a href="http://xiaorui.cc/" title="峰云" target="_blank">峰云</a><ul></ul><a href="https://eddycjy.com/posts/" title="煎鱼" target="_blank">煎鱼</a><ul></ul><a href="https://hutusi.com/" title="胡涂说" target="_blank">胡涂说</a><ul></ul><a href="https://qcrao.com/" title="码农桃花源" target="_blank">码农桃花源</a><ul></ul><a href="https://github.com/KeKe-Li/For-learning-Go-Tutorial" title="远方的笔记" target="_blank">远方的笔记</a><ul></ul><a href="https://xargin.com/" title="No Headback" target="_blank">No Headback</a><ul></ul><a href="http://thoslin.github.io/" title="Eat Pray Code" target="_blank">Eat Pray Code</a><ul></ul><a href="https://www.ashenone66.cn/" title="AshenOne's Blog" target="_blank">AshenOne's Blog</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |  <a href="/atom.xml">订阅本站</a> |  <a href="/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> 备案号:<a href="http://www.beian.miit.gov.cn/"> 鲁ICP备18010105号</a></span></p><p><span> Copyright &copy;<a href="/." rel="nofollow">fliter.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e10d6858b78ff3fc7853fc72e7240eab";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/search.json.js?v=2.0.3"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+});</script><script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML" async></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.3" async></script><link rel="stylesheet" type="text/css" href="/share/css/share.css"><script type="text/javascript" src="/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/share/js/qrcode.js" charset="utf-8"></script></body></html>
